@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
+class ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -15,8 +15,8 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
     );
 
@@ -127,8 +127,8 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -340,7 +340,6 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
     );
 
     public static $classMap = array (
-        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -349,7 +348,6 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -358,7 +356,6 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -3769,11 +3766,11 @@ class ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8f145c99bca6e81cfc3c4d6e4aa9c7eb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1::$classMap;
 
         }, null, ClassLoader::class);
     }
