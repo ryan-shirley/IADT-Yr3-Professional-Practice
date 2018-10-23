@@ -22,7 +22,14 @@
                             <tr>
                                 <td scope="row">{{ $cat->name }}</td>
                                 <td>{{ $cat->description }}</td>
-                                <td></td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('categories.edit', $cat->id) }}" role="button">Edit</a>
+                                    <form action="{{ action('Artist\CategoryController@destroy', $cat->id )}}" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger btn-small" >Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

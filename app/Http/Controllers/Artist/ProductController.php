@@ -94,7 +94,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $p = Product::find($id);
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('artist.product.edit')->with([
+            'p' => $p,
+            'categories' => $categories,
+            'tags' => $tags
+        ]);
     }
 
     /**
@@ -106,7 +114,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+            'description' => 'required|max:300',
+            'price' => 'required|numeric',
+            'sale_price' => 'required|numeric',
+            'featured_img' => 'required|max:300',
+        ]);
+
+        $tags = $request->input('tag_id');
+
+        $p = Product::find($id);
+        $p->name = $request->input('name');
+        $p->description = $request->input('description');
+        $p->price = $request->input('price');
+        $p->sale_price = $request->input('sale_price');
+        $p->featured_img = $request->input('featured_img');
+
+        $p->save();
+
+        dd($tags);
+        $p->tags()->sync($tags);
+        $p->categories()->sync($request->input('category_id'));
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -117,6 +148,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $p = Product::find($id);
+        $p->delete();
+
+        return redirect()->route('products.index');
     }
 }

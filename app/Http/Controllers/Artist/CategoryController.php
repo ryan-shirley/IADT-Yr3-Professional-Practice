@@ -73,7 +73,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('artist.category.edit', compact('category'));
     }
 
     /**
@@ -85,7 +86,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+            'description' => 'required|max:300',
+        ]);
+
+        $c = Category::find($id);
+        $c->name = $request->input('name');
+        $c->description = $request->input('description');
+
+        $c->save();
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -96,6 +108,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $c = Category::find($id);
+        $c->delete();
+
+        return redirect()->route('categories.index');
     }
 }

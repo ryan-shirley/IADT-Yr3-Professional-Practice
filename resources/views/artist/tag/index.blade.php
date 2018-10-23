@@ -22,7 +22,14 @@
                             <tr>
                                 <td scope="row">{{ $tag->name }}</td>
                                 <td>{{ $tag->description }}</td>
-                                <td></td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('tags.edit', $tag->id) }}" role="button">Edit</a>
+                                    <form action="{{ action('Artist\TagController@destroy', $tag->id )}}" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button class="btn btn-danger btn-small" >Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

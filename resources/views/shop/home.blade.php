@@ -5,9 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Products</div>
+                <div class="card-header">Shop Home</div>
                 <div class="card-body">
-                    <a class="btn btn-primary" href="{{ route('products.create') }}" role="button">Create Product</a>
 
                     <table class="table">
                         <thead class="thead-light">
@@ -40,14 +39,7 @@
                                         {{ $tag->name }}
                                     @endforeach
                                 </td>
-                                <td>
-                                    <a class="btn btn-primary" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
-                                    <form action="{{ action('Artist\ProductController@destroy', $p->id )}}" method="post">
-                                        @csrf
-                                        <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger btn-small" >Delete</button>
-                                    </form>
-                                </td>
+                                <td></td>
                             </tr>
                             @endforeach
                         </tbody>

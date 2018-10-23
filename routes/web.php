@@ -26,3 +26,5 @@ Route::get('/customer/home', 'Customer\HomeController@index')->name('customer.ho
 Route::resource('/artist/products', 'Artist\ProductController');
 Route::resource('/artist/categories', 'Artist\CategoryController');
 Route::resource('/artist/tags', 'Artist\TagController');
+
+Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');

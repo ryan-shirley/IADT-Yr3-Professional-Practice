@@ -73,7 +73,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('artist.tag.edit', compact('tag'));
     }
 
     /**
@@ -85,7 +86,18 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100',
+            'description' => 'required|max:300',
+        ]);
+
+        $t = Tag::find($id);
+        $t->name = $request->input('name');
+        $t->description = $request->input('description');
+
+        $t->save();
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -96,6 +108,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $t = Tag::find($id);
+        $t->delete();
+
+        return redirect()->route('tags.index');
     }
 }
