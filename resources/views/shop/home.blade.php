@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+            <a class="btn btn-primary" href="{{ route('cart.home') }}" role="button">View Cart</a>
+
             <div class="card">
                 <div class="card-header">Shop Home</div>
                 <div class="card-body">
@@ -39,7 +42,7 @@
                                         {{ $tag->name }}
                                     @endforeach
                                 </td>
-                                <td></td>
+                                <td><a class="btn btn-primary" href="{{ route('cart.add') }}?product_id={{ $p->id }}" role="button">Add To Cart</a></td>
                             </tr>
                             @endforeach
                         </tbody>

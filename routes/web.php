@@ -28,3 +28,6 @@ Route::resource('/artist/categories', 'Artist\CategoryController');
 Route::resource('/artist/tags', 'Artist\TagController');
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
+Route::get('/shop/cart', 'Shop\ShoppingCartController@index')->name('cart.home');
+
+Route::get('/addToCart', 'Shop\ShoppingCartController@addToCart')->name('cart.add');
