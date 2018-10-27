@@ -24,6 +24,7 @@
                                 <td>{{ $tag->description }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ route('tags.edit', $tag->id) }}" role="button">Edit</a>
+                                    <a class="btn btn-secondary" href="{{ route('tags.viewProducts', $tag->id) }}" role="button">View Products</a>
                                     <form action="{{ action('Artist\TagController@destroy', $tag->id )}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">

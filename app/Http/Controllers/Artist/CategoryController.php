@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Product;
 
 class CategoryController extends Controller
 {
@@ -21,7 +22,24 @@ class CategoryController extends Controller
             'categories' => $categories
         ]);
     }
+    public function viewProducts($id)
+    {
+        $category = Category::find($id);
 
+        $products = Product::with('categories')->whereHas('categories', function($query) use ($id) {
+            $query->where('category_id', 'LIKE', "$id");
+        })->get();
+
+        // $products = Product::whereHas('tags', function ($query){
+        //     $query->where('tag_id', 'like', $id);
+        // })->get();
+
+        return view('artist.category.viewProducts')->with([
+            'products' => $products,
+            'category' => $category
+        ]);
+
+    }
     /**
      * Show the form for creating a new resource.
      *

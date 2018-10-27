@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tag;
+use App\Product;
 
 class TagController extends Controller
 {
@@ -75,6 +76,25 @@ class TagController extends Controller
     {
         $tag = Tag::find($id);
         return view('artist.tag.edit', compact('tag'));
+    }
+
+    public function viewProducts($id)
+    {
+        $tag = Tag::find($id);
+
+        $products = Product::with('tags')->whereHas('tags', function($query) use ($id) {
+            $query->where('tag_id', 'LIKE', "$id");
+        })->get();
+        
+        // $products = Product::whereHas('tags', function ($query){
+        //     $query->where('tag_id', 'like', $id);
+        // })->get();
+
+        return view('artist.tag.viewProducts')->with([
+            'products' => $products,
+            'tag' => $tag
+        ]);
+
     }
 
     /**

@@ -24,6 +24,7 @@
                                 <td>{{ $cat->description }}</td>
                                 <td>
                                     <a class="btn btn-primary" href="{{ route('categories.edit', $cat->id) }}" role="button">Edit</a>
+                                    <a class="btn btn-secondary" href="{{ route('categories.viewProducts', $cat->id) }}" role="button">View Products</a>
                                     <form action="{{ action('Artist\CategoryController@destroy', $cat->id )}}" method="post">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
