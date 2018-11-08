@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Tag;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -26,9 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
+        $categories = Category::all();
+        $tags = Tag::all();
 
         return view('shop.home')->with([
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 }
