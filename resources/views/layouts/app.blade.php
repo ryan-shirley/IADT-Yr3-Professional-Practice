@@ -44,6 +44,8 @@
                       <li class="nav-item">
                           <a class="nav-link" href="{{ url('about') }}">About</a>
                       </li>
+
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -73,6 +75,9 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.home') }}" role="button">View Cart</a>
+                        </li>
                     </ul>
                 </div>
             </div>
