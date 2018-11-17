@@ -49,6 +49,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Product 3';
         $product->description = 'This is some info about the product';
         $product->price = 102.00;
+        $product->sale_price = 80.00;
         $product->featured_img = $img->id;
         $product->save();
         $product->tags()->attach($tag);
