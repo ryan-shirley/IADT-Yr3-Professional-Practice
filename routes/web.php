@@ -33,6 +33,7 @@ Route::resource('/artist/tags', 'Artist\TagController');
 Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProducts')->name('tags.viewProducts');
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
-Route::get('/shop/cart', 'Shop\ShoppingCartController@index')->name('cart.home');
 
-Route::get('/addToCart', 'Shop\ShoppingCartController@addToCart')->name('cart.add');
+Route::post('/shop/cart', 'CartController@add')->name('cart.add');
+Route::delete('/shop/cart/', 'CartController@remove')->name('cart.remove');
+Route::get('/shop/cart', 'CartController@view')->name('cart.view');
