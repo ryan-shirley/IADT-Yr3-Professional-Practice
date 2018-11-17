@@ -76,12 +76,22 @@
                             </li>
                         @endguest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.home') }}" role="button">View Cart</a>
+                            <a class="nav-link" href="{{ route('cart.view') }}" role="button">View Cart</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            <div class="flash-message">
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(Session::has('alert-' . $msg))
+                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                    @endif
+                @endforeach
+            </div>
+        </div>
 
         <main class="py-4">
             @yield('content')

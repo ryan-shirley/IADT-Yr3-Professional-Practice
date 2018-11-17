@@ -7,7 +7,7 @@
   <div class="row">
     @foreach ($products as $p)
     <div class="col-4">
-      <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+      <img class="card-img-top" src="{{ asset(App\Image::find($p->featured_img)->url) }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Name: {{ $p->name }}</h5>
         <p>
@@ -20,8 +20,12 @@
               {{ $tag->name }}
           @endforeach </br>
           Sale Price: {{ $p->sale_price }} </br>
-          Featured Img: {{ $p->featured_img }} </br>
-          <a class="btn btn-outline-dark" href="{{ route('cart.add') }}?product_id={{ $p->id }}" role="button">Add To Cart</a>
+          Featured Img: {{ App\Image::find($p->featured_img)->title }} </br>
+            <form action="{{ route('cart.add')}}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $p->id }}">
+                <button class="btn btn-outline-dark">Add to cart</button>
+            </form>
         </p>
       </div>
     </div>
