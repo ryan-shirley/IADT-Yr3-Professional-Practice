@@ -43,12 +43,29 @@ class CartController extends Controller
 
     public function edit(Request $request)
     {
+        $cart = $this->getCart($request);
 
+        return view('shop.cart.edit')->with([
+            'cart' => $cart
+        ]);
     }
 
     public function update(Request $request)
     {
+        $request->validate([
+            'quantity' => 'required|array',
+            'quantity.*' => 'integer|min:0'
+        ]);
 
+        $cart = $this->getCart($request);
+        $quantities = $request->input('quantity');
+        foreach ($quantities as $product_id => $quantity) {
+            $product = Product::findOrFail($product_id);
+            $cart->update($product, $quantity);
+        }
+
+        $request->session()->flash('alert-success', 'Your cart was updated!');
+        return redirect()->route('cart.view');
     }
 
     public function remove(Request $request) {

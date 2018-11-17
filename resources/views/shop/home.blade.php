@@ -9,7 +9,7 @@
     <div class="col-4">
       <img class="card-img-top" src="{{ asset(App\Image::find($p->featured_img)->url) }}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Name: {{ $p->name }}</h5>
+        <h5 class="card-title"><a href="{{ route('shop.product', $p->id) }}">{{ $p->name }}</a></h5>
         <p>
           Price: {{ $p->price }} </br>
           Description: {{ $p->description }} </br>
@@ -24,7 +24,7 @@
             <form action="{{ route('cart.add')}}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $p->id }}">
-                <button class="btn btn-outline-dark">Add to cart</button>
+                <button class="btn btn-dark">Add to cart</button>
             </form>
         </p>
       </div>
