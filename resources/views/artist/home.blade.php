@@ -11,7 +11,7 @@
           <li><a href="{{ route('artist.home') }}">Home</a></li>
           <li>Orders</li>
           <ul>
-            <li>All Orders</li>
+            <li><a href="{{ route('artist.orders.index') }}">All Orders</a></li>
             <li>Active Orders</li>
             <li>Completed Orders</li>
           </ul>
@@ -38,7 +38,7 @@
         @endif
 
         You are logged in!
-<br />
+        <br />
         <a class="btn btn-primary" href="{{ route('products.index') }}" role="button">Products</a>
         <a class="btn btn-primary" href="{{ route('tags.index') }}" role="button">Tags</a>
         <a class="btn btn-primary" href="{{ route('categories.index') }}" role="button">Categories</a>

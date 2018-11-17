@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->first() != null;
     }
+
+    public function getRoleName()
+    {
+        return $this->roles()->first()->name;
+    }
 }

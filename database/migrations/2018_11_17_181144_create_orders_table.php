@@ -23,7 +23,10 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_address');
             $table->string('billing_address');
             $table->integer('shipping_method_id')->unsigned();
-            
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('shipping_method_id')->references('id')->on('shipping_methods');
+
             $table->timestamps();
         });
     }

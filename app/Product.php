@@ -29,4 +29,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Image')->withPivot('position');
     }
+
+    public function orders()
+    {
+      return $this->belongsToMany('App\Order')->withPivot('quantity')-withTimestamps();
+    }
 }
