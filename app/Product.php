@@ -21,4 +21,12 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    /**
+     * The images that belong to the product.
+     */
+    public function images()
+    {
+        return $this->belongsToMany('App\Image')->withPivot('position');
+    }
 }

@@ -19,7 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->double('price', 8, 2);
             $table->double('sale_price', 8, 2);
-            $table->string('featured_img');
+
+            $table->integer('featured_img')->unsigned();
+            $table->foreign('featured_img')->references('id')->on('images');
 
             $table->timestamps();
         });
