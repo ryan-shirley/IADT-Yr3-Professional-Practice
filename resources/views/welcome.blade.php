@@ -34,19 +34,19 @@
           <br/>
           <div class="card-deck">
             <div class="card">
-              <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+              <img class="card-img-top" src="/images/placeholder.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title text-center">Wallscrolls</h5>
               </div>
             </div>
             <div class="card">
-              <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+              <img class="card-img-top" src="/images/placeholder.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title text-center">Wallscrolls</h5>
               </div>
             </div>
             <div class="card">
-              <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+              <img class="card-img-top" src="/images/placeholder.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title text-center">Wallscrolls</h5>
               </div>

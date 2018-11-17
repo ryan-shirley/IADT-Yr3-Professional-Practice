@@ -37,7 +37,7 @@
     @foreach ($categories as $cat)
     <div class="col-4">
       <a href="{{ route('categories.viewProducts', $cat->id) }}">
-        <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+        <img class="card-img-top" src="/images/placeholder.jpg" alt="Card image cap">
       </a>
       <div class="card-body">
         <a href="{{ route('categories.viewProducts', $cat->id) }}">
@@ -54,7 +54,7 @@
     @foreach ($tags as $tag)
     <div class="col-4">
       <a href="{{ route('tags.viewProducts', $tag->id) }}">
-        <img class="card-img-top" src="/images/default-img.jpg" alt="Card image cap">
+        <img class="card-img-top" src="/images/placeholder.jpg" alt="Card image cap">
       </a>
       <div class="card-body">
         <a href="{{ route('tags.viewProducts', $tag->id) }}">
