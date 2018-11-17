@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Order;
+use App\Cart;
 use Validator;
 
 class CartController extends Controller
@@ -14,7 +17,7 @@ class CartController extends Controller
     {
         $cart = $this->getCart($request);
 
-        return view('shop.cart.view')->with([
+        return view('cart.view')->with([
             'cart' => $cart
         ]);
     }

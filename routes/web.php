@@ -35,11 +35,11 @@ Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProdu
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');
 
-Route::get('/shop/cart', 'CartController@view')->name('cart.view');
-Route::post('/shop/cart', 'CartController@add')->name('cart.add');
-Route::get('/shop/cart/edit', 'CartController@edit')->name('cart.edit');
-Route::put('/shop/cart', 'CartController@update')->name('cart.update');
-Route::delete('/shop/cart/', 'CartController@remove')->name('cart.remove');
+Route::get('/cart', 'CartController@view')->name('cart.view');
+Route::post('/cart', 'CartController@add')->name('cart.add');
+Route::get('/cart/edit', 'CartController@edit')->name('cart.edit');
+Route::put('/cart', 'CartController@update')->name('cart.update');
+Route::delete('cart/', 'CartController@remove')->name('cart.remove');
 
 Route::get('/artist/orders','Artist\OrderController@index')->name('artist.orders.index');
 Route::get('/artist/orders/{id}','Artist\OrderController@show')->name('artist.orders.show');
