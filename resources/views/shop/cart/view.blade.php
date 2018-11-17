@@ -10,6 +10,9 @@
                     @if ($cart->isEmpty())
                     <p>There are no items in your shopping cart</p>
                     @else
+                    <p>
+                        <a href="{{ route( 'cart.edit' ) }}" class="btn btn-warning">Edit cart</a>
+                    </p>
                     <table class="table">
                         <thead class="thead-light">
                             <tr>

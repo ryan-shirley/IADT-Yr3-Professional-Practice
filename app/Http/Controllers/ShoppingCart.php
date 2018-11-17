@@ -31,8 +31,20 @@ class ShoppingCart {
         }
     }
 
-    public function update($book, $qty) {
-
+    public function update($product, $qty) {
+        if (isset($this->items[$product->id])) {
+            if ($qty > 0) {
+                $item = $this->items[$product->id];
+                $item->setQuantity($qty);
+            }
+            else if ($qty == 0) {
+                $this->item[$product->id] = NULL;
+                unset($this->items[$product->id]);
+            }
+        }
+        else {
+            throw new Exception("Illegal request.");
+        }
     }
 
     public function remove($product) {
