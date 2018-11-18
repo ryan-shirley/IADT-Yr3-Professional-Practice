@@ -6,22 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    //
-    public function users()
+    // get user that owns the order.
+    public function user()
     {
-      return $this->belongsToMany('App\User');
+      return $this->belongsTo('App\User');
     }
 
+    // get products for the order
     public function products()
     {
-      return $this->belongsToMany()->withPivot('quantity')->withTimestamps();
+      return $this->hasMany('App\Product')->withPivot('quantity')->withTimestamps();
     }
 
-    public function total(){
-      $total = 0.0;
-      foreach($this->products as $product) {
-        $total += $product->price * $book->pivot->quantity;
-      }
-      return $total;
-    }
+    // public function total(){
+    //   $total = 0.0;
+    //   foreach($this->products as $product) {
+    //     $total += $product->price * $book->pivot->quantity;
+    //   }
+    //   return $total;
+    // }
 }
