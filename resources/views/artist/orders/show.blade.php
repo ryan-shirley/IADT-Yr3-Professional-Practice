@@ -49,6 +49,45 @@
                       </tr>
                   </tbody>
               </table>
+              <hr>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td scope='col'>Product</td>
+                    <td scope='col'>Price</td>
+                    <td scope='col'>Sale Price</td>
+                    <td scope='col'>Description</td>
+                    <td scope='col'>Quantity</td>
+                    <td scope='col'>Total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Product1</th>
+                    <td>19.99</td>
+                    <td>14.99</td>
+                    <td>This is some info about the product</td>
+                    <td>3</td>
+                    <td>59.97</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Product2</th>
+                    <td>19.99</td>
+                    <td>14.99</td>
+                    <td>This is some info about the product</td>
+                    <td>3</td>
+                    <td>59.97</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Product3</th>
+                    <td>19.99</td>
+                    <td>14.99</td>
+                    <td>This is some info about the product</td>
+                    <td>3</td>
+                    <td>59.97</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
       </div>
     </div>
