@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\User;
 
 class OrderController extends Controller
 {

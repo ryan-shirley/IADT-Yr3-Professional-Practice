@@ -12,6 +12,7 @@
                     @else
                     <p>
                         <a href="{{ route( 'cart.edit' ) }}" class="btn btn-warning">Edit cart</a>
+                        <a href="{{ route('cart.checkout') }}" class="btn btn-secondary">Checkout</a>
                     </p>
                     <table class="table">
                         <thead class="thead-light">

@@ -3,35 +3,54 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-header">Order details (Artist view)</div>
-        <div class="card-body">
-          <ul>
-            <li><a href="{{ route('artist.home') }}">Home</a></li>
-            <li>Orders</li>
-            <ul>
-              <li>All Orders</li>
-              <li>Active Orders</li>
-              <li>Completed Orders</li>
-            </ul>
-            <li>Products</li>
-            <ul>
-              <li><a href="{{ route('products.index') }}">All Products</a></li>
-              <li><a href="{{ route('categories.index') }}">Categories</a></li>
-              <li><a href="{{ route('tags.index') }}">Tags</a></li>
-            </ul>
-            <li>Account Settings</li>
-            <li>Logout</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    @include('layouts.artistmenu')
 
     <div class="col-md-9">
-        <div class="card">
-            
-        </div>
+      <div class="card">
+          <div class="card-header">Order Details</div>
+          <div class="card-body">
+              <table class="table">
+                  <tbody>
+                      <tr>
+                          <td scope="col">Order #</td>
+                          <td scope="row">{{ $order->id }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Customer</td>
+                          <td>{{ $order->user_id }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Order Date</td>
+                          <td>{{ $order->order_date }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Fulfillment Date</td>
+                          <td>{{ $order->fulfillment_date }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Payment Status</td>
+                          <td>{{ $order->payment_status }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Fulfillment Status</td>
+                          <td>{{ $order->fulfillment_status }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Shipping Address</td>
+                          <td>{{ $order->shipping_address }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Billing Address</td>
+                          <td>{{ $order->billing_address }}</td>
+                      </tr>
+                      <tr>
+                          <td scope='col'>Shipping Method</td>
+                          <td>{{ $order->shipping_method_id }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
     </div>
   </div>
   </div>

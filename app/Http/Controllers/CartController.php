@@ -48,7 +48,7 @@ class CartController extends Controller
     {
         $cart = $this->getCart($request);
 
-        return view('shop.cart.edit')->with([
+        return view('cart.edit')->with([
             'cart' => $cart
         ]);
     }
@@ -94,7 +94,18 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+        $user = Auth::user();
+        if($user == null) {
+            $request->session()->flash('alert-warning','You need to login or register before you can checkout!');
+            return redirect()->route('login');
+        }
 
+        $cart = $this->getCart($request);
+
+        return view('cart.checkout')->with([
+          'cart' => $cart,
+          'user' => $user
+        ]);
     }
 
     public function pay(Request $request) {

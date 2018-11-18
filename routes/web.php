@@ -38,6 +38,7 @@ Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product
 Route::get('/cart', 'CartController@view')->name('cart.view');
 Route::post('/cart', 'CartController@add')->name('cart.add');
 Route::get('/cart/edit', 'CartController@edit')->name('cart.edit');
+Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::put('/cart', 'CartController@update')->name('cart.update');
 Route::delete('cart/', 'CartController@remove')->name('cart.remove');
 
