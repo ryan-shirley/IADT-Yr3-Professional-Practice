@@ -20,10 +20,10 @@
                     <h5>Shipping Address</h5>
                     <hr />
                     <pre>Amy Tall
-10 Crow Drive Avenue
-Dublin,
-Ireland
-D17</pre>
+                    10 Crow Drive Avenue
+                    Dublin,
+                    Ireland
+                    D17</pre>
 
                     <h5>Order Total</h5>
                     <hr />
