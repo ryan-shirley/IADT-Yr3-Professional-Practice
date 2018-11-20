@@ -96,6 +96,8 @@ class CartController extends Controller
     {
         $user = Auth::user();
         if($user == null) {
+            // Store Route to Checkout as user intends to purchase
+            $request->session()->put('route-checkout', true);
             $request->session()->flash('alert-warning','You need to login or register before you can checkout!');
             return redirect()->route('login');
         }
@@ -121,84 +123,4 @@ class CartController extends Controller
         return $cart;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        $cart = $request->session()->get('cart');
-        $items = $cart->getItems();
-
-        //dd($items);
-
-        return view('shop.cart')->with([
-            'items' => $items,
-        ]);
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addToCart(Request $request)
-    {
-        session_start();
-
-        try {
-            if (!isset($_GET['product_id']) || empty($_GET['product_id'])) {
-                echo 'no product id';
-                return back()->withErrors("Product id required.");
-            }
-
-            if (isset($_SESSION['cart'])) {
-                $cart = $_SESSION['cart'];
-            }
-            else {
-                $cart = new ShoppingCart();
-                $_SESSION['cart'] = $cart;
-            }
-
-            $cart->addToCart($_GET['product_id'], 1);
-
-            $request->session()->put('cart', $cart);
-
-            return redirect()->back();
-            // header('Location: ' $request->headers->get('referer'));
-        }
-        catch (Exception $ex) {
-            $errorMessage = $ex->getMessage();
-            require 'viewBooks.php';
-        }
-    }
 }
