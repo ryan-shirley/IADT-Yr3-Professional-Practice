@@ -18,6 +18,12 @@ class Order extends Model
       return $this->hasMany('App\Product')->withPivot('quantity')->withTimestamps();
     }
 
+    // get shipping method for this order
+    public function shipping_method()
+    {
+      return $this->hasOne('App\ShippingMethod');
+    }
+
     // public function total(){
     //   $total = 0.0;
     //   foreach($this->products as $product) {

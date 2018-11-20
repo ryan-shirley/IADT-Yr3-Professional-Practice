@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                           <td scope='col'>Shipping Method</td>
-                          <td>{{ $order->shipping_method_id }}</td>
+                          <td>{{ $shipping_method->name }}</td>
                       </tr>
                   </tbody>
               </table>

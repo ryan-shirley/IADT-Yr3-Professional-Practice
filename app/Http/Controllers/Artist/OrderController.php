@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\User;
+use App\ShippingMethod;
 
 class OrderController extends Controller
 {
@@ -27,9 +28,11 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
+        $shipping_method = ShippingMethod::findOrFail($order->shipping_method_id);
 
         return view('artist.orders.show')->with([
-            'order' => $order
+            'order' => $order,
+            'shipping_method' => $shipping_method
         ]);
     }
 
