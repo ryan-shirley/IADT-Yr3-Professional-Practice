@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddressesTableSeeder' => $baseDir . '/database/seeds/AddressesTableSeeder.php',
+    'App\\Address' => $baseDir . '/app/Address.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -2773,7 +2775,6 @@ return array(
     'SebastianBergmann\\Timer\\RuntimeException' => $vendorDir . '/phpunit/php-timer/src/RuntimeException.php',
     'SebastianBergmann\\Timer\\Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
-    'Shipping_MethodsTableSeeder' => $baseDir . '/database/seeds/Shipping_MethodsTableSeeder.php',
     'Symfony\\Component\\Console\\Application' => $vendorDir . '/symfony/console/Application.php',
     'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => $vendorDir . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
     'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => $vendorDir . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

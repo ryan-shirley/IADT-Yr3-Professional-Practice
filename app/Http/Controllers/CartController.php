@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Order;
 use App\Cart;
+use App\Address;
 use Validator;
 
 class CartController extends Controller
@@ -104,6 +105,12 @@ class CartController extends Controller
 
         $cart = $this->getCart($request);
 
+        // ****************************
+        // ****************************
+        // ****************************
+        // ****************************
+        // Check if cart is empty if so redirect to cart page
+
         return view('cart.checkout')->with([
           'cart' => $cart,
           'user' => $user
@@ -112,6 +119,16 @@ class CartController extends Controller
 
     public function pay(Request $request) {
 
+        // ****************************
+        // ****************************
+        // ****************************
+        // ****************************
+        // If user reloads page they will get submit form again
+        // How to best manage this?
+
+        return view('cart.confirm')->with([
+
+        ]);
     }
 
     private function getCart(Request $request) {

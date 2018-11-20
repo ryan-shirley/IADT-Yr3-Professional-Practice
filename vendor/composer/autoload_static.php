@@ -340,6 +340,8 @@ class ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1
     );
 
     public static $classMap = array (
+        'AddressesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AddressesTableSeeder.php',
+        'App\\Address' => __DIR__ . '/../..' . '/app/Address.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -3107,7 +3109,6 @@ class ComposerStaticInitb7d115d8e5c2e6f2f20eff2cc5b737b1
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'Shipping_MethodsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Shipping_MethodsTableSeeder.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

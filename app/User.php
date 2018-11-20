@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->roles()->first()->name;
     }
+
+    /**
+     * Get the addresses for the user.
+     */
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
 }

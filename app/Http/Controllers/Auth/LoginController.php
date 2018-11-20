@@ -54,7 +54,7 @@ class LoginController extends Controller
                 $url = '/cart/checkout';
             }
             else {
-                $url = '/customer/homes';
+                $url = '/customer/home';
             }
         }
         else {
