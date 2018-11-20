@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Order;
 use App\Address;
+use App\ShippingMethod;
 
 class OrdersTableSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class OrdersTableSeeder extends Seeder
     {
         $shipping = Address::where('shipping', true)->first();
         $billing = Address::where('billing', true)->first();
+        $shipping_method = ShippingMethod::all()->first();
 
         $order = new Order();
         $order->user_id = 3;
@@ -24,7 +26,7 @@ class OrdersTableSeeder extends Seeder
         $order->fulfillment_status = 1;
         $order->shipping_address = $shipping->line1;
         $order->billing_address = $billing->line1;
-        $order->shipping_method_id = 1;
+        $order->shipping_method_id = $shipping_method->id;
         $order->save();
 
         $order = new Order();
@@ -35,7 +37,7 @@ class OrdersTableSeeder extends Seeder
         $order->fulfillment_status = 1;
         $order->shipping_address = $shipping->line1;
         $order->billing_address = $billing->line1;
-        $order->shipping_method_id = 1;
+        $order->shipping_method_id = $shipping_method->id;
         $order->save();
 
         $order = new Order();
@@ -46,7 +48,7 @@ class OrdersTableSeeder extends Seeder
         $order->fulfillment_status = 1;
         $order->shipping_address = $shipping->line1;
         $order->billing_address = $billing->line1;
-        $order->shipping_method_id = 1;
+        $order->shipping_method_id = $shipping_method->id;
         $order->save();
     }
 }
