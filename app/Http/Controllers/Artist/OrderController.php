@@ -28,11 +28,9 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-        $shipping_method = ShippingMethod::findOrFail($order->shipping_method_id);
 
         return view('artist.orders.show')->with([
-            'order' => $order,
-            'shipping_method' => $shipping_method
+            'order' => $order
         ]);
     }
 

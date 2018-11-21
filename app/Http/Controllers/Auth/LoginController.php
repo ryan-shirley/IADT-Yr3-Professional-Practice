@@ -50,12 +50,12 @@ class LoginController extends Controller
             $url = '/artist/home';
         }
         else if($user->hasRole('customer')) {
-            if(session('route-checkout') == true) {
-                $url = '/cart/checkout';
-            }
-            else {
+            // if(session('route-checkout') == true) {
+            //     $url = '/cart/checkout';
+            // }
+            // else {
                 $url = '/customer/home';
-            }
+            // }
         }
         else {
             throw Exception('Undefined user role');

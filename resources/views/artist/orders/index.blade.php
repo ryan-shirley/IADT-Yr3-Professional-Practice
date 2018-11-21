@@ -29,14 +29,14 @@
                         @foreach ($orders as $order)
                         <tr>
                             <td scope="row">{{ $order->id }}</td>
-                            <td>{{ $order->user_id }}</td>
+                            <td>{{ App\User::find($order->user_id)->name }}</td>
                             <td>{{ $order->order_date }}</td>
                             <td>{{ $order->fulfillment_date }}</td>
                             <td>{{ $order->payment_status }}</td>
                             <td>{{ $order->fulfillment_status }}</td>
                             <td>{{ $order->shipping_address }}</td>
                             <td>{{ $order->billing_address }}</td>
-                            <td>{{ $order->shipping_method_id }}</td>
+                            <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td>
                             <td>
                               <a href="{{ route('artist.orders.show', $order) }}">View</a>
                             </td>

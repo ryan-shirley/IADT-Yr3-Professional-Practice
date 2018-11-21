@@ -26,16 +26,18 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        $products = Product::with('categories')->whereHas('categories', function($query) use ($id) {
-            $query->where('category_id', 'LIKE', "$id");
-        })->get();
+        // $products = Product::with('categories')->whereHas('categories', function($query) use ($id) {
+        //     $query->where('category_id', 'LIKE', "$id");
+        // })->get();
+
+        //$products = $category->products;
 
         // $products = Product::whereHas('tags', function ($query){
         //     $query->where('tag_id', 'like', $id);
         // })->get();
 
         return view('artist.category.viewProducts')->with([
-            'products' => $products,
+            //'products' => $products,
             'category' => $category
         ]);
 

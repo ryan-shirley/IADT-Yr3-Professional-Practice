@@ -21,7 +21,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $p)
+                            @foreach ($category->products as $p)
                             <tr>
                                 <td scope="row">{{ $p->name }}</td>
                                 <td>{{ $p->description }}</td>

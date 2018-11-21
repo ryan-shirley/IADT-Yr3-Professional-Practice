@@ -98,8 +98,7 @@ class CartController extends Controller
         $user = Auth::user();
         if($user == null) {
             // Store Route to Checkout as user intends to purchase
-            $request->session()->put('route-checkout', true);
-            $request->session()->flash('alert-warning','You need to login or register before you can checkout!');
+            $request->session()->put('url.intended', route('cart.checkout'));
             return redirect()->route('login');
         }
 

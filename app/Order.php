@@ -15,7 +15,7 @@ class Order extends Model
     // get products for the order
     public function products()
     {
-      return $this->hasMany('App\Product')->withPivot('quantity')->withTimestamps();
+      return $this->hasMany('App\Product')->withPivot('quantity', 'price')->withTimestamps();
     }
 
     // get shipping method for this order

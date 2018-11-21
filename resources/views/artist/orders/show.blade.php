@@ -45,7 +45,7 @@
                       </tr>
                       <tr>
                           <td scope='col'>Shipping Method</td>
-                          <td>{{ $shipping_method->name }}</td>
+                          <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td>
                       </tr>
                   </tbody>
               </table>

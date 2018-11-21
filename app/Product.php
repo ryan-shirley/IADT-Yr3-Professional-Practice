@@ -32,6 +32,6 @@ class Product extends Model
 
     public function orders()
     {
-      return $this->belongsToMany('App\Order')->withPivot('quantity')-withTimestamps();
+      return $this->belongsToMany('App\Order')->withPivot('quantity', 'price')-withTimestamps();
     }
 }
