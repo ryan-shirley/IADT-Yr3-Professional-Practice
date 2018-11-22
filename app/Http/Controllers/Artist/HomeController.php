@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Artist;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\User;
+use App\ShippingMethod;
 
 class HomeController extends Controller
 {
@@ -25,6 +28,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('artist.home');
+        $orders = Order::all();
+
+        return view('artist.home')->with([
+            'orders' => $orders
+        ]);
+    }
+
+    public function settings()
+    {
+        return view('artist.settings');
     }
 }

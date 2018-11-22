@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header">Orders</div>
             <div class="card-body">
-                <a class="btn btn-primary" href="" role="button">Create Order (Not working atm)</a>
+                <a class="btn btn-primary btn-sm" href="" role="button">Create Order (Not working atm)</a>
                 <table class="table">
                     <thead class="thead-light">
                     <tr>

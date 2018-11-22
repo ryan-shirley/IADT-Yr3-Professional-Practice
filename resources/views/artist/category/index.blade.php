@@ -8,7 +8,7 @@
       <div class="card">
           <div class="card-header">Categories</div>
           <div class="card-body">
-              <a class="btn btn-primary" href="{{ route('categories.create') }}" role="button">Create Category</a>
+              <a class="btn btn-primary btn-sm" href="{{ route('categories.create') }}" role="button">Create Category</a>
 
               <table class="table">
                   <thead class="thead-light">
@@ -24,12 +24,12 @@
                           <td scope="row">{{ $cat->name }}</td>
                           <td>{{ $cat->description }}</td>
                           <td>
-                              <a class="btn btn-primary" href="{{ route('categories.edit', $cat->id) }}" role="button">Edit</a>
-                              <a class="btn btn-secondary" href="{{ route('categories.viewProducts', $cat->id) }}" role="button">View Products</a>
+                              <a class="" href="{{ route('categories.edit', $cat->id) }}" role="button">Edit</a><br/>
+                              <a class="" href="{{ route('categories.viewProducts', $cat->id) }}" role="button">View Products</a>
                               <form action="{{ action('Artist\CategoryController@destroy', $cat->id )}}" method="post">
                                   @csrf
                                   <input name="_method" type="hidden" value="DELETE">
-                                  <button class="btn btn-danger btn-small" >Delete</button>
+                                  <button class="btn btn-danger btn-sm" >Delete</button>
                               </form>
                           </td>
                       </tr>

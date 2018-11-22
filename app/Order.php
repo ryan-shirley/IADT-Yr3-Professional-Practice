@@ -27,7 +27,7 @@ class Order extends Model
     public function total(){
       $total = 0.0;
       foreach($this->products as $product) {
-        $total += $product->price * $book->pivot->quantity;
+        $total += $product->price * $product->pivot->quantity;
       }
       return $total;
     }

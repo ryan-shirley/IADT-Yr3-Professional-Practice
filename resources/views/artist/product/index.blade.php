@@ -6,9 +6,9 @@
     @include('layouts.artistmenu')
     <div class="col-md-9">
         <div class="card">
-            <div class="card-header">Products</div>
+            <div class="card-header">All Products</div>
             <div class="card-body">
-                <a class="btn btn-primary" href="{{ route('products.create') }}" role="button">Create Product</a>
+                <a class="btn btn-primary btn-sm" href="{{ route('products.create') }}" role="button">Create Product</a>
 
                 <table class="table">
                     <thead class="thead-light">
@@ -42,11 +42,12 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
+                                <a class="" href="" role="button">View</a>
+                                <a class="" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
                                 <form action="{{ action('Artist\ProductController@destroy', $p->id )}}" method="post">
                                     @csrf
                                     <input name="_method" type="hidden" value="DELETE">
-                                    <button class="btn btn-danger btn-small" >Delete</button>
+                                    <button class="btn btn-danger btn-sm" >Delete</button>
                                 </form>
                             </td>
                         </tr>

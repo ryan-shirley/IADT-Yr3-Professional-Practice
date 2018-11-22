@@ -16,8 +16,7 @@
           <li><a href="{{ route('categories.index') }}">Categories</a></li>
           <li><a href="{{ route('tags.index') }}">Tags</a></li>
         </ul>
-        <li>Account Settings</li>
-        <li>Logout</li>
+        <li><a href="{{ route('artist.settings') }}">Account Settings</a></li>
       </ul>
     </div>
   </div>

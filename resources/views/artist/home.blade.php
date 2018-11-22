@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 <div class="row">
-  
+
   @include('layouts.artistmenu')
 
   <div class="col-md-9">
@@ -15,12 +15,31 @@
           {{ session('status') }}
         </div>
         @endif
+        <p class="h2 pb-3"> Hello {{ Auth::user()->name }}! </p>
 
-        You are logged in!
-        <br />
-        <a class="btn btn-primary" href="{{ route('products.index') }}" role="button">Products</a>
-        <a class="btn btn-primary" href="{{ route('tags.index') }}" role="button">Tags</a>
-        <a class="btn btn-primary" href="{{ route('categories.index') }}" role="button">Categories</a>
+        <p class="h5"> Recent Orders </p>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <td scope="col">Order #</td>
+                <td scope="col">Customer</td>
+                <td scope='col'>Date</td>
+                <td scope='col'>Status</td>
+                <td scope='col'>Total</td>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($orders as $order)
+                <tr>
+                    <td scope="row">{{ $order->id }}</td>
+                    <td>{{ App\User::find($order->user_id)->name }}</td>
+                    <td>{{ $order->order_date }}</td>
+                    <td>{{ $order->fulfillment_status }}</td>
+                    <td>&euro;{{ $order->total() }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
       </div>
     </div>
   </div>
