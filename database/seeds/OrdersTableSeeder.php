@@ -35,7 +35,7 @@ class OrdersTableSeeder extends Seeder
             $order->save();
 
             foreach ($products as $product) {
-                if(rand(1,100) < 50) { //I'm adding 0.99 at the end to end with .99 decimals
+                if(rand(1,100) < 50) { 
                     $order->products()->attach($product,['quantity' => rand(1,5), 'price' => $product->price]);
                 }
             }

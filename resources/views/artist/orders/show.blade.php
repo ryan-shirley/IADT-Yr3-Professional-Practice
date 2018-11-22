@@ -65,11 +65,11 @@
                   @foreach ($order->products as $product)
                   <tr>
                     <td scope="col">{{ $product->name }}</td>
-                    <td scope="col">{{ $product->price }}</td>
-                    <td scope="col">{{ $product->sale_price }}</td>
+                    <td scope="col">&euro;{{ $product->price }}</td>
+                    <td scope="col">&euro;{{ $product->sale_price }}</td>
                     <td scope="col">{{ $product->description }}</td>
                     <td scope="col">{{ $product->pivot->quantity }}</td>
-                    <td scope="col">{{ number_format($product->price * $product->pivot->quantity, 2) }}</td>
+                    <td scope="col">&euro;{{ number_format($product->price * $product->pivot->quantity, 2) }}</td>
                   </tr>
                   @endforeach
                 </tbody>

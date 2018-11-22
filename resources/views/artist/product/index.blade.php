@@ -15,7 +15,7 @@
                     <tr>
                         <td scope='col'>Name</td>
                         <td scope='col'>Description</td>
-                        <td scope='col'>Cateogry</td>
+                        <td scope='col'>Category</td>
                         <td scope='col'>price</td>
                         <td scope='col'>sale_price</td>
                         <td scope='col'>featured_img</td>
@@ -33,8 +33,8 @@
                                     {{ $c->name }}
                                 @endforeach
                             </td>
-                            <td>{{ $p->price }}</td>
-                            <td>{{ $p->sale_price }}</td>
+                            <td>&euro;{{ $p->price }}</td>
+                            <td>&euro;{{ $p->sale_price }}</td>
                             <td>{{ $p->featured_img }}</td>
                             <td>
                                 @foreach ($p->tags as $tag)
@@ -57,7 +57,6 @@
             </div>
         </div>
     </div>
-  </div>
   </div>
 </div>
 @endsection

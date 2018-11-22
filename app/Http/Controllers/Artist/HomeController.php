@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\User;
+use App\Product;
 use App\ShippingMethod;
 
 class HomeController extends Controller
@@ -28,10 +29,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
         $orders = Order::all();
 
         return view('artist.home')->with([
-            'orders' => $orders
+            'orders' => $orders,
+            'products' => $products
         ]);
     }
 

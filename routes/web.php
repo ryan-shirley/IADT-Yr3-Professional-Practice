@@ -23,7 +23,6 @@ Route::get('/artist/home', 'Artist\HomeController@index')->name('artist.home');
 Route::get('/customer/home', 'Customer\HomeController@index')->name('customer.home');
 
 // Artist Routes
-
 Route::resource('/artist/products', 'Artist\ProductController');
 
 Route::resource('/artist/categories', 'Artist\CategoryController');

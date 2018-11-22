@@ -31,8 +31,8 @@
                                   {{ $c->name }}
                               @endforeach
                           </td> -->
-                          <td>{{ $p->price }}</td>
-                          <td>{{ $p->sale_price }}</td>
+                          <td>&euro;{{ $p->price }}</td>
+                          <td>&euro;{{ $p->sale_price }}</td>
                           <td>{{ $p->featured_img }}</td>
                           <!-- <td>
                               <form action="{{ action('Artist\ProductController@destroy', $p->id )}}" method="post">

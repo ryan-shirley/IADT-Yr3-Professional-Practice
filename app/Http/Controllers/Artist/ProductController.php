@@ -133,7 +133,6 @@ class ProductController extends Controller
 
         $p->save();
 
-        dd($tags);
         $p->tags()->sync($tags);
         $p->categories()->sync($request->input('category_id'));
 
