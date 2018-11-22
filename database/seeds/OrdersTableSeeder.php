@@ -18,44 +18,30 @@ class OrdersTableSeeder extends Seeder
         $shipping = Address::where('shipping', true)->first();
         $billing = Address::where('billing', true)->first();
         $shipping_method = ShippingMethod::all()->first();
-        $p1 = Product::where('name', 'Product 1')->first();
-        $p2 = Product::where('name', 'Product 2')->first();
+        // $p1 = Product::where('name', 'Product 1')->first();
+        // $p2 = Product::where('name', 'Product 2')->first();
+        $products  = Product::all();
 
-        $order = new Order();
-        $order->user_id = 3;
-        $order->order_date = '2018-11-17';
-        $order->fulfillment_date = '2018-11-17';
-        $order->payment_status = 1;
-        $order->fulfillment_status = 1;
-        $order->shipping_address = $shipping->line1;
-        $order->billing_address = $billing->line1;
-        $order->shipping_method_id = $shipping_method->id;
-        $order->save();
-        $order->products()->attach($p1);
+        for($i = 0; $i < 3; $i++) {
+            $order = new Order();
+            $order->user_id = 3;
+            $order->order_date = '2018-11-17';
+            $order->fulfillment_date = '2018-11-17';
+            $order->payment_status = 1;
+            $order->fulfillment_status = 1;
+            $order->shipping_address = $shipping->line1;
+            $order->billing_address = $billing->line1;
+            $order->shipping_method_id = $shipping_method->id;
+            $order->save();
 
-        $order = new Order();
-        $order->user_id = 3;
-        $order->order_date = '2018-11-17';
-        $order->fulfillment_date = '2018-11-17';
-        $order->payment_status = 1;
-        $order->fulfillment_status = 1;
-        $order->shipping_address = $shipping->line1;
-        $order->billing_address = $billing->line1;
-        $order->shipping_method_id = $shipping_method->id;
-        $order->save();
-        $order->products()->attach($p1);
-        $order->products()->attach($p2);
+            foreach ($products as $product) {
+                if(rand(1,100) < 50) { //I'm adding 0.99 at the end to end with .99 decimals
+                    $order->products()->attach($product,['quantity' => rand(1,5), 'price' => $product->price]);
+                }
+            }
+        }
 
-        $order = new Order();
-        $order->user_id = 3;
-        $order->order_date = '2018-11-17';
-        $order->fulfillment_date = '2018-11-17';
-        $order->payment_status = 1;
-        $order->fulfillment_status = 1;
-        $order->shipping_address = $shipping->line1;
-        $order->billing_address = $billing->line1;
-        $order->shipping_method_id = $shipping_method->id;
-        $order->save();
-        $order->products()->attach($p2);
+        // $order->products()->attach($p1,['quantity' => 1, 'price' => 10]);
+
     }
 }

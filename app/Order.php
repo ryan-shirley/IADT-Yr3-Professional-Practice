@@ -15,20 +15,20 @@ class Order extends Model
     // get products for the order
     public function products()
     {
-      return $this->hasMany('App\Product')->withPivot('quantity', 'price')->withTimestamps();
+      return $this->belongsToMany('App\Product')->withPivot('price', 'quantity')->withTimestamps();
     }
 
     // get shipping method for this order
     public function shipping_method()
     {
-      return $this->hasOne('App\ShippingMethod');
+      return $this->belongsTo('App\ShippingMethod');
     }
 
-    // public function total(){
-    //   $total = 0.0;
-    //   foreach($this->products as $product) {
-    //     $total += $product->price * $book->pivot->quantity;
-    //   }
-    //   return $total;
-    // }
+    public function total(){
+      $total = 0.0;
+      foreach($this->products as $product) {
+        $total += $product->price * $book->pivot->quantity;
+      }
+      return $total;
+    }
 }

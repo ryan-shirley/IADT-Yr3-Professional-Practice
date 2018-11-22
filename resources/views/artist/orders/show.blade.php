@@ -17,7 +17,7 @@
                       </tr>
                       <tr>
                           <td scope='col'>Customer</td>
-                          <td>{{ $order->user_id }}</td>
+                          <td>{{ App\User::find($order->user_id)->name }}</td>
                       </tr>
                       <tr>
                           <td scope='col'>Order Date</td>
@@ -62,30 +62,16 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($order->products as $product)
                   <tr>
-                    <th scope="row">Product1</th>
-                    <td>19.99</td>
-                    <td>14.99</td>
-                    <td>This is some info about the product</td>
-                    <td>3</td>
-                    <td>59.97</td>
+                    <td scope="col">{{ $product->name }}</td>
+                    <td scope="col">{{ $product->price }}</td>
+                    <td scope="col">{{ $product->sale_price }}</td>
+                    <td scope="col">{{ $product->description }}</td>
+                    <td scope="col">{{ $product->pivot->quantity }}</td>
+                    <td scope="col">{{ number_format($product->price * $product->pivot->quantity, 2) }}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">Product2</th>
-                    <td>19.99</td>
-                    <td>14.99</td>
-                    <td>This is some info about the product</td>
-                    <td>3</td>
-                    <td>59.97</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Product3</th>
-                    <td>19.99</td>
-                    <td>14.99</td>
-                    <td>This is some info about the product</td>
-                    <td>3</td>
-                    <td>59.97</td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
           </div>
