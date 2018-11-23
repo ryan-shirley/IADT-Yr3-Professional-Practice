@@ -42,7 +42,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a class="" href="" role="button">View</a>
+                                <a class="" href="{{ route('products.show', $p->id) }}" role="button">View</a>
                                 <a class="" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
                                 <form action="{{ action('Artist\ProductController@destroy', $p->id )}}" method="post">
                                     @csrf

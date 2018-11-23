@@ -83,7 +83,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('artist.product.show')->with([
+          'product' => $product,
+          'categories' => $categories,
+          'tags' => $tags
+        ]);
     }
 
     /**

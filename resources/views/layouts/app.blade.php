@@ -33,14 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                      @if (Auth::user() == null || Auth::user()->hasRole('user'))
                       <li class="nav-item">
                           <a class="nav-link" href="{{ route('shop.home') }}">{{ __('Shop') }}</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="{{ route('cart.view') }}">{{ __('View cart') }}</a>
                       </li>
+                      @endif
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
