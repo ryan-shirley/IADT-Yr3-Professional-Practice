@@ -29,6 +29,7 @@ class Order extends Model
       foreach($this->products as $product) {
         $total += $product->price * $product->pivot->quantity;
       }
+      $total += $this->shipping_method->cost;
       return $total;
     }
 }
