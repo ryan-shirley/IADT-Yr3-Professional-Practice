@@ -23,7 +23,7 @@
 
                     <h5>Order Total</h5>
                     <hr />
-                    <p>Sub-Total: €1000</p>
+                    <p>Sub-Total: €00</p>
                     <p>Shipping: €{{ $order->shipping_method->cost }}</p>
                     <p>Total: {{ $order->total() }}</p>
 

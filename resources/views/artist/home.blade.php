@@ -31,7 +31,7 @@
             <tbody>
                 @foreach ($products as $p)
                 <tr>
-                    <td scope="row">{{ $p->featured_img }}</td>
+                    <td scope="row"><img src="{{ App\Image::find($p->featured_img)->url }}" style="max-width: 60px;" /></td>
                     <td>{{ $p->name }}</td>
                     <td>{{ $p->description }}</td>
                     <td>&euro;{{ $p->price }}</td>

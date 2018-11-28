@@ -120,12 +120,14 @@ class CartController extends Controller
     }
 
     public function pay(Request $request) {
+        //dd($request);
+
         $request->validate([
             'email' => 'required|email|max:191',
             'shipping_id' => 'required|integer|min:0',
-            'shipping_address_line1' => 'required_if:shipping_id,0|string|max:100',
+            'shipping_address_line1' => 'required_if:shipping_id,0|nullable|string|max:100',
             'billing_id' => 'required|integer|min:0',
-            'billing_address_line1' => 'required_if:billing_id,0|string|max:100',
+            'billing_address_line1' => 'required_if:billing_id,0|nullable|string|max:100',
             'shipping_method_id' => 'required|exists:shipping_methods,id|max:10',
             'card_number' => 'required|digits:16',
             'card_holder_name' => 'string|max:100',
