@@ -7,10 +7,10 @@
             <div class="card">
                 <div class="card-body">
                     <h1>Congratulations!<br />Your order has been placed</h1>
-                    <h3>Order #A0001</h3>
+                    <h3>Order #{{ $order->id }}</h3>
 
                     <p>
-                        Amy your order is now being processed and our team will do their
+                        {{ $order->user->name }} your order is now being processed and our team will do their
                         best to get it to you as soon as possible. You can see your order
                         details below. Any questions email us at hello@example.com
                     </p>
@@ -19,30 +19,23 @@
 
                     <h5>Shipping Address</h5>
                     <hr />
-                    <pre>Amy Tall
-                    10 Crow Drive Avenue
-                    Dublin,
-                    Ireland
-                    D17</pre>
+                    <pre>{{ $order->shipping_address }}</pre>
 
                     <h5>Order Total</h5>
                     <hr />
                     <p>Sub-Total: €1000</p>
-                    <p>Shipping: -</p>
-                    <p>Total: €1000</p>
+                    <p>Shipping: €{{ $order->shipping_method->cost }}</p>
+                    <p>Total: {{ $order->total() }}</p>
 
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <td>1<img class="img-thumbnail" style="max-width:100px;" src="http://localhost:8000/images/placeholder.jpg" /></td>
-                                <td>Raw Edge Hoodie</td>
-                                <td>80.00</td>
-                            </tr>
-                            <tr>
-                                <td>1<img class="img-thumbnail" style="max-width:100px;" src="http://localhost:8000/images/placeholder.jpg" /></td>
-                                <td>Raw Edge Hoodie</td>
-                                <td>80.00</td>
-                            </tr>
+                            @foreach ($order->products as $product)
+                                <tr>
+                                    <td>{{ $product->pivot->quantity }}<img class="img-thumbnail" style="max-width:100px;" src="{{ App\Image::find($product->featured_img)->url }}" /></td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->pivot->price }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

@@ -47,3 +47,4 @@ Route::put('/cart', 'CartController@update')->name('cart.update');
 Route::delete('cart/', 'CartController@remove')->name('cart.remove');
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
 Route::post('/cart/pay', 'CartController@pay')->name('cart.pay');
+Route::get('/cart/checkout/confirmation/{order_id}', 'CartController@confirmation')->name('checkout.confirmation');

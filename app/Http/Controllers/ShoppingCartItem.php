@@ -15,4 +15,5 @@ class ShoppingCartItem {
     public function getQuantity() { return $this->quantity; }
     public function setQuantity($qty) { $this->quantity = $qty; }
     public function getTotalPrice() { return $this->product->price * $this->quantity; }
+    public function getPrice() { return $this->product->price; }
 }
