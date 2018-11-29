@@ -15,11 +15,12 @@
                     <tr>
                         <td scope='col'>Name</td>
                         <td scope='col'>Description</td>
+                        <td scope='col'>Price</td>
+                        <td scope='col'>Sale Price</td>
+                        <td scope='col'>Featured Img</td>
                         <td scope='col'>Category</td>
-                        <td scope='col'>price</td>
-                        <td scope='col'>sale_price</td>
-                        <td scope='col'>featured_img</td>
-                        <td scope='col'>tags</td>
+                        <td scope='col'>Tags</td>
+                        <td scope='col'>Stock</td>
                         <td scope='col'>action</td>
                     </tr>
                     </thead>
@@ -28,19 +29,20 @@
                         <tr>
                             <td scope="row">{{ $p->name }}</td>
                             <td>{{ $p->description }}</td>
+                            <td>&euro;{{ $p->price }}</td>
+                            <td>&euro;{{ $p->sale_price }}</td>
+                            <td>{{ $p->featured_img }}</td>
                             <td>
                                 @foreach ($p->categories as $c)
                                     {{ $c->name }}
                                 @endforeach
                             </td>
-                            <td>&euro;{{ $p->price }}</td>
-                            <td>&euro;{{ $p->sale_price }}</td>
-                            <td>{{ $p->featured_img }}</td>
                             <td>
                                 @foreach ($p->tags as $tag)
                                     {{ $tag->name }}
                                 @endforeach
                             </td>
+                            <td>{{ $p->stock }}</td>
                             <td>
                                 <a class="" href="{{ route('products.show', $p->id) }}" role="button">View</a>
                                 <a class="" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>

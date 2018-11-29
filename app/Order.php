@@ -18,10 +18,16 @@ class Order extends Model
       return $this->belongsToMany('App\Product')->withPivot('price', 'quantity')->withTimestamps();
     }
 
-    // get shipping method for this order
+    // get shipping method for the order
     public function shipping_method()
     {
       return $this->belongsTo('App\ShippingMethod');
+    }
+
+    // get the events belongs to the order
+    public function events()
+    {
+      return $this->belongsToMany('App\Event');
     }
 
     public function total(){
