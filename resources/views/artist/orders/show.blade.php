@@ -72,6 +72,21 @@
                   @endforeach
                 </tbody>
               </table>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td scope='col'>Timeline</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($order->events as $event)
+                  <tr>
+                    <td scope="col">{{ $event->name }}</td>
+                    <td scope="col">&euro;{{ $event->created_at }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
           </div>
       </div>
     </div>
