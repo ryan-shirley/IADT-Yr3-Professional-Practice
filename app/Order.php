@@ -38,4 +38,15 @@ class Order extends Model
       $total += $this->shipping_method->cost;
       return $total;
     }
+
+    public function totalItems(){
+        $total = 0;
+
+        foreach($this->products as $product) {
+          $total += 1 * $product->pivot->quantity;
+        }
+        return $total;
+    }
+
+
 }

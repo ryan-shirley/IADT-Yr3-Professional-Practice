@@ -5,6 +5,7 @@ use App\Order;
 use App\Address;
 use App\Product;
 use App\ShippingMethod;
+Use App\Event;
 
 class OrdersTableSeeder extends Seeder
 {
@@ -25,32 +26,50 @@ class OrdersTableSeeder extends Seeder
         for($i = 0; $i < 3; $i++) {
             $order = new Order();
             $order->user_id = 3;
-            $order->order_date = $this->randomDate();;
-            $order->payment_status = 2;
-            $order->fulfillment_status = 2;
+            $order->order_date = date("Y-m-d");
             $order->shipping_address = $shipping->line1;
             $order->billing_address = $billing->line1;
             $order->shipping_method_id = $shipping_method->id;
             $order->save();
+
+            $event = new Event();
+            $event->name = 'A new order was create on ' . date("d M Y") . ' at ' . date("h:i:a") . '.';
+            $event->order_id = $order->id;
+            $event->save();
 
             foreach ($products as $product) {
                 if(rand(1,100) < 50) {
                     $order->products()->attach($product,['quantity' => rand(1,5), 'price' => $product->price]);
                 }
             }
+
+            if($order->id == 1) {
+                // Make payment code
+
+
+                // Set to paid and create event
+                $order->payment_status = 'paid';
+                $order->save();
+
+                $event = new Event();
+                $event->name = 'A €' . $order->total() . ' EUR payment was processed on ' . date("d M Y") . ' at ' . date("h:i:a") . '.';
+                $event->order_id = $order->id;
+                $event->save();
+
+
+                // Create shipment code
+
+                // Mark as fulfilled and create event
+                $order->fulfillment_date = date("Y-m-d");
+                $order->fulfillment_status = 'fulfilled';
+                $order->save();
+
+                $e = new Event();
+                $e->name = 'Order fulfilled - ' . $order->totalItems() . ' item(s).';
+                $e->order_id = $order->id;
+                $e->save();
+            }
         }
 
-        // $order->products()->attach($p1,['quantity' => 1, 'price' => 10]);
-
-    }
-
-    // this method generates random date in format yyyy-mm-dd
-    private function randomDate() {
-        $start = new DateTime('2017-01-01');
-        $end = new DateTime('2017-12-31');
-        $randomTimestamp = mt_rand($start->getTimestamp(), $end->getTimestamp());
-        $randomDate = new DateTime();
-        $randomDate->setTimestamp($randomTimestamp);
-        return $randomDate->format('Y-m-d');
     }
 }
