@@ -27,7 +27,7 @@ class Order extends Model
     // get the events belongs to the order
     public function events()
     {
-      return $this->belongsToMany('App\Event');
+      return $this->hasMany('App\Event');
     }
 
     public function total(){

@@ -50,6 +50,7 @@
                   </tbody>
               </table>
               <hr>
+              <h2>Products</h2>
               <table class="table">
                 <thead>
                   <tr>
@@ -72,17 +73,13 @@
                   @endforeach
                 </tbody>
               </table>
+              <h2>Timeline</h2>
               <table class="table">
-                <thead>
-                  <tr>
-                    <td scope='col'>Timeline</td>
-                  </tr>
-                </thead>
                 <tbody>
                   @foreach ($order->events as $event)
                   <tr>
                     <td scope="col">{{ $event->name }}</td>
-                    <td scope="col">&euro;{{ $event->created_at }}</td>
+                    <td scope="col">{{ $event->created_at }}</td>
                   </tr>
                   @endforeach
                 </tbody>
