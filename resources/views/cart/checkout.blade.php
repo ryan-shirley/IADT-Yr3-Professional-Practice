@@ -94,7 +94,7 @@
                         <div class="form-group">
                             @foreach ($shipping_methods as $method)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="shipping_method_id" value="{{ $method->id }}" >
+                                        <input class="form-check-input" type="radio" name="shipping_method_id" value="{{ $method->id }}" @if(old('shipping_method_id') == $method->id) checked @endif>
                                         <label class="form-check-label" for="{{ $method->id }}">
                                         {{ $method->name }} -  €{{ $method->cost }}
                                         </label>
@@ -138,7 +138,7 @@
                         <tbody>
                             @foreach ($cart->getItems() as $item)
                             <tr>
-                                <td>{{ $item->getQuantity() }}<img class="img-thumbnail" style="max-width:100px;" src="{{ App\Image::find($item->getProduct()->featured_img)->url }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
+                                <td>{{ $item->getQuantity() }}<img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($item->getProduct()->featured_img)->url ) }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
                                 <td>{{ $item->getProduct()->name }}</td>
                                 <td>{{ number_format($item->getProduct()->price, 2) }}</td>
                             </tr>

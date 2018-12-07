@@ -13,7 +13,7 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         $img = new Image();
-        $img->url = '/images/placeholder.jpg';
+        $img->url = 'product_images/placeholder.jpg';
         $img->title = 'Placeholder';
         $img->save();
     }

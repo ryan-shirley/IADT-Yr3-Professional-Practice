@@ -26,7 +26,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($orders as $order)
+                        @foreach ($orders->reverse() as $order)
                         <tr>
                             <td scope="row">{{ $order->id }}</td>
                             <td>{{ App\User::find($order->user_id)->name }}</td>

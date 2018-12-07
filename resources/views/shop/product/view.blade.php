@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <img src="{{ App\Image::find($product->featured_img)->url }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
+            <img src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
         </div>
         <div class="col-md-6">
             <h1>{{ $product->name }}</h1>

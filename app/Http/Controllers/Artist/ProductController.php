@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
 use App\Tag;
+use App\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -17,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all()->sortByDesc("id");
 
         return view('artist.product.index')->with([
             'products' => $products
@@ -51,25 +53,42 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|max:100',
             'description' => 'required|max:300',
+            'category_id' => 'required|exists:categories,id',
+            'tag_id' => 'required|exists:tags,id',
             'price' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'featured_img' => 'required|max:300',
+            'sale_price' => 'nullable|numeric',
+            'stock' => 'required|numeric',
+            'featured_img' => 'required|file|image|'
         ]);
 
-        $tags = $request->input('tag_id');
+        $featured_img = $request->file('featured_img');
+        $extension = $featured_img->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . '_' . $request->input('name') . '.' . $extension;
+        $path = $featured_img->storeAs('product_images', $filename, 'public');
+
+        $image = new Image();
+        $image->title = $request->input('name');
+        $image->url = $path;
+        $image->save();
 
         $p = new Product();
         $p->name = $request->input('name');
         $p->description = $request->input('description');
         $p->price = $request->input('price');
-        $p->sale_price = $request->input('sale_price');
-        $p->featured_img = $request->input('featured_img');
+        $p->stock = $request->input('stock');
+        $p->featured_img = $image->id;
+
+        if($request->input('sale_price')) {
+            $p->sale_price = $request->input('sale_price');
+        }
 
         $p->save();
 
+        $tags = $request->input('tag_id');
         foreach ($tags as $t){
             $p->tags()->attach($t);
         }
+
         $p->categories()->attach($request->input('category_id'));
 
         return redirect()->route('products.index');
@@ -155,8 +174,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $p = Product::find($id);
+        $p = Product::findOrFail($id);
+        $image = $p->featured_img;
         $p->delete();
+
+        // if ($image->product->count() == 0) {
+        //     Storage::disk('public')->delete($image->url);
+        //     $image->delete();
+        // }
 
         return redirect()->route('products.index');
     }

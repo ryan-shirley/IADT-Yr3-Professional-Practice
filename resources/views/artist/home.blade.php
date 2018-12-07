@@ -29,9 +29,9 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($products as $p)
+                @foreach ($products->reverse() as $p)
                 <tr>
-                    <td scope="row"><img src="{{ App\Image::find($p->featured_img)->url }}" style="max-width: 60px;" /></td>
+                    <td scope="row"><img src="{{ asset('storage/' . App\Image::find($p->featured_img)->url ) }}" style="max-width: 60px;" /></td>
                     <td>{{ $p->name }}</td>
                     <td>{{ $p->description }}</td>
                     <td>&euro;{{ $p->price }}</td>
@@ -53,7 +53,7 @@
             </tr>
             </thead>
             <tbody>
-                @foreach ($orders as $order)
+                @foreach ($orders->reverse() as $order)
                 <tr>
                     <td scope="row">{{ $order->id }}</td>
                     <td>{{ App\User::find($order->user_id)->name }}</td>

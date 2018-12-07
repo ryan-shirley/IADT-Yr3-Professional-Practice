@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">Add Category</div>
 
-                <form method="POST" action="{{ route('products.store' )}}">
+                <form method="POST" action="{{ route('products.store' )}}" enctype="multipart/form-data">
                     @csrf
-                    <table>
+                    <table class="table">
                         <tbody>
                             <tr>
                                 <td>Name</td>
@@ -41,21 +41,26 @@
                                 <td>{{ $errors->first('price') }}</td>
                             </tr>
                             <tr>
+                                <td>Stock</td>
+                                <td><input type="text" name="stock"  value="{{ old('stock') }}"/></td>
+                                <td>{{ $errors->first('stock') }}</td>
+                            </tr>
+                            <tr>
                                 <td>Sale Price</td>
                                 <td><input type="text" name="sale_price"  value="{{ old('sale_price') }}"/></td>
                                 <td>{{ $errors->first('sale_price') }}</td>
                             </tr>
                             <tr>
                                 <td>Featured Image</td>
-                                <td><input type="text" name="featured_img"  value="{{ old('featured_img') }}"/></td>
-                                <td>{{ $errors->first('featured_img') }}</td>
+                                <td><input type="file" name="featured_img" /></td>
+                                <td>{{ ($errors->has('featured_img')) ? $errors->first('featured_img') : "" }}</td>
                             </tr>
                             <tr>
                                 <td>Tags</td>
                                 <td>
                                     @foreach($tags as $t)
                                     <div class="form-check">
-                                        <input class="form-check-input" name="tag_id[]" type="checkbox" value="{{ $t->id }}">
+                                        <input class="form-check-input" name="tag_id[]" type="checkbox" value="{{ $t->id }}" {{ (is_array(old('tag_id')) && in_array($t->id, old('tag_id'))) ? ' checked' : '' }}>
                                         <label class="form-check-label" for="{{ $t->name }}">
                                         {{ $t->name }}
                                         </label>

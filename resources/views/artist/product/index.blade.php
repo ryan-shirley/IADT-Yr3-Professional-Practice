@@ -13,11 +13,11 @@
                 <table class="table">
                     <thead class="thead-light">
                     <tr>
+                        <td scope='col'></td>
                         <td scope='col'>Name</td>
                         <td scope='col'>Description</td>
                         <td scope='col'>Price</td>
                         <td scope='col'>Sale Price</td>
-                        <td scope='col'>Featured Img</td>
                         <td scope='col'>Category</td>
                         <td scope='col'>Tags</td>
                         <td scope='col'>Stock</td>
@@ -27,11 +27,12 @@
                     <tbody>
                         @foreach ($products as $p)
                         <tr>
-                            <td scope="row">{{ $p->name }}</td>
+                            <td scope="row"><img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($p->featured_img)->url ) }}" /></td>
+                            <td>{{ $p->name }}</td>
                             <td>{{ $p->description }}</td>
                             <td>&euro;{{ $p->price }}</td>
                             <td>&euro;{{ $p->sale_price }}</td>
-                            <td>{{ $p->featured_img }}</td>
+
                             <td>
                                 @foreach ($p->categories as $c)
                                     {{ $c->name }}

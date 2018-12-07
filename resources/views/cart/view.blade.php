@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach ($cart->getItems() as $item)
                             <tr>
-                                <td><img class="img-thumbnail" style="max-width:100px;" src="{{ App\Image::find($item->getProduct()->featured_img)->url }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
+                                <td><img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($item->getProduct()->featured_img)->url ) }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
                                 <td>{{ $item->getProduct()->name }}</td>
                                 <td>{{ number_format($item->getProduct()->price, 2) }}</td>
                                 <td>{{ $item->getQuantity() }}</td>

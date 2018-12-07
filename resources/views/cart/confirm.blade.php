@@ -31,7 +31,7 @@
                         <tbody>
                             @foreach ($order->products as $product)
                                 <tr>
-                                    <td>{{ $product->pivot->quantity }}<img class="img-thumbnail" style="max-width:100px;" src="{{ App\Image::find($product->featured_img)->url }}" /></td>
+                                    <td>{{ $product->pivot->quantity }}<img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" /></td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->pivot->price }}</td>
                                 </tr>

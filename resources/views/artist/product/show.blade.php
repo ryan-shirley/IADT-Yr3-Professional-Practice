@@ -13,7 +13,7 @@
                   <tr scope="row">
                     <td scope="col">Product Image</td>
                     <td scope="col">
-                      <img class="w-25" src="{{ asset(App\Image::find($product->featured_img)->url) }}" alt="Card image cap">
+                      <img class="w-25" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="Card image cap">
                     </td>
                   </tr>
                   <tr scope="row">

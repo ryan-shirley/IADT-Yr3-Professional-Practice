@@ -76,7 +76,7 @@
               <h2>Timeline</h2>
               <table class="table">
                 <tbody>
-                  @foreach ($order->events as $event)
+                  @foreach ($order->events->reverse() as $event)
                   <tr>
                     <td scope="col">{{ $event->name }}</td>
                     <td scope="col">{{ $event->created_at }}</td>
