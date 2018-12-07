@@ -22,7 +22,7 @@
                     <form method="POST" action="{{ route('cart.pay') }}">
                         @csrf
 
-                        <h4>Shipping Information (make radio active on error)</h4>
+                        <h4>Shipping Information</h4>
                         <div class="form-group">
                             @foreach ($user->addresses as $address)
                                 @if ($address->shipping == true)
@@ -56,7 +56,7 @@
                             @endif
                         </div>
                         <hr />
-                        <h4>Billing Information (make radio active on error)</h4>
+                        <h4>Billing Information</h4>
                         <div class="form-group">
                             @foreach ($user->addresses as $address)
                                 @if ($address->billing == true)
@@ -90,7 +90,7 @@
                             @endif
                         </div>
                         <hr />
-                        <h4>Shipping Method (make radio active on error)</h4>
+                        <h4>Shipping Method</h4>
                         <div class="form-group">
                             @foreach ($shipping_methods as $method)
                                     <div class="form-check">
@@ -105,16 +105,46 @@
                             @endif
                         </div>
                         <hr />
-                        <h4>Payment Information (not validated)</h4>
+                        <h4>Payment Information</h4>
                         <div class="form-group">
-                            <label for="card-number">card number</label>
-                            <input type="text" name="card_number" class="form-control" value="{{ old( 'card_number') }}">
-                            <span class="badge badge-pill badge-danger">{{ $errors->first('card_number') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="card-holder-name">card holder name</label>
-                            <input type="text" name="card_holder_name" class="form-control" value="{{ old( 'card_holder_name') }}">
-                            <span class="badge badge-pill badge-danger">{{ $errors->first('card_holder_name') }}</span>
+                            @foreach ($user->cards as $card)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="card_id" value="{{ $card->id }}" @if(old('card_id') == $card->id) checked @endif />
+                                    <label class="form-check-label" for="{{ $card->id }}">
+                                    {{ $card->number }}
+                                    </label>
+                                </div>
+                            @endforeach
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="radio" name="card_id" value="0" @if(old('card_id') == 0) checked @endif />
+                                    Enter the details for a new card
+                                </label>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>card number</td>
+                                            <td><input type="text" name="card_number" class="form-control" value="{{ old( 'card_number') }}"></td>
+                                            <td>{{ ($errors->has('card_number')) ? $errors->first('card_number') : "" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>card holder name</td>
+                                            <td><input type="text" name="card_holder_name" class="form-control" value="{{ old( 'card_holder_name') }}"></td>
+                                            <td>{{ ($errors->has('card_holder_name')) ? $errors->first('card_holder_name') : "" }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>expiry</td>
+                                            <td><input type="text" name="expiry" class="form-control" value="{{ old( 'expiry') }}"></td>
+                                            <td>{{ ($errors->has('expiry')) ? $errors->first('expiry') : "" }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @if ($errors->has('billing_id'))
+                                <span class="badge badge-pill badge-danger">{{ $errors->first('card_id') }}</span>
+                            @endif
                         </div>
                         <hr />
                         <button type="submit" class="btn btn-primary">Purchase</button>

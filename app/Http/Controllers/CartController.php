@@ -11,6 +11,7 @@ use App\Cart;
 use App\Address;
 use App\ShippingMethod;
 use App\Event;
+use App\Card;
 use Validator;
 
 class CartController extends Controller
@@ -97,6 +98,14 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+        $cart = $this->getCart($request);
+
+        // Check if cart is empty if so redirect to cart page
+        if($cart->isEmpty()) {
+            $request->session()->flash('alert-warning', ' Your cart is empty!');
+            return redirect()->route('shop.home');
+        }
+
         $user = Auth::user();
         if($user == null) {
             // Store Route to Checkout as user intends to purchase
@@ -104,14 +113,8 @@ class CartController extends Controller
             return redirect()->route('login');
         }
 
-        $cart = $this->getCart($request);
-        $shipping_methods = ShippingMethod::all();
 
-        // ****************************
-        // ****************************
-        // ****************************
-        // ****************************
-        // Check if cart is empty if so redirect to cart page
+        $shipping_methods = ShippingMethod::all();
 
         return view('cart.checkout')->with([
           'cart' => $cart,
@@ -130,8 +133,10 @@ class CartController extends Controller
             'billing_id' => 'required|integer|min:0',
             'billing_address_line1' => 'required_if:billing_id,0|nullable|string|max:100',
             'shipping_method_id' => 'required|exists:shipping_methods,id|max:10',
-            'card_number' => 'required|digits:16',
-            'card_holder_name' => 'required|string|max:100',
+            'card_id' => 'required|integer|min:0',
+            'card_number' => 'required_if:card_id,0',
+            'card_holder_name' => 'required_if:card_id,0|max:100',
+            'expiry' => 'required_if:card_id,0|max:100',
         ]);
 
         $user = Auth::user();
@@ -167,6 +172,29 @@ class CartController extends Controller
             $billing_address = Address::findOrFail($billing_address_id);
 
             if ($billing_address->user->id != $user->id) {
+                return response(401, 'Unauthorised');
+            }
+        }
+
+
+        $credit_card_id = $request->input('card_id');
+        if ($credit_card_id == 0) {
+            $request->validate([
+                'name_on_card' => 'nullable|string|max:100',
+                'number' => 'nullable|digits:16',
+                'expiry' => 'nullable|regex:/[0-9]{2}\/[0-9]{2}/'
+            ]);
+
+            $card = new Card();
+            $card->name_on_card = $request->input('name');
+            $card->number = $request->input('card_number');
+            $card->expiry = $request->input('expiry');
+            $card->user_id = $user->id;
+            $card->save();
+        }
+        else {
+            $card = Card::findOrFail($credit_card_id);
+            if ($card->user_id != $user->id) {
                 return response(401, 'Unauthorised');
             }
         }
