@@ -22,21 +22,12 @@
                     <form method="POST" action="{{ route('cart.pay') }}">
                         @csrf
 
-                        <h4>Contact Information</h4>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ old( 'email', $user->email) }}">
-                            @if ($errors->has('email'))
-                                <span class="badge badge-pill badge-danger">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-                        <hr />
                         <h4>Shipping Information (make radio active on error)</h4>
                         <div class="form-group">
                             @foreach ($user->addresses as $address)
                                 @if ($address->shipping == true)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="shipping_id" value="{{ $address->id }}" >
+                                        <input class="form-check-input" type="radio" name="shipping_id" value="{{ $address->id }}" @if(old('shipping_id') == $address->id) checked @endif />
                                         <label class="form-check-label" for="{{ $address->id }}">
                                         {{ $address->line1 }}
                                         </label>
@@ -46,7 +37,7 @@
 
                             <div class="form-group">
                                 <label>
-                                    <input type="radio" name="shipping_id" value="0" />
+                                    <input type="radio" name="shipping_id" value="0" @if(old('shipping_id') == 0) checked @endif />
                                     Enter the details for a new shipping address
                                 </label>
                                 <table>
@@ -70,7 +61,7 @@
                             @foreach ($user->addresses as $address)
                                 @if ($address->billing == true)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="billing_id" value="{{ $address->id }}" >
+                                        <input class="form-check-input" type="radio" name="billing_id" value="{{ $address->id }}" @if(old('billing_id') == $address->id) checked @endif />
                                         <label class="form-check-label" for="{{ $address->id }}">
                                         {{ $address->line1 }}
                                         </label>
@@ -80,7 +71,7 @@
 
                             <div class="form-group">
                                 <label>
-                                    <input type="radio" name="billing_id" value="0" />
+                                    <input type="radio" name="billing_id" value="0" @if(old('billing_id') == 0) checked @endif />
                                     Enter the details for a new billing address
                                 </label>
                                 <table>

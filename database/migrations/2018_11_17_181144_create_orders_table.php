@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->date('order_date');
             $table->date('fulfillment_date')->nullable();
-            $table->enum('payment_status', ['paid', 'unpaid']);
-            $table->enum('fulfillment_status', ['fulfilled', 'unfulfilled']);
+            $table->enum('payment_status', ['paid', 'unpaid'])->default('unpaid');
+            $table->enum('fulfillment_status', ['fulfilled', 'unfulfilled'])->default('unfulfilled');
             $table->string('shipping_address');
             $table->string('billing_address');
             $table->integer('shipping_method_id')->unsigned();

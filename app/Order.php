@@ -27,7 +27,15 @@ class Order extends Model
     // get the events belongs to the order
     public function events()
     {
-      return $this->belongsToMany('App\Event');
+      return $this->hasMany('App\Event');
+    }
+
+    public function subTotal(){
+      $total = 0.0;
+      foreach($this->products as $product) {
+        $total += $product->price * $product->pivot->quantity;
+      }
+      return $total;
     }
 
     public function total(){
@@ -38,4 +46,15 @@ class Order extends Model
       $total += $this->shipping_method->cost;
       return $total;
     }
+
+    public function totalItems(){
+        $total = 0;
+
+        foreach($this->products as $product) {
+          $total += 1 * $product->pivot->quantity;
+        }
+        return $total;
+    }
+
+
 }

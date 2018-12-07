@@ -10,6 +10,7 @@ use App\Order;
 use App\Cart;
 use App\Address;
 use App\ShippingMethod;
+use App\Event;
 use Validator;
 
 class CartController extends Controller
@@ -121,16 +122,16 @@ class CartController extends Controller
 
     public function pay(Request $request) {
         //dd($request);
+        $timestamp = date("h:i:a");
 
         $request->validate([
-            'email' => 'required|email|max:191',
             'shipping_id' => 'required|integer|min:0',
             'shipping_address_line1' => 'required_if:shipping_id,0|nullable|string|max:100',
             'billing_id' => 'required|integer|min:0',
             'billing_address_line1' => 'required_if:billing_id,0|nullable|string|max:100',
             'shipping_method_id' => 'required|exists:shipping_methods,id|max:10',
             'card_number' => 'required|digits:16',
-            'card_holder_name' => 'string|max:100',
+            'card_holder_name' => 'required|string|max:100',
         ]);
 
         $user = Auth::user();
@@ -174,10 +175,7 @@ class CartController extends Controller
         $order = new Order();
         $order->user_id = $user->id;
         $order->order_date = date("Y-m-d");
-        // need to set fullfulment date as null in db
-        $order->fulfillment_date = date("Y-m-d");
         $order->payment_status = 'paid';
-        $order->fulfillment_status = 'unfulfilled';
         $order->shipping_address = $shipping_address->line1;
         $order->billing_address = $billing_address->line1;
         $order->shipping_method_id = $request->input('shipping_method_id');
@@ -191,12 +189,23 @@ class CartController extends Controller
                 'price' => $item->getPrice()]
             );
 
-            // **********************************************************
-            // **********************************************************
-            // **********************************************************
-            // need code to minus stock from the database for the product
+            $product = Product::findOrFail($item->getProduct()->id);
+            $product->stock += -$item->getQuantity();
+            $product->save();
         }
 
+        $event = new Event();
+        $event->name = 'A new order was create on ' . date("d M Y") . ' at ' . $timestamp . '.';
+        $event->order_id = $order->id;
+        $event->save();
+
+        $event = new Event();
+        $event->name = 'A €' . $order->total() . ' EUR payment was processed on ' . date("d M Y") . ' at ' . $timestamp . '.';
+        $event->order_id = $order->id;
+        $event->save();
+
+        // Reset Cart
+        $cart->removeAll();
 
         return redirect()->route('checkout.confirmation', $order);
     }
