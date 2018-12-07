@@ -23,9 +23,9 @@
 
                     <h5>Order Total</h5>
                     <hr />
-                    <p>Sub-Total: €00</p>
+                    <p>Sub-Total: €{{ $order->subTotal() }}</p>
                     <p>Shipping: €{{ $order->shipping_method->cost }}</p>
-                    <p>Total: {{ $order->total() }}</p>
+                    <p>Total: €{{ $order->total() }}</p>
 
                     <table class="table">
                         <tbody>

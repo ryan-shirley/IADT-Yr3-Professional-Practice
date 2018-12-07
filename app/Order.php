@@ -30,6 +30,14 @@ class Order extends Model
       return $this->hasMany('App\Event');
     }
 
+    public function subTotal(){
+      $total = 0.0;
+      foreach($this->products as $product) {
+        $total += $product->price * $product->pivot->quantity;
+      }
+      return $total;
+    }
+
     public function total(){
       $total = 0.0;
       foreach($this->products as $product) {
