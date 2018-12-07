@@ -175,12 +175,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $p = Product::findOrFail($id);
-        $image = $p->featured_img;
+        $image = Image::findOrFail($p->featured_img);
         $p->delete();
 
         // if ($image->product->count() == 0) {
-        //     Storage::disk('public')->delete($image->url);
-        //     $image->delete();
+            Storage::disk('public')->delete($image->url);
+            $image->delete();
         // }
 
         return redirect()->route('products.index');
