@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>valentina bianchi</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,30 +21,26 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md justify-content-center">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    valentina bianchi
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                      @if (Auth::user() == null || Auth::user()->hasRole('customer'))
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('shop.home') }}">{{ __('Shop') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('cart.view') }}">{{ __('View cart') }}</a>
-                      </li>
-                      @endif
+                <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+                    <ul class="navbar-nav mx-auto text-center">
+                        @if (Auth::user() == null || Auth::user()->hasRole('customer'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shop.home') }}">{{ __('Shop') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart.view') }}">{{ __('View cart') }}</a>
+                        </li>
+                        @endif
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -79,6 +75,7 @@
             </div>
         </nav>
 
+
         <div class="container">
             <div class="flash-message">
                 @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -88,8 +85,9 @@
                 @endforeach
             </div>
         </div>
+        <!--/.Flash Message -->
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

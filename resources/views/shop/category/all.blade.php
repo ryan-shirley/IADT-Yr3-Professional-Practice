@@ -5,7 +5,7 @@
 <section class="image-title">
     <div class="content-wrapper">
         <div class="inner">
-            <h1>Shop</h1>
+            <h1>{{ $category->name }}</h1>
         </div>
     </div>
 </section>
@@ -14,11 +14,11 @@
 <div class="container">
     <ul class="nav justify-content-center shop-nav">
         <li class="nav-item">
-            <a class="nav-link active" href="{{ route('shop.home') }}">All Product</a>
+            <a class="nav-link" href="{{ route('shop.home') }}">All Product</a>
         </li>
         @foreach ($categories as $cat)
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('shop.category.all', $cat->id) }}">{{ $cat->name }}</a>
+            <a class="nav-link {{ $category->id == $cat->id ? ' active ' : null }}" href="{{ route('shop.category.all', $cat->id) }}">{{ $cat->name }}</a>
         </li>
         @endforeach
     </ul>
@@ -26,7 +26,7 @@
 
     <section class="product-list">
         <div class="row">
-            @foreach ($products as $p)
+            @foreach ($category->products as $p)
                 <div class="col-3 product">
                     <a href="{{ route('shop.product', $p->id) }}"><img class="card-img-top mb-3" src="{{ asset('storage/' . App\Image::find($p->featured_img)->url ) }}" alt="{{ $p->name }}" title="{{ $p->name }}"></a>
                     <h3><a href="{{ route('shop.product', $p->id) }}">{{ $p->name }}</a></h3>

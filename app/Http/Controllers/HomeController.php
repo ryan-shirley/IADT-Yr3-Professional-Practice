@@ -31,14 +31,7 @@ class HomeController extends Controller
     }
 
     public function welcome(){
-        $products = Product::all();
-        $categories = Category::all();
-        $tags = Tag::all();
 
-        return view('welcome')->with([
-            'products' => $products,
-            'categories' => $categories,
-            'tags' => $tags
-        ]);
+        return view('welcome');
     }
 }

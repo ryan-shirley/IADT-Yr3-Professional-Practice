@@ -1,44 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-12">
-            <p>
-                <a href="{{ route('shop.home') }}">Shop</a>    /    {{ $product->name }}
-            </p>
-        </div>
-    </div>
-
-    <div class="row">
+<div class="container-fluid full-width single-product">
+    <div class="row no-gutters">
         <div class="col-md-6">
-            <img src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
+            <img class="img-fluid" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
+
+            @foreach ($product->images as $image)
+                <img class="img-fluid" src="{{ asset('storage/' . $image->url ) }}" alt="{{ $image->title }}" title="$image->title }}" />
+            @endforeach
         </div>
         <div class="col-md-6">
-            <h1>{{ $product->name }}</h1>
-            <p>
-                €{{ $product->price }} EUR
-            </p>
-            <p>
-                €{{ $product->sale_price }} EUR
-            </p>
-            <hr />
+            <div class="content">
+                <div class="inner">
+                    <h1>{{ $product->name }}</h1>
+                    <p class="description">
+                        {{ $product->description }}
+                    </p>
+                    <p class="meta">Meta:
+                        @foreach ($product->tags as $tag)
+                            {{ $tag->name }},
+                        @endforeach
 
-            <form action="{{ route('cart.add')}}" method="POST">
-                @csrf
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <button class="btn btn-dark">Add to cart</button>
-
-                <br /><br />
-
-                <p>
-                    {{ $product->description }}
-                </p>
-            </form>
-
+                        @foreach ($product->categories as $c)
+                            {{ $c->name }}
+                            @if(!$loop->last)
+                                ,
+                             @endif
+                        @endforeach
+                    </p>
+                    <hr />
+                    <p class="price">
+                        @if (!$product->sale_price)
+                            €{{ $product->price }}
+                        @else
+                            €{{ $product->sale_price }}
+                        @endif
+                    </p>
+                    <form action="{{ route('cart.add')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button class="btn btn-dark">Add to cart</button>
+                    </form>
+                    <!--/.Add to cart -->
+                </div>
+            </div>
+            <!--/.Content -->
         </div>
     </div>
-
+    <!--/.Row -->
 </div>
+<!--/.Container -->
 @endsection

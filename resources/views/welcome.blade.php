@@ -1,51 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="carouselExampleIndicators" class="carousel slide d-none d-sm-block" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="/images/carousel-img.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/images/carousel-img.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/images/carousel-img.jpg" alt="Third slide">
-    </div>
-  </div>
-
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
 <div class="container">
-    <h2 class="text-center my-4">Latest Categories</h2>
-    <div class="row">
-      @foreach ($categories as $cat)
-      <div class="col-4">
-        <a href="{{ route('categories.viewProducts', $cat->id) }}">
-          <img class="card-img-top" src="storage/product_images/placeholder.jpg" alt="Card image cap">
-        </a>
-        <div class="card-body">
-          <a href="{{ route('categories.viewProducts', $cat->id) }}">
-            <h5 class="card-title">{{ $cat->name }}</h5>
-          </a>
-          <p>{{ $cat->description }}</p>
+    <div class="row stories">
+        <div class="col-md-6">
+            <div class="story first-story">
+                <div class="content-wrapper">
+                    <div class="inner">
+                        <h2>Award Winning Illustrator</h2>
+                        <p>I partner with visionary leaders that are inventing a better, fairer future.</p>
+                        <a href="#" class="btn btn-outline-light">About Me</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.First Story -->
+
+            <div class="story second-story">
+                <div class="content-wrapper">
+                    <div class="inner">
+                        <h2>Collections</h2>
+                        <a href="#" class="btn btn-outline-light">View</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.Second Story -->
         </div>
-      </div>
-      @endforeach
+
+
+        <div class="col-md-6">
+            <div class="story third-story">
+                <div class="content-wrapper">
+                    <div class="inner">
+                        <h2>All Products</h2>
+                        <a href="{{ route('shop.home') }}" class="btn btn-outline-light">Shop</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.Second Story -->
+
+            <div class="story fourth-story">
+                <div class="content-wrapper">
+                    <div class="inner">
+                        <h2>TALES OF THE JAZZ AGE</h2>
+                        <p>A signed illustration by Valentina Bianchi</p>
+                        <a href="#" class="btn btn-outline-light">View Product</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.Fourth Story -->
+        </div>
     </div>
+    <!-- /.Stories -->
+
+    <div class="row content-boxes">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Payment</h3>
+                    <p>Pay with VISA, MasterCard, American Express or PayPal in our secure checkout.</p>
+                </div>
+            </div>
+            <!-- /.Card -->
+        </div>
+        <!-- /.Content Box -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Payment</h3>
+                    <p>Pay with VISA, MasterCard, American Express or PayPal in our secure checkout.</p>
+                </div>
+            </div>
+            <!-- /.Card -->
+        </div>
+        <!-- /.Content Box -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Payment</h3>
+                    <p>Pay with VISA, MasterCard, American Express or PayPal in our secure checkout.</p>
+                </div>
+            </div>
+            <!-- /.Card -->
+        </div>
+        <!-- /.Content Box -->
+    </div>
+    <!-- /.Order Info -->
 </div>
+<!-- /.Container -->
 
 @endsection

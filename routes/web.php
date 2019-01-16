@@ -36,6 +36,7 @@ Route::get('/artist/orders/{id}','Artist\OrderController@show')->name('artist.or
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');
+Route::get('/shop/category/{category_id}', 'Shop\CategoryController@index')->name('shop.category.all');
 
 Route::get('/artist/settings', 'Artist\HomeController@settings')->name('artist.settings');
 
