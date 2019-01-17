@@ -216,3 +216,24 @@
         font-weight: bold;
     }
 }
+
+// Auth Forms
+.auth-form {
+    margin-top: $spacer * 2;
+
+    form {
+        background-color: $light-grey;
+        padding: ($spacer * 6) ($spacer * 4);
+    }
+
+    .summary {
+        background-color: $black;
+        color: $white;
+        min-height: 550px;
+        padding: ($spacer * 6) ($spacer * 2);
+
+        h1 {
+            margin-bottom: $spacer * 4;
+        }
+    }
+}
