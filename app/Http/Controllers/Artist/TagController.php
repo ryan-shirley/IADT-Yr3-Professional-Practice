@@ -14,6 +14,12 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+         $this->middleware('role:artist');
+     }
+     
     public function index()
     {
         $tags = Tag::all();
@@ -85,7 +91,7 @@ class TagController extends Controller
         $products = Product::with('tags')->whereHas('tags', function($query) use ($id) {
             $query->where('tag_id', 'LIKE', "$id");
         })->get();
-        
+
         // $products = Product::whereHas('tags', function ($query){
         //     $query->where('tag_id', 'like', $id);
         // })->get();
