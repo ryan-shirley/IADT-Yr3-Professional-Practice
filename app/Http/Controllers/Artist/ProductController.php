@@ -12,11 +12,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+   public function __construct()
+   {
+       $this->middleware('auth');
+       $this->middleware('role:artist');
+   }
+
     public function index()
     {
         $products = Product::all()->sortByDesc("id");
@@ -51,7 +59,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:100',
+            'name' => 'required|string',
             'description' => 'required|max:300',
             'category_id' => 'required|exists:categories,id',
             'tag_id' => 'required|exists:tags,id',
