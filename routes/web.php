@@ -31,8 +31,7 @@ Route::get('/artist/categories/viewProducts/{category_id}', 'Artist\CategoryCont
 Route::resource('/artist/tags', 'Artist\TagController');
 Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProducts')->name('tags.viewProducts');
 
-Route::get('/artist/orders','Artist\OrderController@index')->name('artist.orders.index');
-Route::get('/artist/orders/{id}','Artist\OrderController@show')->name('artist.orders.show');
+Route::resource('/artist/orders', 'Artist\OrderController');
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');

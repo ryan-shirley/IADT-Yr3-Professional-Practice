@@ -27,6 +27,7 @@ class OrdersTableSeeder extends Seeder
             $order = new Order();
             $order->user_id = 3;
             $order->order_date = date("Y-m-d");
+            $order->order_time = "10:15";
             $order->shipping_address = $shipping->line1;
             $order->billing_address = $billing->line1;
             $order->shipping_method_id = $shipping_method->id;

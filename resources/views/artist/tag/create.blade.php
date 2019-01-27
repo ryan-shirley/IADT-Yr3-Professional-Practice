@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-md-8">
+<div class="row">
+@include('layouts.artistmenu')
+<div class="col-md-9">
     <div class="card">
         <div class="card-header">Add Tag</div>
 
@@ -26,8 +27,8 @@
             <button type="submit" value="Store">Submit</button>
         </form>
 
-        </div>
     </div>
+</div>
 </div>
 </div>
 </div>

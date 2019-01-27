@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-header">Orders</div>
         <div class="card-body">
-            <a class="btn btn-primary btn-sm" href="" role="button">Create Order (Not working atm)</a>
+            <a class="btn btn-primary btn-sm" href="{{ route('orders.create') }}" role="button">Create Order</a>
             <table class="table">
                 <thead class="thead-light">
                 <tr>
@@ -38,7 +38,7 @@
                         <td>{{ $order->billing_address }}</td>
                         <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td>
                         <td>
-                          <a href="{{ route('artist.orders.show', $order) }}">View</a>
+                          <a href="{{ route('orders.show', $order) }}">View</a>
                         </td>
                     </tr>
                     @endforeach

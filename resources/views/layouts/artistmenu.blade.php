@@ -6,7 +6,7 @@
         <li><a href="{{ route('artist.home') }}">Home</a></li>
         <li>Orders</li>
         <ul>
-          <li><a href="{{ route('artist.orders.index') }}">All Orders</a></li>
+          <li><a href="{{ route('orders.index') }}">All Orders</a></li>
           <!-- <li>Active Orders</li>
           <li>Completed Orders</li> -->
         </ul>
