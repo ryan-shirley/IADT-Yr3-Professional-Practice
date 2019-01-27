@@ -24,25 +24,10 @@
     </ul>
     <!--/.Row -->
 
-    <section class="product-list">
-        <div class="row">
-            @foreach ($category->products as $p)
-                <div class="col-3 product">
-                    <a href="{{ route('shop.product', $p->id) }}"><img class="card-img-top mb-3" src="{{ asset('storage/' . App\Image::find($p->featured_img)->url ) }}" alt="{{ $p->name }}" title="{{ $p->name }}"></a>
-                    <h3><a href="{{ route('shop.product', $p->id) }}">{{ $p->name }}</a></h3>
-                    <p class="price">
-                        @if (!$p->sale_price)
-                            €{{ $p->price }}
-                        @else
-                            €{{ $p->sale_price }}
-                        @endif
-                    </p>
-                </div>
-                <!--/.Product -->
-            @endforeach
-        </div>
-        <!--/.Row -->
-    </section>
+    @component('components.list-products', [
+        'products' => $category->products
+    ])
+    @endcomponent
     <!--/.Product List -->
 </div>
 <!--/.Container -->
