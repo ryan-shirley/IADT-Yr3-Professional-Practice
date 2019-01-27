@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->date('order_date');
-            $table->string('order_time');
             $table->date('fulfillment_date')->nullable();
             $table->enum('payment_status', ['paid', 'unpaid'])->default('unpaid');
             $table->enum('fulfillment_status', ['fulfilled', 'unfulfilled'])->default('unfulfilled');

@@ -1,37 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <div class="card">
-                <div class="card-header">Checkout</div>
-                <div class="card-body">
-                    @if ($cart->isEmpty())
-                    <p>There are no items in your shopping cart</p>
-                    @else
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form method="POST" action="{{ route('cart.pay') }}">
-                        @csrf
 
-                        <h4>Shipping Information</h4>
+<div class="container-fluid checkout">
+    <div class="row">
+        <div class="col-md-8 bg-light">
+
+            <div id="errors">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+
+            <div id="checkout_nav" class="navigation">
+                <p>
+                    <span class="address">Shipping Information</span><span class="seperator">></span><span class="shipping">Shipping Method</span><span class="seperator">></span><span class="payment">Payment method</span>
+                </p>
+            </div>
+            <!--/.Checkout Naviagtion -->
+
+            <form method="POST" action="{{ route('cart.pay') }}">
+                @csrf
+                <div id="address" class="addresses">
+
+                    <div class="shipping">
+                        <h3>Shipping Address</h3>
+
                         <div class="form-group">
                             @foreach ($user->addresses as $address)
                                 @if ($address->shipping == true)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="shipping_id" value="{{ $address->id }}" @if(old('shipping_id') == $address->id) checked @endif />
-                                        <label class="form-check-label" for="{{ $address->id }}">
-                                        {{ $address->line1 }}
-                                        </label>
-                                    </div>
+                                    @component('components.checkout.address', [
+                                        'name' => 'billing_id',
+                                        'title' => $address->line1,
+                                        'value' => $address->id
+                                    ])
+                                    @endcomponent
                                 @endif
                             @endforeach
 
@@ -55,17 +64,22 @@
                                 <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_id') }}</span>
                             @endif
                         </div>
-                        <hr />
-                        <h4>Billing Information</h4>
+                        <!--/.Form Group -->
+                    </div>
+                    <!--/.Shipping Address -->
+
+                    <div class="billing">
+                        <h3>Billing Address</h3>
+
                         <div class="form-group">
                             @foreach ($user->addresses as $address)
                                 @if ($address->billing == true)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="billing_id" value="{{ $address->id }}" @if(old('billing_id') == $address->id) checked @endif />
-                                        <label class="form-check-label" for="{{ $address->id }}">
-                                        {{ $address->line1 }}
-                                        </label>
-                                    </div>
+                                    @component('components.checkout.address', [
+                                        'name' => 'shipping_id',
+                                        'title' => $address->line1,
+                                        'value' => $address->id
+                                    ])
+                                    @endcomponent
                                 @endif
                             @endforeach
 
@@ -89,31 +103,52 @@
                                 <span class="badge badge-pill badge-danger">{{ $errors->first('billing_id') }}</span>
                             @endif
                         </div>
-                        <hr />
-                        <h4>Shipping Method</h4>
+                        <!--/.Form Group -->
+                    </div>
+                    <!--/.Billing Address -->
+
+                </div>
+                <!--/.Address -->
+
+                <div id="shipping" class="shipping">
+
+                    <div class="methods">
+                        <h3>Shipping Method</h3>
+
                         <div class="form-group">
                             @foreach ($shipping_methods as $method)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="shipping_method_id" value="{{ $method->id }}" @if(old('shipping_method_id') == $method->id) checked @endif>
-                                        <label class="form-check-label" for="{{ $method->id }}">
-                                        {{ $method->name }} -  €{{ $method->cost }}
-                                        </label>
-                                    </div>
+                                @component('components.checkout.shipping-method', [
+                                    'name' => 'shipping_method_id',
+                                    'title' => $method->name,
+                                    'value' => $method->id,
+                                    'cost' => $method->cost
+                                ])
+                                @endcomponent
                             @endforeach
+
                             @if ($errors->has('shipping_method_id'))
                                 <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_method_id') }}</span>
                             @endif
                         </div>
-                        <hr />
-                        <h4>Payment Information</h4>
+                        <!--/.Form Group -->
+                    </div>
+                    <!--/.Methods -->
+                </div>
+                <!--/.Shipping -->
+
+                <div id="payment" class="shipping">
+
+                    <div class="methods">
+                        <h3>Payment Method</h3>
+
                         <div class="form-group">
                             @foreach ($user->cards as $card)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="card_id" value="{{ $card->id }}" @if(old('card_id') == $card->id) checked @endif />
-                                    <label class="form-check-label" for="{{ $card->id }}">
-                                    {{ $card->number }}
-                                    </label>
-                                </div>
+                                @component('components.checkout.card', [
+                                    'name' => 'card_id',
+                                    'value' => $card->id,
+                                    'number' => $card->number
+                                ])
+                                @endcomponent
                             @endforeach
 
                             <div class="form-group">
@@ -142,45 +177,36 @@
                                 </table>
                             </div>
 
-                            @if ($errors->has('billing_id'))
+                            @if ($errors->has('card_id'))
                                 <span class="badge badge-pill badge-danger">{{ $errors->first('card_id') }}</span>
                             @endif
                         </div>
-                        <hr />
-                        <button type="submit" class="btn btn-primary">Purchase</button>
-                    </form>
-                    @endif
+                        <!--/.Form Group -->
+                    </div>
+                    <!--/.Methods -->
                 </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th></th>
-                                <th>Product</th>
-                                <th>Price</th>
+                <!--/.Shipping -->
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cart->getItems() as $item)
-                            <tr>
-                                <td>{{ $item->getQuantity() }}<img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($item->getProduct()->featured_img)->url ) }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
-                                <td>{{ $item->getProduct()->name }}</td>
-                                <td>{{ number_format($item->getProduct()->price, 2) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <hr />
-                    <p>Shipping: - (need jquery to update this)</p>
-                    <p>Total price: {{ $cart->getTotalPrice() }}</p>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-primary">Purchase</button>
+
+            </form>
+            <!--/.Form Checkout -->
+
         </div>
+        <!--/.Col -->
+        <div class="col-md-4">
+            @component('components.checkout.list-products', [
+                'items' => $cart->getItems()
+            ])
+            @endcomponent
+            <hr />
+            <p>Shipping: - (need jquery to update this)</p>
+            <p>Total price: {{ $cart->getTotalPrice() }}</p>
+        </div>
+        <!--/.Col -->
     </div>
+    <!--/.Row -->
 </div>
+<!--/.Container fluid -->
+
 @endsection
