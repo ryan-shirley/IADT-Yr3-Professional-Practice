@@ -30,7 +30,7 @@
                   @foreach ($orders->reverse() as $order)
                     @if ($order->user_id == Auth::user()->id)
                     <tr>
-                        <td scope="row"><a href="{{ route('orders.show', $order) }}">{{ $order->id }}</a></td>
+                        <td scope="row"><a href="{{ route('customer.orders.show', $order) }}">{{ $order->id }}</a></td>
                         <td>{{ $order->order_date }}</td>
                         <td>{{ $order->fulfillment_status }}</td>
                         <td>&euro;{{ $order->total() }}</td>

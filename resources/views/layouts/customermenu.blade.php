@@ -4,7 +4,7 @@
     <div class="card-body">
       <ul>
         <li><a href="{{ route('customer.home') }}">Home</a></li>
-        <li><a href="{{ route('orders.index') }}">Orders</li>
+        <li><a href="{{ route('customer.orders.index') }}">Orders</li>
         <li><a href="{{ route('customer.settings') }}">Account Settings</a></li>
       </ul>
     </div>

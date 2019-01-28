@@ -32,7 +32,9 @@ Route::resource('/artist/tags', 'Artist\TagController');
 Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProducts')->name('tags.viewProducts');
 
 Route::resource('/artist/orders', 'Artist\OrderController');
-Route::resource('/customer/orders', 'Customer\OrderController');
+
+Route::get('/customer/orders', 'Customer\OrderController@index')->name('customer.orders.index');
+Route::get('/customer/orders/{order_id}', 'Customer\OrderController@show')->name('customer.orders.show');
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');
