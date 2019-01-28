@@ -37,14 +37,15 @@
               <p class="h3">{{ $order->payment_status }}</p>
               <div class="row small">
                 <div class="col-3">Sub Total</div>
-                <div class="col-7">1 item</div>
-                <div class="col-2 text-right">65.00</div>
+                <div class="col-7">{{ $totalItems }} item(s)</div>
+                <div class="col-2 text-right">&euro;{{ $subtotal }}</div>
               </div>
 
               <div class="row small">
                 <div class="col-3">Shipping</div>
-                <div class="col-7">{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</div>
-                <div class="col-2 text-right">0.00</div>
+                <div class="col-7">{{ App\ShippingMethod::find($order->shipping_method_id)->name }}
+                  {{ App\ShippingMethod::find($order->shipping_method_id)->description }}</div>
+                <div class="col-2 text-right">&euro;{{ App\ShippingMethod::find($order->shipping_method_id)->cost }}</div>
               </div>
 
               <div class="row">
@@ -58,7 +59,7 @@
                   <strong>Total</strong>
                 </div>
                 <div class="col text-right">
-                  <strong>0.00</strong>
+                  <strong>&euro;{{ $total }}</strong>
                 </div>
               </div>
 

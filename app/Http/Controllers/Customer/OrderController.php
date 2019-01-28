@@ -34,9 +34,15 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
+        $subtotal = $order->subTotal();
+        $totalItems = $order->totalItems();
+        $total = $order->total();
 
         return view('customer.orders.show')->with([
-            'order' => $order
+            'order' => $order,
+            'subtotal' => $subtotal,
+            'totalItems' => $totalItems,
+            'total' => $total
         ]);
     }
 }
