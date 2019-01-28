@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center no-gutters">
             <div class="col-md-6">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-form-label text-md-right">{{ __('Name') }}</label>
