@@ -1,0 +1,15 @@
+@each $color, $value in $theme-colors {
+    .btn-outline-#{$color} {
+        position: relative;
+
+        &:after {
+            content: "";
+            position: absolute;
+            background-color: $value;
+            width: 90%;
+            height: 2px;
+            bottom: -3px;
+            left: 5%;
+        }
+    }
+}

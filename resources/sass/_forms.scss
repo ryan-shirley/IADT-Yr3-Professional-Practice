@@ -1,0 +1,59 @@
+// Auth Forms
+.auth-form {
+    margin-top: $spacer * 2;
+
+    form {
+        background-color: $light-grey;
+        padding: ($spacer * 6) ($spacer * 4);
+    }
+
+    .summary {
+        background-color: $black;
+        color: $white;
+        min-height: 550px;
+        padding: ($spacer * 6) ($spacer * 2);
+
+        h1 {
+            margin-bottom: $spacer * 4;
+        }
+    }
+}
+
+// Custom Radio Button
+.custom-control-label {
+    width: 100%;
+
+    &:after, &:before {
+        right: 0;
+        left: auto;
+    }
+}
+
+.custom-control-input {
+    &:checked ~ .custom-control-label::before {
+        border-color: $gray-900;
+        background-color: $gray-900;
+    }
+
+    &:focus ~ .custom-control-label::before {
+        box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.16);
+    }
+}
+
+// Custom radio button in card
+.card-light {
+    padding: 0;
+
+    .custom-control-label {
+        padding: ($spacer) $spacer * 2;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:before, &:after {
+            top: 40%;
+            right: $spacer;
+        }
+    }
+}

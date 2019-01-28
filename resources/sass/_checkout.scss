@@ -1,0 +1,44 @@
+.checkout {
+    .inner {
+        padding: ($spacer * 4) 0;
+        display: block;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .navigation {
+        margin-bottom: $spacer * 2;
+
+        .seperator {
+            padding: 0 $spacer;
+        }
+
+    }
+
+    h3 {
+        margin-bottom: $spacer * 2;
+    }
+
+    .form-group {
+        margin-bottom: $spacer * 3;
+    }
+
+    .shipping {
+        .method {
+            line-height: 1.4;
+
+            .title {
+                font-weight: 600;
+            }
+
+            .cost {
+                position: absolute;
+                right: $spacer * 4;
+                top: 30%;
+                font-family: $headings-font-family;
+                font-weight: bold;
+                font-size: $font-size-lg;
+            }
+        }
+    }
+}

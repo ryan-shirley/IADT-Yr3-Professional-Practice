@@ -18,7 +18,7 @@ class CardsTableSeeder extends Seeder
         $card = new Card();
         $card->name_on_card = 'Customer Card';
         $card->number = '1234567890123456';
-        $card->expiry = '12/10/2020';
+        $card->expiry = '10/23';
         $card->user_id = $customer->id;
         $card->save();
     }
