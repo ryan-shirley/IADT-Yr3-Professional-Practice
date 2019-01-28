@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('customer.home');
+        $orders = Order::all();
+
+        return view('customer.home')->with([
+          'orders' => $orders
+        ]);
+    }
+
+    public function settings()
+    {
+        return view('customer.settings');
     }
 }

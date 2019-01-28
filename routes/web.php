@@ -32,12 +32,14 @@ Route::resource('/artist/tags', 'Artist\TagController');
 Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProducts')->name('tags.viewProducts');
 
 Route::resource('/artist/orders', 'Artist\OrderController');
+Route::resource('/customer/orders', 'Customer\OrderController');
 
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');
 Route::get('/shop/category/{category_id}', 'Shop\CategoryController@index')->name('shop.category.all');
 
 Route::get('/artist/settings', 'Artist\HomeController@settings')->name('artist.settings');
+Route::get('/customer/settings', 'Customer\HomeController@settings')->name('customer.settings');
 
 // Cart Routes
 Route::get('/cart', 'CartController@view')->name('cart.view');
