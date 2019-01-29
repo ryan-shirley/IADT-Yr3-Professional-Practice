@@ -31,9 +31,58 @@
                     <div id="address" class="addresses">
 
                         <div class="shipping">
-                            <h3>Shipping Address</h3>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3>Shipping Address</h3>
+                                </div>
+                                <!--/.Col -->
+                                <div class="col-md-3">
+                                    <!-- Button trigger modal -->
+                                    <button id="add_shipping_address_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newShippingAddressModal">
+                                      +
+                                    </button>
+                                </div>
+                                <!--/.Col -->
+                            </div>
+                            <!--/.Row -->
 
-                            <div class="form-group">
+                            <!-- New Shipping Address Modal -->
+                            <div class="modal fade" id="newShippingAddressModal" tabindex="-1" role="dialog" aria-labelledby="newShippingAddressModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="newShippingAddressModalLabel">Create Shipping Address</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--/.Modal Header -->
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <!-- <label>
+                                                    <input type="radio" name="shipping_id" value="0" @if(old('shipping_id') == 0) @endif />
+                                                </label> -->
+                                                <textarea id="shipping_address_line1" class="form-control" type="text" name="shipping_address_line1"></textarea>
+                                                <input id="shipping_user_id" value="{{ $user->id }}" hidden />
+
+                                                <span class="error"></span>
+                                            </div>
+                                            <!--/.Form Group -->
+                                        </div>
+                                        <!--/.Modal Body -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_shipping_address" type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                        <!--/.Modal Footer -->
+                                    </div>
+                                    <!--/.Modal Content -->
+                                </div>
+                                <!--/.Modal Dialog -->
+                            </div>
+                            <!--/.Shipping Address Modal -->
+
+                            <div id="list_shipping_address" class="form-group">
                                 @foreach ($user->addresses as $address)
                                     @if ($address->shipping == true)
                                         @component('components.checkout.address', [
@@ -45,21 +94,6 @@
                                     @endif
                                 @endforeach
 
-                                <div class="form-group">
-                                    <label>
-                                        <input type="radio" name="shipping_id" value="0" @if(old('shipping_id') == 0) @endif />
-                                        Enter the details for a new shipping address
-                                    </label>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td><textarea class="form-control" type="text" name="shipping_address_line1">{{ old('shipping_address_line1') }}</textarea></td>
-                                                <td>{{ ($errors->has('shipping_address_line1')) ? $errors->first('shipping_address_line1') : "" }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
 
                                 @if ($errors->has('shipping_id'))
                                     <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_id') }}</span>
@@ -70,9 +104,58 @@
                         <!--/.Shipping Address -->
 
                         <div class="billing">
-                            <h3>Billing Address</h3>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3>Billing Address</h3>
+                                </div>
+                                <!--/.Col -->
+                                <div class="col-md-3">
+                                    <!-- Button trigger modal -->
+                                    <button id="add_billing_address_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newBillingAddressModal">
+                                      +
+                                    </button>
+                                </div>
+                                <!--/.Col -->
+                            </div>
+                            <!--/.Row -->
 
-                            <div class="form-group">
+                            <!-- New Billing Address Modal -->
+                            <div class="modal fade" id="newBillingAddressModal" tabindex="-1" role="dialog" aria-labelledby="newBillinggAddressModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="newBillingAddressModalLabel">Create Billing Address</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--/.Modal Header -->
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <!-- <label>
+                                                    <input type="radio" name="shipping_id" value="0" @if(old('shipping_id') == 0) @endif />
+                                                </label> -->
+                                                <textarea id="billing_address_line1" class="form-control" type="text" name="billing_address_line1"></textarea>
+                                                <input id="billing_user_id" value="{{ $user->id }}" hidden />
+
+                                                <span class="error"></span>
+                                            </div>
+                                            <!--/.Form Group -->
+                                        </div>
+                                        <!--/.Modal Body -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_billing_address" type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                        <!--/.Modal Footer -->
+                                    </div>
+                                    <!--/.Modal Content -->
+                                </div>
+                                <!--/.Modal Dialog -->
+                            </div>
+                            <!--/.Shipping Address Modal -->
+
+                            <div id="list_billing_address" class="form-group">
                                 @foreach ($user->addresses as $address)
                                     @if ($address->billing == true)
                                         @component('components.checkout.address', [
@@ -84,25 +167,6 @@
                                     @endif
                                 @endforeach
 
-                                <div class="form-group">
-                                    <label>
-                                        <input type="radio" name="billing_id" value="0" @if(old('billing_id') == 0) @endif />
-                                        Enter the details for a new billing address
-                                    </label>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>Address</td>
-                                                <td><textarea class="form-control" type="text" name="billing_address_line1">{{ old('billing_address_line1') }}</textarea></td>
-                                                <td>{{ ($errors->has('billing_address_line1')) ? $errors->first('billing_address_line1') : "" }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                @if ($errors->has('billing_id'))
-                                    <span class="badge badge-pill badge-danger">{{ $errors->first('billing_id') }}</span>
-                                @endif
                             </div>
                             <!--/.Form Group -->
                         </div>

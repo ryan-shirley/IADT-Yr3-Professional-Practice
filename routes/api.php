@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::POST('/checkout/shipping-address', 'Api\Customer\AddressController@createAddress');
+Route::POST('/checkout/billing-address', 'Api\Customer\AddressController@createAddress');
