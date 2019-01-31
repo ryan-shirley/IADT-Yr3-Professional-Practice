@@ -13,4 +13,12 @@ class Image extends Model
     {
         return $this->belongsToMany('App\Product')->withPivot('position');
     }
+
+    /**
+     * The product that belong to featured image.
+     */
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }

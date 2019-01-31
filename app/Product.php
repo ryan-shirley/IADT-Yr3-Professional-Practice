@@ -31,6 +31,14 @@ class Product extends Model
         return $this->belongsToMany('App\Image')->withPivot('position');
     }
 
+    /**
+     * The featured image that belong to the product.
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Image', 'id');
+    }
+
     public function orders()
     {
       return $this->belongsToMany('App\Order')->withPivot('price', 'quantity')-withTimestamps();
