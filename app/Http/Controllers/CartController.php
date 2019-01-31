@@ -124,92 +124,44 @@ class CartController extends Controller
     }
 
     public function pay(Request $request) {
-        //dd($request);
         $timestamp = date("h:i:a");
 
         $request->validate([
-            'shipping_id' => 'required|integer|min:0',
-            'shipping_address_line1' => 'required_if:shipping_id,0|nullable|string|max:100',
-            'billing_id' => 'required|integer|min:0',
-            'billing_address_line1' => 'required_if:billing_id,0|nullable|string|max:100',
-            'shipping_method_id' => 'required|exists:shipping_methods,id|max:10',
-            'card_id' => 'required|integer|min:0',
-            'card_number' => 'required_if:card_id,0',
-            'card_holder_name' => 'required_if:card_id,0|max:100',
-            'expiry' => 'required_if:card_id,0|max:100',
+            'shipping_id' => 'required|integer|exists:addresses,id',
+            'billing_id' => 'required|integer|exists:addresses,id',
+            'shipping_method_id' => 'required|exists:shipping_methods,id',
+            'card_id' => 'required|integer|exists:cards,id',
         ]);
 
         $user = Auth::user();
 
-        // Check shipping address is the users address or create new
+        // Check shipping address is the users address
         $shipping_address_id = $request->input('shipping_id');
-
-        if ($shipping_address_id == 0) {
-            $shipping_address = new Address();
-            $shipping_address->line1 = $request->input('shipping_address_line1');;
-            $shipping_address->shipping = true;
-            $shipping_address->user_id = $user->id;
-            $shipping_address->save();
-        }
-        else {
-            $shipping_address = Address::findOrFail($shipping_address_id);
-
-            if ($shipping_address->user->id != $user->id) {
-                return response(401, 'Unauthorised');
-            }
-        }
-
+        $shipping_address = Address::findOrFail($shipping_address_id);
         // Check billing address is the users address
         $billing_address_id = $request->input('billing_id');
-        if ($billing_address_id == 0) {
-            $billing_address = new Address();
-            $billing_address->line1 = $request->input('billing_address_line1');;
-            $billing_address->billing = true;
-            $billing_address->user_id = $user->id;
-            $billing_address->save();
-        }
-        else {
-            $billing_address = Address::findOrFail($billing_address_id);
-
-            if ($billing_address->user->id != $user->id) {
-                return response(401, 'Unauthorised');
-            }
-        }
-
-
+        $billing_address = Address::findOrFail($billing_address_id);
+        // Check card is the users card
         $credit_card_id = $request->input('card_id');
-        if ($credit_card_id == 0) {
-            $request->validate([
-                'name_on_card' => 'nullable|string|max:100',
-                'number' => 'nullable|digits:16',
-                'expiry' => 'nullable|regex:/[0-9]{2}\/[0-9]{2}/'
-            ]);
+        $card = Card::findOrFail($credit_card_id);
 
-            $card = new Card();
-            $card->name_on_card = $request->input('name');
-            $card->number = $request->input('card_number');
-            $card->expiry = $request->input('expiry');
-            $card->user_id = $user->id;
-            $card->save();
-        }
-        else {
-            $card = Card::findOrFail($credit_card_id);
-            if ($card->user_id != $user->id) {
-                return response(401, 'Unauthorised');
-            }
+        // If addresss or card is not the users
+        if ($shipping_address->user->id != $user->id || $billing_address->user->id != $user->id || $card->user_id != $user->id) {
+            return response(401, 'Unauthorised');
         }
 
         // Create order
         $order = new Order();
         $order->user_id = $user->id;
         $order->order_date = date("Y-m-d");
+        $order->order_time = date("h:i:s");
         $order->payment_status = 'paid';
         $order->shipping_address = $shipping_address->line1;
         $order->billing_address = $billing_address->line1;
         $order->shipping_method_id = $request->input('shipping_method_id');
         $order->save();
 
-        // Attach product to order
+        // Attach products to order
         $cart = $this->getCart($request);
         foreach ($cart->getItems() as $item) {
             $order->products()->attach($item->getProduct()->id, [
@@ -218,10 +170,11 @@ class CartController extends Controller
             );
 
             $product = Product::findOrFail($item->getProduct()->id);
-            $product->stock += -$item->getQuantity();
+            $product->stock -= $item->getQuantity();
             $product->save();
         }
 
+        // Create events for the order timeline
         $event = new Event();
         $event->name = 'A new order was create on ' . date("d M Y") . ' at ' . $timestamp . '.';
         $event->order_id = $order->id;

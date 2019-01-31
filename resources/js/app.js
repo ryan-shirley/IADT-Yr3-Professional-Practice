@@ -27,40 +27,37 @@ const app = new Vue({
 $( "#submit_shipping_address" ).click(function() {
     console.log("Sending Ajax to create shipping address");
 
-    $.ajax({
-        url: '/api/checkout/shipping-address',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            line1: $('#shipping_address_line1').val(),
-            shipping: 1,
-            billing: 0,
-            user_id: $('#shipping_user_id').val(),
-        }),
-        dataType: 'json',
-        success: function( data ){
-            console.log("Shipping Address Added Succesfully");
-            console.log(data);
+    axios.post('/api/checkout/shipping-address', {
+        line1: $('#shipping_address_line1').val(),
+        shipping: 1,
+        billing: 0,
+        user_id: $('#shipping_user_id').val(),
+    })
+    .then(function( resp ){
+        console.log("Shipping Address Added Succesfully");
+        console.log(resp.data);
 
-            // Create Shipping Address
-            $("#list_shipping_address").prepend( '<div class="custom-control custom-radio address card-light">' +
-                                                    '<input id="shipping_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="shipping_id" value="' + data.id + '">' +
-                                                    '<label class="custom-control-label" for="address-' + data.id + '">' +
-                                                        data.line1 +
-                                                    '</label>' +
-                                                '</div>' );
-            // Select Added Address
-            $("#shipping_address_" + data.id).prop( "checked", true );
+        var data = resp.data;
 
-            // Hide Modal & Clear
-            $('#newShippingAddressModal').modal('hide');
-            $('#shipping_address_line1').val('');
-        },
-        error: function(data){
-            console.log("Error Adding Shipping Address");
-            console.log(data);
-       },
-    });
+        // Create Shipping Address
+        $("#list_shipping_address").prepend(
+            '<div class="custom-control custom-radio address card-light">' +
+                '<input id="shipping_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="shipping_id" value="' + data.id + '">' +
+                '<label class="custom-control-label" for="address-' + data.id + '">' +
+                    data.line1 +
+                '</label>' +
+            '</div>' );
+        // Select Added Address
+        $("#shipping_address_" + data.id).prop( "checked", true );
+
+        // Hide Modal & Clear
+        $('#newShippingAddressModal').modal('hide');
+        $('#shipping_address_line1').val('');
+    })
+    .catch(function(data){
+        console.log("Error Adding Shipping Address");
+        console.log(data);
+   });
 });
 
 // Create Billing Address
@@ -83,12 +80,13 @@ $( "#submit_billing_address" ).click(function() {
             console.log(data);
 
             // Create Billing Address
-            $("#list_billing_address").prepend( '<div class="custom-control custom-radio address card-light">' +
-                                                    '<input id="billing_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="billing_id" value="' + data.id + '">' +
-                                                    '<label class="custom-control-label" for="address-' + data.id + '">' +
-                                                        data.line1 +
-                                                    '</label>' +
-                                                '</div>' );
+            $("#list_billing_address").prepend(
+                '<div class="custom-control custom-radio address card-light">' +
+                    '<input id="billing_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="billing_id" value="' + data.id + '">' +
+                    '<label class="custom-control-label" for="address-' + data.id + '">' +
+                        data.line1 +
+                    '</label>' +
+                '</div>' );
             // Select Added Address
             $("#billing_address_" + data.id).prop( "checked", true );
 
@@ -107,4 +105,21 @@ $( "#submit_billing_address" ).click(function() {
 $( "#card" ).click(function() {
     console.log("Clicked card");
     $(this).find( ".form-check-input" ).prop( "checked", true );
+});
+
+// Shipping Method update total
+$( "#shipping .custom-control-label").click(function() {
+    console.log("Shipping method clicked.");
+
+    var shipping_value = $(this).data( "price" );
+    var sub_total = $("#cart_sub_total").html();
+    var total = parseInt(sub_total) + parseInt(shipping_value);
+    $("#cart_total").html(total.toFixed(2) + " €");
+    shipping_value = shipping_value.toFixed(2);
+
+    if(shipping_value == 0) {
+        shipping_value = "FREE";
+    }
+
+    $("#cart_shipping_price").html(shipping_value);
 });

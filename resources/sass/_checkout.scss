@@ -41,4 +41,43 @@
             }
         }
     }
+
+    .cart {
+        padding-top: $spacer;
+    }
+
+    .list-products {
+        .product {
+            .quantity {
+                background: rgba( $gray-900, .6 );
+                color: $white;
+                width: 27px;
+                height: 27px;
+                display: block;
+                text-align: center;
+                border-radius: 50%;
+                line-height: 28px;
+                position: absolute;
+                left: 65px;
+                top: -10px;
+            }
+
+            .name {
+                margin-left: $spacer * 2;
+                font-family: $headings-font-family;
+                font-weight: bold;
+            }
+
+            .price {
+                font-family: $headings-font-family;
+                font-weight: bold;
+                text-align: right;
+                display: block;
+            }
+
+            img {
+                max-width: 65px;
+            }
+        }
+    }
 }

@@ -1,3 +1,10 @@
 .navbar-brand {
     font-family: $headings-font-family;
 }
+
+// Navbar
+.navbar {
+    .nav-link, .dropdown-item {
+        font-family: $font-family-sans-serif;
+    }
+}

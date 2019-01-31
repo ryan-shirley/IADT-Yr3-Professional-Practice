@@ -261,13 +261,41 @@
         </div>
         <!--/.Col -->
         <div class="col-md-4">
-            @component('components.checkout.list-products', [
-                'items' => $cart->getItems()
-            ])
-            @endcomponent
-            <hr />
-            <p>Shipping: - (need jquery to update this)</p>
-            <p>Total price: {{ $cart->getTotalPrice() }}</p>
+            <div class="cart sticky-top">
+                @component('components.checkout.list-products', [
+                    'items' => $cart->getItems()
+                ])
+                @endcomponent
+                <div class="d-flex justify-content-between mt-3">
+                    <div>
+                        Sub total
+                    </div>
+                    <div>
+                        <span id="cart_sub_total">{{ number_format($cart->getTotalPrice(),2) }}</span>
+                    </div>
+                </div>
+                <!--/.Flexbox -->
+                <div class="d-flex justify-content-between">
+                    <div>
+                        Shipping
+                    </div>
+                    <div>
+                        <span id="cart_shipping_price">-</span>
+                    </div>
+                </div>
+                <!--/.Flexbox -->
+                <hr />
+                <div class="d-flex justify-content-between">
+                    <div>
+                        Total
+                    </div>
+                    <div>
+                        <span  id="cart_total">{{ number_format($cart->getTotalPrice(),2) }} €</span>
+                    </div>
+                </div>
+                <!--/.Flexbox -->
+            </div>
+            <!--/.Cart -->
         </div>
         <!--/.Col -->
     </div>

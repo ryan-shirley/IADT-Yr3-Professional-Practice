@@ -32,7 +32,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "futura-pt", sans-serif;
+  --font-family-sans-serif: "Raleway", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -65,7 +65,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "futura-pt", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6;
@@ -379,7 +379,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
@@ -4815,7 +4815,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
 }
 
 .nav-link {
@@ -4951,7 +4951,7 @@ input[type="button"].btn-block {
   font-size: 1.5rem;
   line-height: inherit;
   white-space: nowrap;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-style: normal;
   font-weight: 500;
 }
@@ -4977,7 +4977,7 @@ input[type="button"].btn-block {
 .navbar-nav .nav-link {
   padding-right: 0;
   padding-left: 0;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
 }
 
 .navbar-nav .dropdown-menu {
@@ -6713,7 +6713,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "futura-pt", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6838,7 +6838,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "futura-pt", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -11547,7 +11547,12 @@ a.text-dark:focus {
 }
 
 .navbar-brand {
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-item {
+  font-family: "Raleway", sans-serif;
 }
 
 .btn-outline-primary {
@@ -11868,7 +11873,7 @@ a.text-dark:focus {
 
 .product-list .product .price {
   margin: 0;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.125rem;
 }
 
@@ -11892,7 +11897,6 @@ a.text-dark:focus {
   top: 0;
   bottom: 0;
   text-align: center;
-  font-family: miller-banner, serif;
 }
 
 .single-product .content .inner {
@@ -11906,7 +11910,7 @@ a.text-dark:focus {
 
 .single-product .price {
   margin: 0;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.875rem;
   margin-bottom: 1rem;
   font-weight: bold;
@@ -12001,7 +12005,7 @@ a.text-dark:focus {
 }
 
 .shopping-cart .price {
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.125rem;
   font-weight: bold;
 }
@@ -12041,8 +12045,43 @@ a.text-dark:focus {
   position: absolute;
   right: 4rem;
   top: 30%;
-  font-family: miller-banner, serif;
+  font-family: "Playfair Display", serif;
   font-weight: bold;
   font-size: 1.25rem;
+}
+
+.checkout .cart {
+  padding-top: 1rem;
+}
+
+.checkout .list-products .product .quantity {
+  background: rgba(33, 37, 41, 0.6);
+  color: #fff;
+  width: 27px;
+  height: 27px;
+  display: block;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 28px;
+  position: absolute;
+  left: 65px;
+  top: -10px;
+}
+
+.checkout .list-products .product .name {
+  margin-left: 2rem;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+}
+
+.checkout .list-products .product .price {
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  text-align: right;
+  display: block;
+}
+
+.checkout .list-products .product img {
+  max-width: 65px;
 }
 

@@ -67,8 +67,8 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h3>Payment</h3>
-                    <p>Pay with VISA, MasterCard, American Express or PayPal in our secure checkout.</p>
+                    <h3>Shipping & Returns</h3>
+                    <p>FREE Shipping on all orders. Return within 60 days unopened and get your money back.</p>
                 </div>
             </div>
             <!-- /.Card -->
@@ -77,8 +77,8 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h3>Payment</h3>
-                    <p>Pay with VISA, MasterCard, American Express or PayPal in our secure checkout.</p>
+                    <h3>Extended Warranty</h3>
+                    <p>Buy with confidence with highest quality materials with two years warranty on all of items.</p>
                 </div>
             </div>
             <!-- /.Card -->

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Address;
 use App\User;
+use Validator;
 
 class AddressController extends Controller
 {
@@ -26,9 +27,20 @@ class AddressController extends Controller
      */
     public function createAddress(Request $request)
     {
-        // $request->validate([
-        //     'line1' => 'required|string',
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'line1' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'shipping' => 'required|integer|min:0|max:1',
+            'billing' => 'required|integer|min:0|max:1'
+        ]);
+
+        if ($validator->fails()) {
+            $json = [
+                'success' => false,
+                'error' => $validator->errors()
+            ];
+            return response()->json($json, 400);
+        }
 
         // Instance Variables
         $line1 = $request->line1;
@@ -41,7 +53,11 @@ class AddressController extends Controller
 
         // Authenticate user ??
         if($user == null) {
-
+            $json = [
+                'success' => false,
+                'error' => "User does not exists"
+            ];
+            return response()->json($json, 400);
         }
 
         // Create Address
