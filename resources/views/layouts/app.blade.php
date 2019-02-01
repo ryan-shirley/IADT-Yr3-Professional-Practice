@@ -26,10 +26,16 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     valentina bianchi
                 </a>
-                <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-                    <span class="navbar-toggler-icon"></span>
+
+                <button id="navbar-burger-icon" class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-                <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+                <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar">
                     <ul class="navbar-nav mx-auto text-center">
                         @if (Auth::user() == null || Auth::user()->hasRole('customer'))
                         <li class="nav-item">

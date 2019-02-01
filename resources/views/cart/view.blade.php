@@ -17,7 +17,7 @@
                 <tr class="item">
                     <td><img src="{{ asset('storage/' . App\Image::find($item->getProduct()->featured_img)->url ) }}" alt="{{ App\Image::find($item->getProduct()->featured_img)->title }}" title="{{ App\Image::find($item->getProduct()->featured_img)->title }}" /></td>
                     <td class="align-middle"><h4>{{ $item->getProduct()->name }}</h4></td>
-                    <td class="align-middle price">{{ number_format($item->getProduct()->price, 2) }} EUR</td>
+                    <td class="align-middle price">{{ number_format($item->getProduct()->price, 2) }} €</td>
                     <td class="align-middle">{{ $item->getQuantity() }}</td>
                     <td class="align-middle">
                         <form action="{{ route('cart.remove') }}" method="POST">
@@ -35,7 +35,7 @@
         </table>
         <!--/.Shopping Cart Table -->
 
-        <p class="price text-right">Total: {{ $cart->getTotalPrice() }} EUR</p>
+        <p class="price text-right">Total: {{ $cart->getTotalPrice() }} €</p>
         <a href="{{ route('cart.checkout') }}" class="btn btn-secondary float-right">Checkout</a>
 
     @endif

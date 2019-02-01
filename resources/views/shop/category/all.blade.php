@@ -24,11 +24,18 @@
     </ul>
     <!--/.Row -->
 
-    @component('components.list-products', [
-        'products' => $category->products
-    ])
-    @endcomponent
-    <!--/.Product List -->
+    @if (count($category->products) != 0)
+        @component('components.list-products', [
+            'products' => $category->products
+        ])
+        @endcomponent
+        <!--/.Product List -->
+    @else
+        <div class="alert alert-danger" role="alert">
+            There are no products for this category.
+        </div>
+    @endif
+
 </div>
 <!--/.Container -->
 @endsection

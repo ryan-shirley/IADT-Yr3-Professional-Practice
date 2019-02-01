@@ -53,8 +53,8 @@
     </div>
     <!-- /.Stories -->
 
-    <div class="row content-boxes">
-        <div class="col-md-4">
+    <div class="row justify-content-md-center content-boxes">
+        <div class="col-lg-4 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h3>Payment</h3>
@@ -64,17 +64,17 @@
             <!-- /.Card -->
         </div>
         <!-- /.Content Box -->
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h3>Shipping & Returns</h3>
-                    <p>FREE Shipping on all orders. Return within 60 days unopened and get your money back.</p>
+                    <p>FREE Shipping on all orders. Return within 60 days and get your money back.</p>
                 </div>
             </div>
             <!-- /.Card -->
         </div>
         <!-- /.Content Box -->
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h3>Extended Warranty</h3>

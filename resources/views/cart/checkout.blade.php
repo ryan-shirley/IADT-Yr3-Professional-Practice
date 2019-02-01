@@ -185,6 +185,7 @@
                                     @component('components.checkout.shipping-method', [
                                         'name' => 'shipping_method_id',
                                         'title' => $method->name,
+                                        'description' => $method->description,
                                         'value' => $method->id,
                                         'cost' => $method->cost
                                     ])

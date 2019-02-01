@@ -16,6 +16,7 @@
             margin: 0;
             font-family: $headings-font-family;
             font-size: $font-size-base * 1.125;
+            color: $gray-600;
         }
     }
 }
@@ -40,8 +41,19 @@
         bottom: 0;
         text-align: center;
 
+        @include media-breakpoint-down(md) {
+            position: relative;
+            height: auto;
+            width: auto;
+        }
+
         .inner {
             padding: $spacer ($spacer * 4);
+
+            @include media-breakpoint-down(md) {
+                margin-top: $spacer * 2;
+                padding: $spacer ($spacer * 2);
+            }
         }
     }
 

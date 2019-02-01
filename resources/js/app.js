@@ -21,6 +21,11 @@ const app = new Vue({
     el: '#app'
 });
 
+// Navbar
+$('#navbar-burger-icon').click(function(){
+	$(this).toggleClass('open');
+});
+
 // Checkout
 
 // Create Shipping Address

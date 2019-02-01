@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container confirmation">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <p class="h4 mb-4 mt-5"><span>{{ $order->id }}</span> Order <strong>{{ $order->total() }} €</strong></p>
+            <p class="h4 mb-4 mt-5"><span>{{ $order->id }}</span> Order <strong>{{ number_format($order->total(),2) }} €</strong></p>
             <hr />
 
             <p class="mt-5 mb-5">This order has created and is now being processed. The payment method cannot be changed.</p>
             <hr />
 
             <div class="row mb-5">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="d-flex justify-content-between">
                         <div>
-                            Total Amount
+                            <small>Total Amount</small>
                         </div>
                         <div>
-                            <strong>{{ $order->total() }} €</strong>
+                            <strong>{{ number_format($order->total(),2) }} €</strong>
                         </div>
                     </div>
                     <!--/.Flexbox -->
                     <hr />
                     <div class="d-flex justify-content-between">
                         <div>
-                            Delivery
+                            <small>Delivery</small>
                         </div>
                         <div>
                             <strong>{{ $order->shipping_method->name }} {{ $order->shipping_method->description }} - {{ $order->shipping_method->cost }} €</strong>
@@ -34,10 +34,10 @@
                     <hr />
                 </div>
                 <!--/.Col -->
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="d-flex justify-content-between">
                         <div>
-                            Processed On
+                            <small>Processed On</small>
                         </div>
                         <div>
                             <strong>{{ date("d-m-Y", strtotime($order->order_date) ) }}</strong>
@@ -47,7 +47,7 @@
                     <hr />
                     <div class="d-flex justify-content-between">
                         <div>
-                            Paid With
+                            <small>Paid With</small>
                         </div>
                         <div>
                             <strong>VISA</strong>
@@ -64,8 +64,8 @@
 
             <div class="row mb-5">
                 @foreach ($order->products as $product)
-                    <div class="col-md-4">
-                        <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="row product">
                             <div class="col-6">
                                 <img class="img-fluid" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" />
                             </div>
@@ -86,9 +86,9 @@
 
             <p class="h4 mb-5">Delivery address</p>
             <div class="row mb-5">
-                <div class="d-flex justify-content-between col-6">
+                <div class="d-flex justify-content-between col-xl-6">
                     <div>
-                        Address
+                        <small>Address</small>
                     </div>
                     <div>
                         <strong>{{ $order->shipping_address }}</strong>

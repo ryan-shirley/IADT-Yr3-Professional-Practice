@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container-fluid full-width single-product">
-    <div class="row no-gutters">
-        <div class="col-md-6">
+    <div class="row no-gutters justify-content-md-center">
+        <div class="col-lg-6 col-md-8">
             <img class="img-fluid" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
 
             @foreach ($product->images as $image)
                 <img class="img-fluid" src="{{ asset('storage/' . $image->url ) }}" alt="{{ $image->title }}" title="$image->title }}" />
             @endforeach
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="content">
                 <div class="inner">
                     <h1>{{ $product->name }}</h1>

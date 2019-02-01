@@ -2,6 +2,11 @@
 .stories {
     margin-top: $spacer * 2;
     margin-bottom: $spacer * 4;
+
+    @include media-breakpoint-down(md) {
+        margin-top: 0;
+        margin-bottom: $spacer;
+    }
 }
 
 .story {
@@ -28,12 +33,26 @@
             text-align: center;
             color: #fff;
             padding: 0 20px;
+
+            a {
+                margin-top: $spacer;
+            }
         }
     }
 
     h2 {
         font-size: 62px;
         line-height: 66px;
+
+        @include media-breakpoint-down(lg) {
+            font-size: 52px;
+            line-height: 56px;
+        }
+
+        @include media-breakpoint-down(md) {
+            font-size: 40px;
+            line-height: 44px;
+        }
     }
 
     p {
