@@ -148,3 +148,12 @@
         font-size: $font-size-lg * 1.1;
     }
 }
+
+// About
+.about .content {
+    padding: $spacer * 4;
+
+    hr {
+        max-width: 100px;   
+    }
+}

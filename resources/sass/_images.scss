@@ -1,0 +1,18 @@
+// Image fill
+.about {
+    .image-full {
+        background-size: cover;
+        background-position: center center;
+        background-color: #f3f3f3;
+        min-height: 650px;
+        position: relative;
+
+        &.profile {
+            background-image: url(/images/profile.jpg);
+        }
+
+        &.heritage {
+            background-image: url(/images/illustration.jpg);
+        }
+    }
+}

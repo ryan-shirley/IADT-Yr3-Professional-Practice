@@ -13944,6 +13944,7 @@ window.Vue = __webpack_require__(36);
  */
 
 Vue.component('example-component', __webpack_require__(39));
+Vue.component('about-component', __webpack_require__(48));
 
 var app = new Vue({
     el: '#app'
@@ -47976,6 +47977,341 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(40)
+/* script */
+var __vue_script__ = __webpack_require__(49)
+/* template */
+var __vue_template__ = __webpack_require__(50)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/AboutComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5049bb1b", Component.options)
+  } else {
+    hotAPI.reload("data-v-5049bb1b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        var app = this;
+        axios.get('/api/products').then(function (resp) {
+            // handle success
+            console.log(resp.data);
+            app.products = resp.data;
+        }).catch(function (resp) {
+            // handle error
+            console.log(resp);
+            alert('Could not load products');
+        });
+    },
+    data: function data() {
+        return {
+            products: []
+        };
+    }
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container-fluid full-width about" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "container mt-5" }, [
+      _c("div", { staticClass: "row no-gutters" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12" }, [
+          _vm.products.length == 0
+            ? _c("p", [_vm._v("There are no products.")])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.products.length != 0
+            ? _c("section", { staticClass: "product-list" }, [
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  _vm._l(_vm.products, function(product) {
+                    return _c(
+                      "div",
+                      { staticClass: "col-lg-3 col-sm-6 product" },
+                      [
+                        _c("a", { attrs: { href: "" } }, [
+                          _c("img", {
+                            staticClass: "card-img-top mb-3",
+                            attrs: {
+                              src: "/storage/" + product.image.url,
+                              title: product.name,
+                              alt: product.name
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", [
+                          _c("a", { attrs: { href: "" } }, [
+                            _vm._v(_vm._s(product.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "price" }, [
+                          _vm._v(
+                            "\n                                €" +
+                              _vm._s(product.price) +
+                              "\n                            "
+                          )
+                        ])
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "row no-gutters justify-content-md-center align-items-center"
+      },
+      [
+        _c("div", { staticClass: "col-lg-6 col-md-8 image-full profile" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6 text-center content" }, [
+          _c("h1", { staticClass: "h4" }, [_vm._v("About")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                A multidisciplinary award winning designer with a focus on brand identity, digital, packaging and illustration. My approach is to create "
+            ),
+            _c("strong", [_vm._v("simple, functional identities")]),
+            _vm._v(
+              " that reflect the true character of the clients I work for.\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("small", [
+            _vm._v("Credit: "),
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "http://johnrooneyillustration.com",
+                  target: "_blank"
+                }
+              },
+              [_vm._v("Colm O'Connor")]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "row no-gutters justify-content-md-center align-items-center"
+      },
+      [
+        _c("div", { staticClass: "col-lg-6 text-center content" }, [
+          _c("h1", { staticClass: "h4" }, [_vm._v("About")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                A multidisciplinary award winning designer with a focus on brand identity, digital, packaging and illustration. My approach is to create "
+            ),
+            _c("strong", [_vm._v("simple, functional identities")]),
+            _vm._v(
+              " that reflect the true character of the clients I work for.\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("small", [
+            _vm._v("Credit: "),
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "http://johnrooneyillustration.com",
+                  target: "_blank"
+                }
+              },
+              [_vm._v("Colm O'Connor")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-6 col-md-8 image-full heritage" })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h3", { staticClass: "text-center mb-5 mt-3" }, [
+        _vm._v("Latest Products")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5049bb1b", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

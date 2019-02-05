@@ -10,7 +10,7 @@
                     <div class="inner">
                         <h2>Award Winning Illustrator</h2>
                         <p>I partner with visionary leaders that are inventing a better, fairer future.</p>
-                        <a href="#" class="btn btn-outline-light">About Me</a>
+                        <a href="{{ route('about') }}" class="btn btn-outline-light">About Me</a>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="content-wrapper">
                     <div class="inner">
                         <h2>Collections</h2>
-                        <a href="#" class="btn btn-outline-light">View</a>
+                        <a href="{{ route('shop.home') }}" class="btn btn-outline-light">View</a>
                     </div>
                 </div>
             </div>
