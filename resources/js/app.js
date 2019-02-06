@@ -49,7 +49,7 @@ $( "#submit_shipping_address" ).click(function() {
         $("#list_shipping_address").prepend(
             '<div class="custom-control custom-radio address card-light">' +
                 '<input id="shipping_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="shipping_id" value="' + data.id + '">' +
-                '<label class="custom-control-label" for="address-' + data.id + '">' +
+                '<label class="custom-control-label" for="shipping_address_' + data.id + '">' +
                     data.line1 +
                 '</label>' +
             '</div>' );
@@ -89,7 +89,7 @@ $( "#submit_billing_address" ).click(function() {
             $("#list_billing_address").prepend(
                 '<div class="custom-control custom-radio address card-light">' +
                     '<input id="billing_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="billing_id" value="' + data.id + '">' +
-                    '<label class="custom-control-label" for="address-' + data.id + '">' +
+                    '<label class="custom-control-label" for="billing_address_' + data.id + '">' +
                         data.line1 +
                     '</label>' +
                 '</div>' );

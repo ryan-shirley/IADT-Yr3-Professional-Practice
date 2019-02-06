@@ -11569,6 +11569,10 @@ a.text-dark:focus {
   }
 }
 
+.customer-nav .list-group-item {
+  padding: 1rem;
+}
+
 .navbar-toggler {
   width: 30px;
   height: 35px;
