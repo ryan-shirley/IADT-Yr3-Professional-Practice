@@ -8,6 +8,8 @@ use App\Order;
 use App\User;
 use App\ShippingMethod;
 use App\Event;
+use App\Product;
+
 use Validator;
 
 class OrderController extends Controller
@@ -41,8 +43,13 @@ class OrderController extends Controller
     {
         $users = User::all();
         $shippings = ShippingMethod::all();
+        $products = Product::all();
 
-        return view('artist.orders.create')->with(['users' => $users, 'shippings' => $shippings]);
+        return view('artist.orders.create')->with([
+          'users' => $users,
+          'shippings' => $shippings,
+          'products' => $products
+        ]);
     }
 
     /**

@@ -14,12 +14,12 @@
                 <tbody>
                     <tr>
                         <td>Name</td>
-                        <td><input type="text" name="name" value="{{ old('name') }}"/></td>
+                        <td><input class="form-control" type="text" name="name" value="{{ old('name') }}"/></td>
                         <td>{{ $errors->first('name') }}</td>
                     </tr>
                     <tr>
                         <td>Description</td>
-                        <td><input type="text" name="description"  value="{{ old('description') }}"/></td>
+                        <td><input class="form-control" type="text" name="description"  value="{{ old('description') }}"/></td>
                         <td>{{ $errors->first('description') }}</td>
                     </tr>
                     <tr>
@@ -38,17 +38,17 @@
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td><input type="text" name="price"  value="{{ old('price') }}"/></td>
+                        <td><input class="form-control" type="text" name="price"  value="{{ old('price') }}"/></td>
                         <td>{{ $errors->first('price') }}</td>
                     </tr>
                     <tr>
                         <td>Stock</td>
-                        <td><input type="text" name="stock"  value="{{ old('stock') }}"/></td>
+                        <td><input class="form-control" type="text" name="stock"  value="{{ old('stock') }}"/></td>
                         <td>{{ $errors->first('stock') }}</td>
                     </tr>
                     <tr>
                         <td>Sale Price</td>
-                        <td><input type="text" name="sale_price"  value="{{ old('sale_price') }}"/></td>
+                        <td><input class="form-control" type="text" name="sale_price"  value="{{ old('sale_price') }}"/></td>
                         <td>{{ $errors->first('sale_price') }}</td>
                     </tr>
                     <tr>
@@ -70,9 +70,14 @@
                         </td>
                         <td>{{ $errors->first('tag_id') }}</td>
                     </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
+                      </td>
+                    </tr>
                 </tbody>
             </table>
-            <button type="submit" value="Store">Submit</button>
       </form>
 
     </div>

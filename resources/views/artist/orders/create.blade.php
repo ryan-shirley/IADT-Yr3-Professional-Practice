@@ -9,34 +9,55 @@
               <div class="card-header">Create Order</div>
               <div class="card-body">
 
-                  <form method="POST" action="{{ route('orders.store' )}}">
+                  <form method="POST" action="{{ route('orders.store' )}}" enctype="multipart/form-data">
                       @csrf
-                      <table>
+                      <table class="table">
                           <tbody>
                               <tr>
                                   <td>Customer</td>
                                   <td>
-                                    <select class="form-control" name="user_id">
-                                      <option>Select a customer</option>
+                                    Select a customer
+                                    <input type="radio" name="customer" id="existingCustomer" value="0" onclick="existingCustomer()">
+                                    <select class="form-control" name="user_id" id="customerList" disabled>
+                                      <option>-</option>
                                       @foreach ($users as $u)
+                                      @if ($u->id != 1 && $u->id != 2)
                                       <option value="{{ $u->id }}" {{ (old('user_id') == $u->id) ? "selected" : "" }}>{{ $u->name }}</option>
+                                      @endif
                                       @endforeach
                                     </select>
+
+                                    <label for="newCustomer">
+                                      Add a new customer
+                                    </label>
+                                    <input type="radio" name="customer" id="newCustomer" value="1" onclick="newCustomer()">
+                                    <input class="form-control" id="newCustomerName" type="text" name="name" value="{{ old('name') }}" placeholder="Enter name"/ disabled>
+                                    <input class="form-control" id="newCustomerEmail" type="text" name="email" value="{{ old('email') }}" placeholder="Enter email"/ disabled>
+                                    <input class="form-control" id="newCustomerPassword" type="text" name="password" value="" placeholder="Enter password"/ disabled>
+                                    <input class="form-control" id="newCustomerConfirm" type="text" name="confirmpassword" value="" placeholder="Confirm password"/ disabled>
+
                                     @if ($errors->has('user_id'))
                                       <div class="errors text-danger"> {{ $errors->first('user_id') }} </div>
                                     @endif
                                   </td>
                                   <td>{{ $errors->first('name') }}</td>
                               </tr>
-                              <tr>
-                                  <td>Fulfillment Date</td>
-                                  <td>
-                                    <input class="form-control" type="date" name="fulfillment_date" value="{{ old('fulfillment_date') }}">
-                                    @if ($errors->has('fulfillment_date'))
-                                      <div class="errors text-danger"> {{ $errors->first('fulfillment_date') }} </div>
-                                    @endif
-                                  </td>
-                              </tr>
+
+                              <script>
+                                //adds the disabled attribute to input fields if has no insurance
+                                function existingCustomer() {
+                                  var noInsurance = document.getElementById("insuranceNo").value;
+                                  document.getElementById("insurance_company_check").setAttribute("disabled","");
+                                  document.getElementById("policy_number_check").setAttribute("disabled","");
+                                }
+                                //removes the disabled attribute in input fields if has insurance
+                                function newCustomer() {
+                                  var yesInsurance = document.getElementById("insuranceYes").value;
+                                  document.getElementById("insurance_company_check").removeAttribute("disabled");
+                                  document.getElementById("policy_number_check").removeAttribute("disabled");
+                                }
+                              </script>
+
                               <tr>
                                   <td>Payment Status</td>
                                   <td>
@@ -60,32 +81,6 @@
                                         </div>
                                       </div>
                                       <div class="errors text-danger"> {{ $errors->first('payment_status') }} </div>
-                                    </fieldset>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Fulfillment Status</td>
-                                  <td>
-                                    <fieldset class="form-group mb-0 pb-0">
-                                      <div class="row">
-                                        <div class="col-sm-10">
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="fulfillment_status" value="0"
-                                            {{ (old('fulfillment_status') == 0) ? "checked" : "" }} >
-                                            <label class="form-check-label">
-                                                Unfulfilled
-                                            </label>
-                                          </div>
-                                          <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="fulfillment_status" value="1"
-                                            {{ (old('fulfillment_status') == 1) ? "checked" : "" }} >
-                                            <label class="form-check-label">
-                                                Fulfilled
-                                            </label>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="errors text-danger"> {{ $errors->first('fulfillment_status') }} </div>
                                     </fieldset>
                                   </td>
                               </tr>
@@ -118,10 +113,14 @@
                                   </td>
                                   <td>{{ $errors->first('shipping_method_id') }}</td>
                               </tr>
+                              <tr>
+                                <td></td>
+                                <td>
+                                  <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
+                                </td>
+                              </tr>
                           </tbody>
                       </table>
-
-                      <button type="submit" value="Store">Submit</button>
                   </form>
 
               </div>

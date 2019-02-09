@@ -4,6 +4,7 @@
         Home
         </a>
         <a href="{{ route('customer.orders.index') }}" class="list-group-item list-group-item-action">Orders</a>
+        <a href="{{ route('addresses.index') }}" class="list-group-item list-group-item-action">Addresses</a>
         <a href="{{ route('customer.settings') }}" class="list-group-item list-group-item-action">Account Settings</a>
     </div>
 </div>

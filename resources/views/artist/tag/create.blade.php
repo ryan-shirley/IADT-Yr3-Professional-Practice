@@ -8,23 +8,28 @@
     <div class="card">
         <div class="card-header">Add Tag</div>
 
-        <form method="POST" action="{{ route('tags.store' )}}">
+        <form method="POST" action="{{ route('tags.store' )}}" enctype="multipart/form-data">
             @csrf
-            <table>
+            <table class="table">
                 <tbody>
                     <tr>
                         <td>Name</td>
-                        <td><input type="text" name="name" value="{{ old('name') }}"/></td>
+                        <td><input class="form-control" type="text" name="name" value="{{ old('name') }}"/></td>
                         <td>{{ $errors->first('name') }}</td>
                     </tr>
                     <tr>
                         <td>Description</td>
-                        <td><input type="text" name="description"  value="{{ old('description') }}"/></td>
+                        <td><input class="form-control" type="text" name="description"  value="{{ old('description') }}"/></td>
                         <td>{{ $errors->first('description') }}</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
+                      </td>
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" value="Store">Submit</button>
         </form>
 
     </div>

@@ -36,6 +36,8 @@ Route::resource('/artist/orders', 'Artist\OrderController');
 Route::get('/customer/orders', 'Customer\OrderController@index')->name('customer.orders.index');
 Route::get('/customer/orders/{order_id}', 'Customer\OrderController@show')->name('customer.orders.show');
 
+Route::resource('/customer/addresses', 'Customer\AddressController');
+
 Route::get('/shop', 'Shop\HomeController@index')->name('shop.home');
 Route::get('/shop/{product_id}', 'Shop\HomeController@show')->name('shop.product');
 Route::get('/shop/category/{category_id}', 'Shop\CategoryController@index')->name('shop.category.all');
