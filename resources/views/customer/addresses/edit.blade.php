@@ -24,10 +24,19 @@
   <div class="form-group">
       <label for="address">New Address</label>
       <input type="text" class="form-control" name="address" value="{{ old( 'address', $address->line1) }}">
-      <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
-
+      <div class="text-danger">{{ $errors->first('address') }}</div>
   </div>
-  <div class="form-group text-danger">{{ $errors->first('address') }}</div>
+  <div class="form-group">
+      <label for="address">Select Address Type</label>
+      <select class="form-control" name="address-type">
+          <option value=""></option>
+          <option value="shipping" {{ (old('address-type', $address->shipping) == 1) ? "selected" : "" }}>Shipping Address</option>
+          <option value="billing" {{ (old('address-type', $address->billing) == 1) ? "selected" : "" }}>Billing Address</option>
+      </select>
+      <div class="text-danger">{{ $errors->first('address-type') }}</div>
+  </div>
+  <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
+
   <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
 </form>
 

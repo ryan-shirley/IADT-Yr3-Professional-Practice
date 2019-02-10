@@ -22,11 +22,22 @@
   @csrf
   <div class="form-group">
       <label for="address">New Address</label>
-      <input type="text" class="form-control" name="address" placeholder="Enter new address">
-      <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
-
+      <input type="text" class="form-control" name="address" placeholder="Enter new address" value="{{ old('address') }}">
+      <div class="text-danger">{{ $errors->first('address') }}</div>
   </div>
-  <div class="form-group text-danger">{{ $errors->first('address') }}</div>
+
+  <div class="form-group">
+      <label for="address">Select Address Type</label>
+      <select class="form-control" name="address-type">
+          <option value=""></option>
+          <option value="shipping" {{ (old('address-type') == 'shipping') ? "selected" : "" }}>Shipping Address</option>
+          <option value="billing" {{ (old('address-type') == 'billing') ? "selected" : "" }}>Billing Address</option>
+      </select>
+      <div class="text-danger">{{ $errors->first('address-type') }}</div>
+  </div>
+
+  <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
+
   <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
 </form>
 

@@ -25,6 +25,11 @@
                       @if ($address->user_id == Auth::user()->id)
                       <tr>
                           <td scope="row">{{ $address->line1 }}</td>
+                          @if ($address->shipping == 1)
+                              <td>Shipping Address</td>
+                          @else
+                              <td>Billing Address</td>
+                          @endif
                           <td>
 
                             <form action="{{ action('Customer\AddressController@destroy', $address->id )}}" method="post">

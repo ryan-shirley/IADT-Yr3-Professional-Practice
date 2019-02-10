@@ -17,25 +17,14 @@
                                   <td>Customer</td>
                                   <td>
                                     Select a customer
-                                    <input type="radio" name="customer" id="existingCustomer" value="0" onclick="existingCustomer()">
-                                    <select class="form-control" name="user_id" id="customerList" disabled>
-                                      <option>-</option>
+                                    <select class="form-control" name="user_id" id="customerList">
+                                      <option></option>
                                       @foreach ($users as $u)
                                       @if ($u->id != 1 && $u->id != 2)
                                       <option value="{{ $u->id }}" {{ (old('user_id') == $u->id) ? "selected" : "" }}>{{ $u->name }}</option>
                                       @endif
                                       @endforeach
                                     </select>
-
-                                    <label for="newCustomer">
-                                      Add a new customer
-                                    </label>
-                                    <input type="radio" name="customer" id="newCustomer" value="1" onclick="newCustomer()">
-                                    <input class="form-control" id="newCustomerName" type="text" name="name" value="{{ old('name') }}" placeholder="Enter name"/ disabled>
-                                    <input class="form-control" id="newCustomerEmail" type="text" name="email" value="{{ old('email') }}" placeholder="Enter email"/ disabled>
-                                    <input class="form-control" id="newCustomerPassword" type="text" name="password" value="" placeholder="Enter password"/ disabled>
-                                    <input class="form-control" id="newCustomerConfirm" type="text" name="confirmpassword" value="" placeholder="Confirm password"/ disabled>
-
                                     @if ($errors->has('user_id'))
                                       <div class="errors text-danger"> {{ $errors->first('user_id') }} </div>
                                     @endif

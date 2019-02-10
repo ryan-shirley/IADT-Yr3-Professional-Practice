@@ -52,13 +52,22 @@ class AddressController extends Controller
     {
         $request->validate([
             'address' => 'required|max:100',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'required|exists:users,id',
+            'address-type' => 'required'
         ]);
-
 
         $address = new Address();
         $address->line1 = $request->input('address');
         $address->user_id = $request->input('user_id');
+        $addressType = $request->input('address-type');
+
+        if($addressType == 'shipping'){
+          $address->shipping = 1;
+        }
+        else if($addressType == 'billing'){
+          $address->billing = 1;
+        }
+
         $address->save();
 
         return redirect()->route('addresses.index');
@@ -101,12 +110,23 @@ class AddressController extends Controller
     {
         $request->validate([
             'address' => 'required|max:100',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'required|exists:users,id',
+            'address-type' => 'required'
         ]);
-        
+
         $address = Address::find($id);
         $address->line1 = $request->input('address');
         $address->user_id = $request->input('user_id');
+        $addressType = $request->input('address-type');
+
+        if($addressType == 'shipping'){
+          $address->shipping = 1;
+          $address->billing = 0;
+        }
+        else if($addressType == 'billing'){
+          $address->billing = 1;
+          $address->shipping = 0;
+        }
 
         $address->save();
 
