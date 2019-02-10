@@ -67,7 +67,7 @@ class AddressController extends Controller
         $address->shipping = $shipping;
         $address->user_id = $user->id;
         $address->save();
-
+        
         return response()->json($address, 200);
     }
 }

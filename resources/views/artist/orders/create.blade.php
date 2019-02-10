@@ -16,9 +16,8 @@
                               <tr>
                                   <td>Customer</td>
                                   <td>
-                                    Select a customer
                                     <select class="form-control" name="user_id" id="customerList">
-                                      <option></option>
+                                      <option>- Select a customer -</option>
                                       @foreach ($users as $u)
                                       @if ($u->id != 1 && $u->id != 2)
                                       <option value="{{ $u->id }}" {{ (old('user_id') == $u->id) ? "selected" : "" }}>{{ $u->name }}</option>

@@ -51,9 +51,9 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'address' => 'required|max:100',
+            'address' => 'required|string|max:100',
             'user_id' => 'required|exists:users,id',
-            'address-type' => 'required'
+            'address-type' => 'required|string'
         ]);
 
         $address = new Address();
@@ -109,9 +109,9 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'address' => 'required|max:100',
+            'address' => 'required|string|max:100',
             'user_id' => 'required|exists:users,id',
-            'address-type' => 'required'
+            'address-type' => 'required|string'
         ]);
 
         $address = Address::find($id);

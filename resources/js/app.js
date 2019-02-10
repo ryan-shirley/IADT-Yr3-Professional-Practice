@@ -32,7 +32,7 @@ $('#navbar-burger-icon').click(function(){
 // Create Shipping Address
 $( "#submit_shipping_address" ).click(function() {
     console.log("Sending Ajax to create shipping address");
-
+    
     axios.post('/api/checkout/shipping-address', {
         line1: $('#shipping_address_line1').val(),
         shipping: 1,
