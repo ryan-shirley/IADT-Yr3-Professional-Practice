@@ -16,7 +16,7 @@
             <!-- You are logged in! -->
 
             <p class="h2">Your Address(s) </p>
-            <a href="{{ route('addresses.create') }}">Add new address</a>
+            <a class="btn btn-outline-dark btn-sm mb-2" href="{{ route('addresses.create') }}">Add new address</a>
             <table class="table">
                 <thead class="thead-light">
                 </thead>
@@ -26,11 +26,12 @@
                       <tr>
                           <td scope="row">{{ $address->line1 }}</td>
                           <td>
-                            <a class="btn btn-warning btn-sm" href="{{ route('addresses.edit', $address->id) }}" role="button">Edit</a>
+
                             <form action="{{ action('Customer\AddressController@destroy', $address->id )}}" method="post">
                                 @csrf
+                                <a class="btn btn-outline-dark btn-sm" href="{{ route('addresses.edit', $address->id) }}" role="button">Edit</a>
                                 <input name="_method" type="hidden" value="DELETE">
-                                <button class="btn btn-danger btn-sm" >Delete</button>
+                                <button class="btn btn-outline-dark btn-sm" >Delete</button>
                             </form>
                           </td>
                       </tr>

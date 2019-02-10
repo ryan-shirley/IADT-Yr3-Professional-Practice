@@ -7,7 +7,6 @@
 
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Orders</div>
         <div class="card-body">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -16,7 +15,7 @@
             @endif
             <!-- You are logged in! -->
 
-            <p class="h2">Orders </p>
+            <p class="h2">Your Orders </p>
             <table class="table">
                 <thead class="thead-light">
                 <tr>

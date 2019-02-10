@@ -8,14 +8,13 @@
 
 <div class="col-md-9">
   <div class="card">
-      <div class="card-header">Customer Settings</div>
       <div class="card-body">
         @if (session('status'))
       <div class="alert alert-success" role="alert">
         {{ session('status') }}
       </div>
       @endif
-
+      <p class="h2">Account Settings</p>
       <table>
           <tbody>
               <tr>
