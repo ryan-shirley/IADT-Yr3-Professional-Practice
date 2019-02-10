@@ -6,7 +6,7 @@
 @include('layouts.artistmenu')
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Add Category</div>
+        <div class="card-header">Add Product</div>
 
         <form method="POST" action="{{ route('products.store' )}}" enctype="multipart/form-data">
             @csrf

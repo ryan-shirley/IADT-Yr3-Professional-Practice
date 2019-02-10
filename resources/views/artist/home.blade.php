@@ -8,7 +8,6 @@
 
 <div class="col-md-9">
   <div class="card">
-    <div class="card-header">Artist Home</div>
     <div class="card-body">
       @if (session('status'))
       <div class="alert alert-success" role="alert">

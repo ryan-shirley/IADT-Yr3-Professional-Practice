@@ -6,9 +6,9 @@
 @include('layouts.artistmenu')
 <div class="col-md-9">
     <div class="card">
-      <div class="card-header">All Products</div>
       <div class="card-body">
-          <a class="btn btn-primary btn-sm" href="{{ route('products.create') }}" role="button">Create Product</a>
+          <p class="h2">All Products</p>
+          <a class="btn btn-outline-dark btn-sm mb-2" href="{{ route('products.create') }}" role="button">Create Product</a>
 
           <table class="table">
               <thead class="thead-light">

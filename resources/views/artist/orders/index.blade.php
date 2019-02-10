@@ -7,9 +7,9 @@
 
 <div class="col-md-9">
     <div class="card">
-        <div class="card-header">Orders</div>
         <div class="card-body">
-            <a class="btn btn-primary btn-sm" href="{{ route('orders.create') }}" role="button">Create Order</a>
+            <p class="h2">All Orders</p>
+            <a class="btn btn-outline-dark btn-sm mb-2" href="{{ route('orders.create') }}" role="button">Create Order</a>
             <table class="table">
                 <thead class="thead-light">
                 <tr>

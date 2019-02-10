@@ -15,7 +15,7 @@
       </div>
       @endif
       <p class="h2">Account Settings</p>
-      <table>
+      <table class="mt-3">
           <tbody>
               <tr>
                   <th>Name</th>

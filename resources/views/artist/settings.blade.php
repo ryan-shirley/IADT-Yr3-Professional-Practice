@@ -8,15 +8,14 @@
 
 <div class="col-md-9">
   <div class="card">
-      <div class="card-header">Artist Settings</div>
       <div class="card-body">
         @if (session('status'))
       <div class="alert alert-success" role="alert">
         {{ session('status') }}
       </div>
       @endif
-
-      <table>
+      <p class="h2">Account Settings</p>
+      <table class="mt-3">
           <tbody>
               <tr>
                   <th>Name</th>
@@ -28,7 +27,7 @@
               </tr>
           </tbody>
       </table>
-      
+
     </div>
   </div>
 </div>
