@@ -19,7 +19,7 @@ class TagController extends Controller
          $this->middleware('auth');
          $this->middleware('role:artist');
      }
-     
+
     public function index()
     {
         $tags = Tag::all();

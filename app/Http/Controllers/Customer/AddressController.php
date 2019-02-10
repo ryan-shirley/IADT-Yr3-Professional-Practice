@@ -83,7 +83,11 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $address = Address::findOrFail($id);
+
+        return view('customer.addresses.edit')->with([
+            'address' => $address
+        ]);
     }
 
     /**
@@ -95,7 +99,18 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'address' => 'required|max:100',
+            'user_id' => 'required|exists:users,id'
+        ]);
+        
+        $address = Address::find($id);
+        $address->line1 = $request->input('address');
+        $address->user_id = $request->input('user_id');
+
+        $address->save();
+
+        return redirect()->route('addresses.index');
     }
 
     /**
