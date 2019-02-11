@@ -6,31 +6,25 @@
         @include('layouts.artistmenu')
         <div class="col-md-9">
           <div class="card">
-              <div class="card-header">Categories</div>
-              <div class="card-body">
 
+              <div class="card-body">
+                  <p class="h2">New Category</p>
                   <form method="POST" action="{{ route('categories.store' )}}" enctype="multipart/form-data">
                       @csrf
-                      <table class="table">
-                          <tbody>
-                              <tr>
-                                  <td>Name</td>
-                                  <td><input class="form-control" type="text" name="name" value="{{ old('name') }}"/></td>
-                                  <td>{{ $errors->first('name') }}</td>
-                              </tr>
-                              <tr>
-                                  <td>Description</td>
-                                  <td><input class="form-control" type="text" name="description"  value="{{ old('description') }}"/></td>
-                                  <td>{{ $errors->first('description') }}</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td>
-                                  <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
-                                </td>
-                              </tr>
-                          </tbody>
-                      </table>
+                      <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{ old( 'name') }}">
+                          <div class="text-danger">{{ $errors->first('name') }}</div>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="description">Description</label>
+                          <input type="text" class="form-control" name="description" placeholder="Enter description" value="{{ old( 'description') }}">
+                          <div class="text-danger">{{ $errors->first('description') }}</div>
+                      </div>
+
+                      <button class="btn btn-primary" type="submit" value="Store">Submit</button>
+
                   </form>
 
               </div>

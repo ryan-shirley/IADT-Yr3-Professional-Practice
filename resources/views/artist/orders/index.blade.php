@@ -13,16 +13,14 @@
             <table class="table">
                 <thead class="thead-light">
                 <tr>
-                    <td scope="col">Order #</td>
-                    <td scope='col'>Customer</td>
-                    <td scope='col'>Order Date</td>
-                    <td scope='col'>Fulfillment Date</td>
-                    <td scope='col'>Payment Status</td>
-                    <td scope='col'>Fulfillment Status</td>
-                    <td scope='col'>Shipping Address</td>
-                    <td scope='col'>Billing Address</td>
-                    <td scope='col'>Shipping Method</td>
-                    <td scope='col'>Actions</td>
+                    <td scope="col"><h5>Order #</h5></td>
+                    <td scope='col'><h5>Customer</h5></td>
+                    <td scope='col'><h5>Order Date</h5></td>
+                    <td scope='col'><h5>Payment Status</h5></td>
+                    <td scope='col'><h5>Fulfillment Status</h5></td>
+                    <!-- <td scope='col'>Shipping Address</td>
+                    <td scope='col'>Shipping Method</td> -->
+                    <td scope='col'><h5>Actions</h5></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,12 +29,10 @@
                         <td scope="row">{{ $order->id }}</td>
                         <td>{{ App\User::find($order->user_id)->name }}</td>
                         <td>{{ $order->order_date }}</td>
-                        <td>{{ $order->fulfillment_date }}</td>
                         <td>{{ $order->payment_status }}</td>
                         <td>{{ $order->fulfillment_status }}</td>
-                        <td>{{ $order->shipping_address }}</td>
-                        <td>{{ $order->billing_address }}</td>
-                        <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td>
+                        <!-- <td>{{ $order->shipping_address }}</td>
+                        <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td> -->
                         <td>
                           <a href="{{ route('orders.show', $order) }}">View</a>
                         </td>

@@ -10,6 +10,7 @@ use App\ShippingMethod;
 use App\Event;
 use Validator;
 use App\Address;
+use App\Product;
 
 class AddressController extends Controller
 {
@@ -39,7 +40,11 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('customer.addresses.create');
+        $products = Product::all();
+
+        return view('customer.addresses.create')->with([
+            'products' => $products
+        ]);
     }
 
     /**

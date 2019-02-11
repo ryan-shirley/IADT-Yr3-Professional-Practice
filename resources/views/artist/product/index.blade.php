@@ -14,14 +14,14 @@
               <thead class="thead-light">
               <tr>
                   <td scope='col'></td>
-                  <td scope='col'>Name</td>
-                  <td scope='col'>Description</td>
-                  <td scope='col'>Price</td>
-                  <td scope='col'>Sale Price</td>
-                  <td scope='col'>Category</td>
-                  <td scope='col'>Tags</td>
-                  <td scope='col'>Stock</td>
-                  <td scope='col'>action</td>
+                  <td scope='col'><h5>Name</h5></td>
+                  <td scope='col'><h5>Description</h5></td>
+                  <td scope='col'><h5>Price</h5></td>
+                  <td scope='col'><h5>Sale Price</h5></td>
+                  <td scope='col'><h5>Category</h5></td>
+                  <td scope='col'><h5>Tags</h5></td>
+                  <td scope='col'><h5>Stock</h5></td>
+                  <td scope='col'><h5>action</h5></td>
               </tr>
               </thead>
               <tbody>
@@ -45,12 +45,12 @@
                       </td>
                       <td>{{ $p->stock }}</td>
                       <td>
-                          <a class="" href="{{ route('products.show', $p->id) }}" role="button">View</a>
-                          <a class="" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
+                          <a class="btn btn-outline-dark btn-sm" href="{{ route('products.show', $p->id) }}" role="button">View</a>
+                          <a class="btn btn-outline-dark btn-sm" href="{{ route('products.edit', $p->id) }}" role="button">Edit</a>
                           <form action="{{ action('Artist\ProductController@destroy', $p->id )}}" method="post">
                               @csrf
                               <input name="_method" type="hidden" value="DELETE">
-                              <button class="btn btn-danger btn-sm" >Delete</button>
+                              <button class="btn btn-outline-dark btn-sm" >Delete</button>
                           </form>
                       </td>
                   </tr>

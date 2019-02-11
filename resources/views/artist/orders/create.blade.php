@@ -30,22 +30,6 @@
                                   </td>
                                   <td>{{ $errors->first('name') }}</td>
                               </tr>
-
-                              <script>
-                                //adds the disabled attribute to input fields if has no insurance
-                                function existingCustomer() {
-                                  var noInsurance = document.getElementById("insuranceNo").value;
-                                  document.getElementById("insurance_company_check").setAttribute("disabled","");
-                                  document.getElementById("policy_number_check").setAttribute("disabled","");
-                                }
-                                //removes the disabled attribute in input fields if has insurance
-                                function newCustomer() {
-                                  var yesInsurance = document.getElementById("insuranceYes").value;
-                                  document.getElementById("insurance_company_check").removeAttribute("disabled");
-                                  document.getElementById("policy_number_check").removeAttribute("disabled");
-                                }
-                              </script>
-
                               <tr>
                                   <td>Payment Status</td>
                                   <td>
@@ -73,17 +57,30 @@
                                   </td>
                               </tr>
                               <tr>
-                                  <td>Shipping Address</td>
+                                  <td>Products</td>
                                   <td>
-                                    <input class="form-control" type="text" name="shipping_address" value="{{ old('shipping_address') }}" />
-                                    <div class="errors text-danger">{{ ($errors->has('shipping_address')) ? $errors->first('shipping_address') : "" }}</div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Billing Address</td>
-                                  <td>
-                                    <input class="form-control" type="text" name="billing_address" value="{{ old('billing_address') }}" />
-                                    <div class="errors text-danger">{{ ($errors->has('billing_address')) ? $errors->first('billing_address') : "" }}</div>
+                                      <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <td scope='col'>Product</td>
+                                            <td scope='col'>Description</td>
+                                            <td scope='col'>Price</td>
+                                            <td scope='col'>Quantity</td>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          @foreach ($products as $product)
+                                          <tr>
+                                            <td scope="col">{{ $product->name }}</td>
+                                            <td scope="col">{{ $product->description }}</td>
+                                            <td scope="col">&euro;{{ $product->price }}</td>
+                                            <td scope="col">
+                                                <input type="text" size="5">
+                                            </td>
+                                          </tr>
+                                          @endforeach
+                                        </tbody>
+                                      </table>
                                   </td>
                               </tr>
                               <tr>
@@ -104,7 +101,7 @@
                               <tr>
                                 <td></td>
                                 <td>
-                                  <button class="form-control btn btn-primary" type="submit" value="Store">Submit</button>
+                                  <button class="form-control btn btn-primary" type="submit" value="Store">Next</button>
                                 </td>
                               </tr>
                           </tbody>

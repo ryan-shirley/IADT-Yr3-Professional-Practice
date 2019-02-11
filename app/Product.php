@@ -43,4 +43,5 @@ class Product extends Model
     {
       return $this->belongsToMany('App\Order')->withPivot('price', 'quantity')-withTimestamps();
     }
+
 }
