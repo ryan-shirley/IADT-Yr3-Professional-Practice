@@ -17,11 +17,8 @@
                                   <td>Customer</td>
                                   <td>
                                     <select class="form-control" name="user_id" id="customerList">
-                                      <option>- Select a customer -</option>
                                       @foreach ($users as $u)
-                                      @if ($u->id != 1 && $u->id != 2)
                                       <option value="{{ $u->id }}" {{ (old('user_id') == $u->id) ? "selected" : "" }}>{{ $u->name }}</option>
-                                      @endif
                                       @endforeach
                                     </select>
                                     @if ($errors->has('user_id'))
@@ -75,12 +72,26 @@
                                             <td scope="col">{{ $product->description }}</td>
                                             <td scope="col">&euro;{{ $product->price }}</td>
                                             <td scope="col">
-                                                <input type="text" size="5">
+                                                <input type="text" name="quantity[{{ $product->id }}]" size="5">
+                                                <div class="errors text-danger"> {{ $errors->first('quantity.' . $product->id) }} </div>
                                             </td>
                                           </tr>
                                           @endforeach
                                         </tbody>
                                       </table>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>Shipping Address</td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                  <td>Shipping Address</td>
+                                  <td>
+                                    <select class="form-control" name="shipping" id="shipping-address">
+                                        <option>Shipping addresses</option>
+                                    </select>
+
                                   </td>
                               </tr>
                               <tr>

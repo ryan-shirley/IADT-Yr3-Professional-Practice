@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::POST('/checkout/shipping-address', 'Api\Customer\AddressController@createAddress');
 Route::POST('/checkout/billing-address', 'Api\Customer\AddressController@createAddress');
+Route::GET('/artist/order/addresses/{id}', 'Api\Artist\AddressController@getAddresses');
 
 Route::GET('/products', 'Api\Shop\ProductController@index');
