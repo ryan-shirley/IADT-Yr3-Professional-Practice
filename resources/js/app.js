@@ -32,7 +32,7 @@ $('#navbar-burger-icon').click(function(){
 // Create Shipping Address
 $( "#submit_shipping_address" ).click(function() {
     console.log("Sending Ajax to create shipping address");
-    
+
     axios.post('/api/checkout/shipping-address', {
         line1: $('#shipping_address_line1').val(),
         shipping: 1,
@@ -129,3 +129,34 @@ $( "#shipping .custom-control-label").click(function() {
 
     $("#cart_shipping_price").html(shipping_value);
 });
+
+
+// Create Order
+$('#customerList').change(function() {
+    console.log("Changed customer");
+    console.log($(this).val());
+    var app = $(this);
+
+    axios.get('/api/artist/order/addresses/' + app.val())
+    .then(function( resp ){
+        console.log(resp.data);
+    })
+    .catch(function(data){
+        console.log(data);
+   });
+});
+
+
+// console.log($('#customerList').val());
+
+// $.ajax({
+//   type: 'GET',
+//   url: '/yaBoi/' + 3,
+//   dataType: 'json',
+//   success: function(response){
+//     console.log(response);
+//   },
+//   error: function(){
+//     console.log("Something went wrong");
+//   }
+// });

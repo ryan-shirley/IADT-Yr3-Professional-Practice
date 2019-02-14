@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\User;
+use App\Role;
 use App\ShippingMethod;
 use App\Event;
 use App\Product;
@@ -41,7 +42,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $role = Role::where('name', 'customer')->first();
+        $users = $role->users;
         $shippings = ShippingMethod::all();
         $products = Product::all();
 
@@ -60,19 +62,55 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-            'fulfillment_date' => 'required|date',
-            'payment_status' => 'required',
-            'fulfillment_status' => 'required',
-            'shipping_address' => 'required|max:100',
-            'billing_address' => 'required|max:100',
-            'shipping_method_id' => 'required|max:10'
-        ]);
+
+      $rules = [
+       'quantity.*' => [
+           'nullable',
+           'integer',
+           'min:0',
+           function($attribute, $quantity, $fail) {
+               $parts = explode('.', $attribute);
+               $product_id = $parts[1];
+               $product = Product::find($product_id);
+               if ($product == null) {
+                   $error = "Product not found";
+                   return $fail($error);
+               }
+               else {
+                   if ($product->stock < $quantity) {
+                        $error = "Product stock level too low";
+                        return $fail($error);
+                   }
+               }
+           }
+         ],
+       'quantity' => [
+           'required',
+           'min:1', // make sure the input array is not empty <= edited
+           'array',
+       ],
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+        // $validator = Validator::make($request->all(), [
+            // 'user_id' => 'required',
+            // 'quantity' => 'required|array',
+            // 'quantity.*' => 'integer|min:0',
+            // 'fulfillment_date' => 'required|date',
+            // 'payment_status' => 'required',
+            // 'fulfillment_status' => 'required',
+            // 'shipping_address' => 'required|max:100',
+            // 'billing_address' => 'required|max:100',
+            // 'shipping_method_id' => 'required|max:10'
+        // ]);
 
         if ($validator->fails()) {
+          //dd($validator->errors());
             return back()->withErrors($validator)->withInput();
         }
+
+        dd($request);
 
         $order = new Order();
         $order->user_id = $request->input('user_id');
