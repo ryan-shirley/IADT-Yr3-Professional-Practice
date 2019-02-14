@@ -17,13 +17,15 @@
                                   <td>Customer</td>
                                   <td>
                                     <select class="form-control" name="user_id" id="customerList">
+                                        <option value="0">Select A Customer</option>
                                       @foreach ($users as $u)
                                       <option value="{{ $u->id }}" {{ (old('user_id') == $u->id) ? "selected" : "" }}>{{ $u->name }}</option>
                                       @endforeach
                                     </select>
-                                    @if ($errors->has('user_id'))
-                                      <div class="errors text-danger"> {{ $errors->first('user_id') }} </div>
-                                    @endif
+                                    <p id="user_error" class="errors text-danger">@if ($errors->has('user_id'))
+                                      {{ $errors->first('user_id') }}
+                                    @endif</p>
+
                                   </td>
                                   <td>{{ $errors->first('name') }}</td>
                               </tr>
@@ -83,21 +85,32 @@
                               </tr>
                               <tr>
                                   <td>Shipping Address</td>
-                                  <td></td>
+                                  <td id="shipping_addresses">No Customer Selected</td>
                               </tr>
                               <tr>
-                                  <td>Shipping Address</td>
-                                  <td>
-                                    <select class="form-control" name="shipping" id="shipping-address">
-                                        <option>Shipping addresses</option>
-                                    </select>
-
-                                  </td>
+                                  <td>Billing Address</td>
+                                  <td id="billing_addresses">No Customer Selected</td>
                               </tr>
                               <tr>
                                   <td>Shipping Method</td>
                                   <td>
-                                    <select class="form-control" name="shipping_method_id">
+                                      <div class="form-group">
+                                          @foreach ($shippings as $method)
+                                              @component('components.checkout.shipping-method', [
+                                                  'name' => 'shipping_method_id',
+                                                  'title' => $method->name,
+                                                  'description' => $method->description,
+                                                  'value' => $method->id,
+                                                  'cost' => $method->cost
+                                              ])
+                                              @endcomponent
+                                          @endforeach
+
+                                          @if ($errors->has('shipping_method_id'))
+                                              <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_method_id') }}</span>
+                                          @endif
+                                      </div>
+                                    <!-- <select class="form-control" name="shipping_method_id">
                                       <option>Select a shipping method</option>
                                       @foreach ($shippings as $s)
                                       <option value="{{ $s->id }}" {{ (old('shipping_method_id') == $s->id) ? "selected" : "" }}>{{ $s->name }}</option>
@@ -105,9 +118,9 @@
                                     </select>
                                     @if ($errors->has('shipping_method_id'))
                                       <div class="errors text-danger"> {{ $errors->first('shipping_method_id') }} </div>
-                                    @endif
+                                    @endif -->
                                   </td>
-                                  <td>{{ $errors->first('shipping_method_id') }}</td>
+                                  <!-- <td>{{ $errors->first('shipping_method_id') }}</td> -->
                               </tr>
                               <tr>
                                 <td></td>

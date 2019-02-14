@@ -137,26 +137,60 @@ $('#customerList').change(function() {
     console.log($(this).val());
     var app = $(this);
 
-    axios.get('/api/artist/order/addresses/' + app.val())
-    .then(function( resp ){
-        console.log(resp.data);
-    })
-    .catch(function(data){
-        console.log(data);
-   });
+    // Remove addresses displayed
+    $("#billing_addresses").html("");
+    $("#shipping_addresses").html("");
+
+    if(app.val() != 0) {
+        axios.get('/api/artist/order/addresses/' + app.val())
+            .then(function( resp ){
+                console.log(resp.data);
+
+                var data = resp.data;
+                var shipping_addresses = '';
+                var billing_addresses = '';
+
+                data.forEach(function(entry) {
+                    console.log(entry);
+                    if(entry.shipping == 1) {
+                        shipping_addresses = shipping_addresses +
+                            '<div class="custom-control custom-radio address card-light">' +
+                                '<input id="shipping_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="shipping_id" value="' + entry.id + '">' +
+                                '<label class="custom-control-label" for="shipping_address_' + entry.id + '">' +
+                                    entry.line1 +
+                                '</label>' +
+                            '</div>'
+                    }
+                    else if(entry.billing == 1) {
+                        billing_addresses = billing_addresses +
+                            '<div class="custom-control custom-radio address card-light">' +
+                                '<input id="billing_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="billing_id" value="' + entry.id + '">' +
+                                '<label class="custom-control-label" for="billing_address_' + entry.id + '">' +
+                                    entry.line1 +
+                                '</label>' +
+                            '</div>'
+                    }
+                })
+
+                // Display Addresses
+                if(shipping_addresses == "") {
+                    shipping_addresses = 'No Shipping Addresses'
+                }
+                $("#shipping_addresses").html(shipping_addresses);
+
+
+                if(billing_addresses == "") {
+                    billing_addresses = 'No Billing Addresses'
+                }
+                $("#billing_addresses").html(billing_addresses);
+            })
+            .catch(function(data){
+                console.log(data);
+           });
+    }
+    else {
+        $("#shipping_addresses").html("No customer selected");
+        $("#billing_addresses").html("No customer selected");
+        $("#user_error").html("A customer needs to be selected");
+    }
 });
-
-
-// console.log($('#customerList').val());
-
-// $.ajax({
-//   type: 'GET',
-//   url: '/yaBoi/' + 3,
-//   dataType: 'json',
-//   success: function(response){
-//     console.log(response);
-//   },
-//   error: function(){
-//     console.log("Something went wrong");
-//   }
-// });
