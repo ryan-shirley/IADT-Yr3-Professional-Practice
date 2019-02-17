@@ -10896,7 +10896,10 @@ a.text-dark:focus {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#212529", endColorstr="#212529",GradientType=0 );
   /* IE6-9 */
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  border: 2px solid transparent;
+  opacity: 0.7;
+  transition: all 0.2s;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .visa-card .form-check-label {
@@ -10932,7 +10935,9 @@ a.text-dark:focus {
 }
 
 .visa-card.active {
-  border: 2px solid #b0e8af;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .about .content {
