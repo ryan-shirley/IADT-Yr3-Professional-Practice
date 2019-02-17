@@ -62,65 +62,62 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-      $rules = [
-       'quantity.*' => [
-           'nullable',
-           'integer',
-           'min:0',
-           function($attribute, $quantity, $fail) {
-               $parts = explode('.', $attribute);
-               $product_id = $parts[1];
-               $product = Product::find($product_id);
-               if ($product == null) {
-                   $error = "Product not found";
-                   return $fail($error);
-               }
-               else {
-                   if ($product->stock < $quantity) {
-                        $error = "Product stock level too low";
-                        return $fail($error);
-                   }
-               }
-           }
+        //
+        $rules = [
+         'quantity.*' => [
+             'nullable',
+             'integer',
+             'min:0',
+             function($attribute, $quantity, $fail) {
+                 $parts = explode('.', $attribute);
+                 $product_id = $parts[1];
+                 $product = Product::find($product_id);
+                 if ($product == null) {
+                     $error = "Product not found";
+                     return $fail($error);
+                 }
+                 else {
+                     if ($product->stock < $quantity) {
+                          $error = "Product stock level too low";
+                          return $fail($error);
+                     }
+                 }
+             }
+           ],
+         'quantity' => [
+             'required',
+             'min:1', // make sure the input array is not empty <= edited
+             'array',
          ],
-       'quantity' => [
-           'required',
-           'min:1', // make sure the input array is not empty <= edited
-           'array',
-       ],
-    ];
+        ];
 
-    $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
+        //dd($request->all());
 
         // $validator = Validator::make($request->all(), [
-            // 'user_id' => 'required',
-            // 'quantity' => 'required|array',
-            // 'quantity.*' => 'integer|min:0',
-            // 'fulfillment_date' => 'required|date',
-            // 'payment_status' => 'required',
-            // 'fulfillment_status' => 'required',
-            // 'shipping_address' => 'required|max:100',
-            // 'billing_address' => 'required|max:100',
-            // 'shipping_method_id' => 'required|max:10'
+        //     'user_id' => 'required|exists:users,id',
+        //     'quantity' => 'required|array',
+        //     'quantity.*' => 'integer|min:0',
+        //     'fulfillment_date' => 'required|date',
+        //     'payment_status' => 'required',
+        //     'fulfillment_status' => 'required',
+        //     'shipping_address' => 'required|max:100',
+        //     'billing_address' => 'required|max:100',
+        //     'shipping_method_id' => 'required|max:10'
         // ]);
 
         if ($validator->fails()) {
-          //dd($validator->errors());
+            dd($validator->errors());
             return back()->withErrors($validator)->withInput();
         }
-
-        dd($request);
 
         $order = new Order();
         $order->user_id = $request->input('user_id');
         $order->order_date = date("d") . '-' .date("m") . '-' . date("y");
         $order->order_time = date("h:i");
-        $order->fulfillment_date = $request->input('fulfillment_date');
         $order->payment_status = $request->input('payment_status');
-        $order->fulfillment_status = $request->input('fulfillment_status');
-        $order->shipping_address = $request->input('shipping_address');
-        $order->billing_address = $request->input('billing_address');
+        $order->shipping_address = $request->input('shipping_id');
+        $order->billing_address = $request->input('billing_id');
         $order->shipping_method_id = $request->input('shipping_method_id');
         $order->save();
 
@@ -132,12 +129,6 @@ class OrderController extends Controller
         return redirect()->route('orders.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $order = Order::findOrFail($id);

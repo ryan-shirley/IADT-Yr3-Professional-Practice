@@ -155,7 +155,7 @@ $('#customerList').change(function() {
                     if(entry.shipping == 1) {
                         shipping_addresses = shipping_addresses +
                             '<div class="custom-control custom-radio address card-light">' +
-                                '<input id="shipping_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="shipping_id" value="' + entry.id + '">' +
+                                '<input id="shipping_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="shipping_address" value="' + entry.id + '">' +
                                 '<label class="custom-control-label" for="shipping_address_' + entry.id + '">' +
                                     entry.line1 +
                                 '</label>' +
@@ -164,7 +164,7 @@ $('#customerList').change(function() {
                     else if(entry.billing == 1) {
                         billing_addresses = billing_addresses +
                             '<div class="custom-control custom-radio address card-light">' +
-                                '<input id="billing_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="billing_id" value="' + entry.id + '">' +
+                                '<input id="billing_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="billing_address" value="' + entry.id + '">' +
                                 '<label class="custom-control-label" for="billing_address_' + entry.id + '">' +
                                     entry.line1 +
                                 '</label>' +

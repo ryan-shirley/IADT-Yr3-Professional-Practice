@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Order;
-use App\Cart;
 use App\Address;
 use App\ShippingMethod;
 use App\Event;

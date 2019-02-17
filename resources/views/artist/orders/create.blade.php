@@ -6,9 +6,8 @@
         @include('layouts.artistmenu')
         <div class="col-md-9">
           <div class="card">
-              <div class="card-header">Create Order</div>
               <div class="card-body">
-
+                <p class="h2">Create Order</p><br/>
                   <form method="POST" action="{{ route('orders.store' )}}" enctype="multipart/form-data">
                       @csrf
                       <table class="table">
@@ -25,9 +24,7 @@
                                     <p id="user_error" class="errors text-danger">@if ($errors->has('user_id'))
                                       {{ $errors->first('user_id') }}
                                     @endif</p>
-
                                   </td>
-                                  <td>{{ $errors->first('name') }}</td>
                               </tr>
                               <tr>
                                   <td>Payment Status</td>
@@ -61,18 +58,20 @@
                                       <table class="table">
                                         <thead>
                                           <tr>
+                                            <td scope='col'>Product Image</td>
                                             <td scope='col'>Product</td>
-                                            <td scope='col'>Description</td>
                                             <td scope='col'>Price</td>
+                                            <td scope='col'>Stock</td>
                                             <td scope='col'>Quantity</td>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           @foreach ($products as $product)
                                           <tr>
+                                            <td scope="col"><img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" /></td>
                                             <td scope="col">{{ $product->name }}</td>
-                                            <td scope="col">{{ $product->description }}</td>
                                             <td scope="col">&euro;{{ $product->price }}</td>
+                                            <td scope="col">{{ $product->stock }}</td>
                                             <td scope="col">
                                                 <input type="text" name="quantity[{{ $product->id }}]" size="5">
                                                 <div class="errors text-danger"> {{ $errors->first('quantity.' . $product->id) }} </div>
@@ -107,7 +106,7 @@
                                           @endforeach
 
                                           @if ($errors->has('shipping_method_id'))
-                                              <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_method_id') }}</span>
+                                              <span class="text-danger">{{ $errors->first('shipping_method_id') }}</span>
                                           @endif
                                       </div>
                                     <!-- <select class="form-control" name="shipping_method_id">
@@ -125,7 +124,7 @@
                               <tr>
                                 <td></td>
                                 <td>
-                                  <button class="form-control btn btn-primary" type="submit" value="Store">Next</button>
+                                  <button class="btn btn-primary" type="submit" value="Store">Next</button>
                                 </td>
                               </tr>
                           </tbody>
