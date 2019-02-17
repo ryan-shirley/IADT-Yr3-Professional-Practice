@@ -205,42 +205,81 @@
                     <div id="payment" class="shipping">
 
                         <div class="methods">
-                            <h3>Payment Method</h3>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3>Payment Method</h3>
+                                </div>
+                                <!--/.Col -->
+                                <div class="col-md-3">
+                                    <!-- Button trigger modal -->
+                                    <button id="add_card_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newCardModal">
+                                      +
+                                    </button>
+                                </div>
+                                <!--/.Col -->
+                            </div>
+                            <!--/.Row -->
+
+                            <!-- New Card Modal -->
+                            <div class="modal fade" id="newCardModal" tabindex="-1" role="dialog" aria-labelledby="newCardModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="newCardModalLabel">Create Card</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--/.Modal Header -->
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label>Card Number</label>
+                                                <input id="card_number" type="text" name="card_number" class="form-control">
+                                                <span id="card_number_error" class="badge badge-danger"></span>
+                                                <br />
+
+                                                <label>Card Holder Name</label>
+                                                <input id="card_holder_name" type="text" name="card_holder_name" class="form-control">
+                                                <span id="card_name_error" class="badge badge-danger"></span>
+                                                <br />
+
+                                                <td>Expiry</td>
+                                                <input id="expiry" type="text" name="expiry" class="form-control">
+                                                <span id="card_expiry_error" class="badge badge-danger"></span>
+                                                <br />
+
+                                                <input id="card_user_id" value="{{ $user->id }}" hidden />
+                                            </div>
+                                            <!--/.Form Group -->
+                                        </div>
+                                        <!--/.Modal Body -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button id="submit_card" type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                        <!--/.Modal Footer -->
+                                    </div>
+                                    <!--/.Modal Content -->
+                                </div>
+                                <!--/.Modal Dialog -->
+                            </div>
+                            <!--/.Card Modal -->
+
 
                             <div class="form-group">
-                                @foreach ($user->cards as $card)
-                                    @component('components.checkout.card', [
-                                        'name' => 'card_id',
-                                        'card' => $card
-                                    ])
-                                    @endcomponent
-                                @endforeach
-
-                                <div class="form-group">
-                                    <label>
-                                        <input type="radio" name="card_id" value="0" @if(old('card_id') == 0) @endif />
-                                        Enter the details for a new card
-                                    </label>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>card number</td>
-                                                <td><input type="text" name="card_number" class="form-control" value="{{ old( 'card_number') }}"></td>
-                                                <td>{{ ($errors->has('card_number')) ? $errors->first('card_number') : "" }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>card holder name</td>
-                                                <td><input type="text" name="card_holder_name" class="form-control" value="{{ old( 'card_holder_name') }}"></td>
-                                                <td>{{ ($errors->has('card_holder_name')) ? $errors->first('card_holder_name') : "" }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>expiry</td>
-                                                <td><input type="text" name="expiry" class="form-control" value="{{ old( 'expiry') }}"></td>
-                                                <td>{{ ($errors->has('expiry')) ? $errors->first('expiry') : "" }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div id="card_list" class="col-md-10">
+                                        @foreach ($user->cards as $card)
+                                            @component('components.checkout.card', [
+                                                'name' => 'card_id',
+                                                'card' => $card
+                                            ])
+                                            @endcomponent
+                                        @endforeach
+                                    </div>
+                                    <!--/.Col -->
                                 </div>
+                                <!--/.Row -->
 
                                 @if ($errors->has('card_id'))
                                     <span class="badge badge-pill badge-danger">{{ $errors->first('card_id') }}</span>

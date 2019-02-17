@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Address;
+use App\Card;
 use App\User;
 use Validator;
 
-class AddressController extends Controller
+class CardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,15 +22,15 @@ class AddressController extends Controller
     }
 
     /**
-     * Create Address For User
+     * Create Card For User
      */
-    public function createAddress(Request $request)
+    public function createCard(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'line1' => 'required|string',
-            'user_id' => 'required|exists:users,id',
-            'shipping' => 'required|integer|min:0|max:1',
-            'billing' => 'required|integer|min:0|max:1'
+            'card_number' => 'digits:16',
+            'card_holder_name' => 'required|string',
+            'expiry' => 'required|string',
+            'user_id' => 'required|exists:users,id'
         ]);
 
         if ($validator->fails()) {
@@ -43,10 +42,10 @@ class AddressController extends Controller
         }
 
         // Instance Variables
-        $line1 = $request->line1;
+        $card_number = $request->card_number;
+        $card_holder_name = $request->card_holder_name;
+        $expiry = $request->expiry;
         $user_id = $request->user_id;
-        $shipping = $request->shipping;
-        $billing = $request->billing;
 
         // Get User and check exists
         $user = User::findOrFail($user_id);
@@ -60,14 +59,14 @@ class AddressController extends Controller
             return response()->json($json, 400);
         }
 
-        // Create Address
-        $address = new Address();
-        $address->line1 = $line1;
-        $address->billing = $billing;
-        $address->shipping = $shipping;
-        $address->user_id = $user->id;
-        $address->save();
+        // Create Card
+        $card = new Card();
+        $card->number = $card_number;
+        $card->name_on_card = $card_holder_name;
+        $card->expiry = $expiry;
+        $card->user_id = $user_id;
+        $card->save();
 
-        return response()->json($address, 200);
+        return response()->json($card, 200);
     }
 }

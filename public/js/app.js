@@ -48300,9 +48300,12 @@ $("#submit_billing_address").click(function () {
   });
 }); // Payment Method Card
 
-$("#card").click(function () {
-  console.log("Clicked card");
-  $(this).find(".form-check-input").prop("checked", true);
+$(".v-card").click(function () {
+  console.log("Clicked card"); // Remove active card
+
+  $('#card_list').find(".active").removeClass('active');
+  $(this).parent("#card").addClass('active');
+  $(this).parent("#card").find(".form-check-input").prop("checked", true); // $(this).addClass('active');
 }); // Shipping Method update total
 
 $("#shipping .custom-control-label").click(function () {
@@ -48318,7 +48321,37 @@ $("#shipping .custom-control-label").click(function () {
   }
 
   $("#cart_shipping_price").html(shipping_value);
-}); // Create Order
+});
+$("#submit_card").click(function () {
+  console.log("Sending Ajax to create card");
+  $("#card_number_error").html('');
+  $("#card_name_error").html('');
+  $("#card_expiry_error").html('');
+  axios.post('/api/checkout/card', {
+    card_number: $('#card_number').val(),
+    card_holder_name: $('#card_holder_name').val(),
+    expiry: $('#expiry').val(),
+    user_id: $('#card_user_id').val()
+  }).then(function (resp) {
+    console.log("Card Added Succesfully");
+    console.log(resp.data);
+    var data = resp.data;
+    $('#card_list').find(".active").removeClass('active'); // Create card visual
+
+    $("#card_list").prepend('<div id="card" class="form-check visa-card active">' + '<input class="form-check-input" hidden type="radio" name="{{ $name }}" value="' + data.id + '" />' + '<label class="form-check-label v-card" for="' + data.id + '">' + '<ul>' + '<li>****</li>' + '<li>****</li>' + '<li>****</li>' + '<li>' + data.number.substr(-4) + '</li>' + '</ul>' + '<div class="row details">' + '<div class="col-md-6">' + '<span class="title">Card Holder</span>' + data.name_on_card + '</div>' + '<div class="col-md-3">' + '<span class="title">Expires</span>' + data.expiry + '</div>' + '<div class="col-md-3">' + '<span class="title">Cvv</span>' + '123' + '</div>' + '</div>' + '</label>' + '</div>'); // // Hide Modal & Clear
+
+    $('#newCardModal').modal('hide');
+    $('#card_number').val('');
+    $('#card_holder_name').val('');
+    $('#expiry').val('');
+  }).catch(function (error) {
+    console.log("Error Adding Card");
+    console.log(error.response.data.error);
+    $("#card_number_error").html(error.response.data.error.card_number);
+    $("#card_name_error").html(error.response.data.error.card_holder_name);
+    $("#card_expiry_error").html(error.response.data.error.expiry);
+  });
+}); // Get customer address when selected (artist create order)
 
 $('#customerList').change(function () {
   console.log("Changed customer");
@@ -48338,9 +48371,9 @@ $('#customerList').change(function () {
         console.log(entry);
 
         if (entry.shipping == 1) {
-          shipping_addresses = shipping_addresses + '<div class="custom-control custom-radio address card-light">' + '<input id="shipping_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="shipping_id" value="' + entry.id + '">' + '<label class="custom-control-label" for="shipping_address_' + entry.id + '">' + entry.line1 + '</label>' + '</div>';
+          shipping_addresses = shipping_addresses + '<div class="custom-control custom-radio address card-light">' + '<input id="shipping_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="shipping_address" value="' + entry.id + '">' + '<label class="custom-control-label" for="shipping_address_' + entry.id + '">' + entry.line1 + '</label>' + '</div>';
         } else if (entry.billing == 1) {
-          billing_addresses = billing_addresses + '<div class="custom-control custom-radio address card-light">' + '<input id="billing_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="billing_id" value="' + entry.id + '">' + '<label class="custom-control-label" for="billing_address_' + entry.id + '">' + entry.line1 + '</label>' + '</div>';
+          billing_addresses = billing_addresses + '<div class="custom-control custom-radio address card-light">' + '<input id="billing_address_' + entry.id + '" type="radio" id="address-' + entry.id + '" class="custom-control-input" name="billing_address" value="' + entry.id + '">' + '<label class="custom-control-label" for="billing_address_' + entry.id + '">' + entry.line1 + '</label>' + '</div>';
         }
       }); // Display Addresses
 

@@ -107,7 +107,7 @@
 
 // Visa Card
 .visa-card {
-    padding: ($spacer * 3) $spacer * 2;
+    padding: 0;
     color: $white;
     margin-bottom: $spacer;
     border-radius: 15px;
@@ -119,9 +119,14 @@
     -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
     -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+    border: 2px solid transparent;
 
-    &:hover {
-        cursor: pointer;
+    .form-check-label {
+        padding: ($spacer * 3) $spacer * 2;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     ul {
@@ -147,6 +152,10 @@
     .details {
         font-size: $font-size-lg * 1.1;
     }
+
+    &.active {
+        border: 2px solid #b0e8af;
+    }
 }
 
 // About
@@ -154,6 +163,6 @@
     padding: $spacer * 4;
 
     hr {
-        max-width: 100px;   
+        max-width: 100px;
     }
 }
