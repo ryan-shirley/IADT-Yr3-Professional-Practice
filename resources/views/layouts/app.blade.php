@@ -82,15 +82,23 @@
             </div>
         </nav>
 
+        <div class="notification">
 
-        <div class="container">
-            <div class="flash-message">
-                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                    @if(Session::has('alert-' . $msg))
-                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-                    @endif
-                @endforeach
-            </div>
+            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                @if(Session::has('alert-' . $msg))
+                <div class="toast ml-auto" role="alert" data-delay="3000">
+                    <div class="toast-header">
+                        <strong class="mr-auto text-{{ $msg }}">{{ $msg }}</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        {{ Session::get('alert-' . $msg) }}
+                    </div>
+                </div>
+                @endif
+            @endforeach
         </div>
         <!--/.Flash Message -->
 

@@ -9,17 +9,17 @@
         </ul>
 
         <div class="row details">
-            <div class="col-md-6">
+            <div class="col-12 col-sm-5">
                 <span class="title">Card Holder</span>
                 {{ $card->name_on_card }}
             </div>
             <!--/.Col -->
-            <div class="col-md-3">
+            <div class="col-6 col-sm-3">
                 <span class="title">Expires</span>
                 {{ $card->expiry }}
             </div>
             <!--/.Col -->
-            <div class="col-md-3">
+            <div class="col-6 col-sm-3">
                 <span class="title">Cvv</span>
                 123
             </div>

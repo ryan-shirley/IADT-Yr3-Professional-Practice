@@ -48,6 +48,8 @@
 
     .list-products {
         .product {
+            padding: ($spacer * 1.5) 0 ($spacer * 1.5);
+
             .quantity {
                 background: rgba( $gray-900, .6 );
                 color: $white;

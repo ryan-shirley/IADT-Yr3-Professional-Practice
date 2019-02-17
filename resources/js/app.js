@@ -50,7 +50,8 @@ const app = new Vue({
 
 
 
-
+// Notification
+$('.toast').toast('show');
 
 // Navbar
 $('#navbar-burger-icon').click(function(){

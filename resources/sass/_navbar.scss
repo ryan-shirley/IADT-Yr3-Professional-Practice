@@ -4,6 +4,8 @@
 
 // Navbar
 .navbar {
+    z-index: 1;
+    
     .nav-link, .dropdown-item {
         font-family: $font-family-sans-serif;
     }

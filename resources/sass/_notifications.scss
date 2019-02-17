@@ -1,0 +1,16 @@
+.notification {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    right: 30px;
+    top: 100px;
+}
+
+.toast {
+    transform:translateX(390px);
+    transition: all .5s;
+
+    &.show {
+        transform:translateX(0);
+    }
+}

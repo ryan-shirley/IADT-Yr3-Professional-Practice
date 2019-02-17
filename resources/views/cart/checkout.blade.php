@@ -4,7 +4,7 @@
 
 <div class="container-fluid checkout">
     <div class="row">
-        <div class="col-md-8 bg-light">
+        <div class="col-lg-8 bg-light">
 
             <div class="inner">
                 <div id="errors">
@@ -32,11 +32,11 @@
 
                         <div class="shipping">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-10">
                                     <h3>Shipping Address</h3>
                                 </div>
                                 <!--/.Col -->
-                                <div class="col-md-3">
+                                <div class="col-2">
                                     <!-- Button trigger modal -->
                                     <button id="add_shipping_address_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newShippingAddressModal">
                                       +
@@ -105,11 +105,11 @@
 
                         <div class="billing">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-10">
                                     <h3>Billing Address</h3>
                                 </div>
                                 <!--/.Col -->
-                                <div class="col-md-3">
+                                <div class="col-2">
                                     <!-- Button trigger modal -->
                                     <button id="add_billing_address_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newBillingAddressModal">
                                       +
@@ -206,11 +206,11 @@
 
                         <div class="methods">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-10">
                                     <h3>Payment Method</h3>
                                 </div>
                                 <!--/.Col -->
-                                <div class="col-md-3">
+                                <div class="col-2">
                                     <!-- Button trigger modal -->
                                     <button id="add_card_btn" type="button" class="btn ajax-create-btn" data-toggle="modal" data-target="#newCardModal">
                                       +
@@ -300,7 +300,7 @@
 
         </div>
         <!--/.Col -->
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="cart sticky-top">
                 @component('components.checkout.list-products', [
                     'items' => $cart->getItems()
