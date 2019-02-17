@@ -12,7 +12,7 @@
 <!--/.Image Title -->
 
 <div class="container">
-    <ul class="nav justify-content-center shop-nav">
+    <ul class="nav nav-pills justify-content-center shop-nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('shop.home') }}">All Product</a>
         </li>

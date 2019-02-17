@@ -109,6 +109,7 @@ class CartController extends Controller
         if($user == null) {
             // Store Route to Checkout as user intends to purchase
             $request->session()->put('url.intended', route('cart.checkout'));
+            $request->session()->flash('alert-danger', ' You need to login to be able to checkout!');
             return redirect()->route('login');
         }
 
@@ -187,6 +188,7 @@ class CartController extends Controller
         // Reset Cart
         $cart->removeAll();
 
+        $request->session()->flash('alert-success', ' Your order successfully created!');
         return redirect()->route('checkout.confirmation', $order);
     }
 
