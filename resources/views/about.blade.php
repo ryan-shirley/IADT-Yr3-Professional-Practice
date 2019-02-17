@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<about-component></about-component>
+<router-view></router-view>
+<router-view name="quickView"></router-view>
 @endsection

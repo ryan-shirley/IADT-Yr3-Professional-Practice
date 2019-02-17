@@ -10963,7 +10963,8 @@ a.text-dark:focus {
   color: #6c757d;
 }
 
-.full-width.single-product {
+.full-width.single-product,
+.full-width {
   padding: 0;
 }
 
@@ -11185,6 +11186,16 @@ a.text-dark:focus {
 
 .modal {
   z-index: 9999;
+}
+
+.quick-view .modal-body {
+  padding: 0;
+}
+
+@media (max-width: 991.98px) {
+  .quick-view .content {
+    padding: 15px;
+  }
 }
 
 .about .image-full {

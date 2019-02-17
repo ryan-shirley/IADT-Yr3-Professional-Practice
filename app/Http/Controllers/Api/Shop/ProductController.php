@@ -18,4 +18,14 @@ class ProductController extends Controller
 
         return response()->json($products, 200);
     }
+
+    /**
+     * Returns 1 Product
+     */
+    public function find($id)
+    {
+        $product = Product::with('image')->get()->find($id);
+
+        return response()->json($product, 200);
+    }
 }

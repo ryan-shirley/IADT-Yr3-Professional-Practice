@@ -1,3 +1,15 @@
 .modal {
     z-index: 9999;
 }
+
+.quick-view {
+    .modal-body {
+        padding: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+        .content {
+            padding: 15px;
+        }
+    }
+}

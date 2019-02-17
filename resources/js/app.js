@@ -7,20 +7,50 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// Components
+import AboutComponent from './components/AboutComponent.vue';
+import ProductQuickView from './components/ProductQuickView.vue';
+import Empty from './components/Empty.vue';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('about-component', require('./components/AboutComponent.vue'));
+
+Vue.use(VueRouter);
+
+
+const routes = [
+    {
+        path: '/',
+        components: {
+            default: AboutComponent,
+            quickView: Empty
+        },
+        name: 'about'
+    },
+    {
+        path: '/product/:id',
+        components: {
+            default: AboutComponent,
+            quickView: ProductQuickView
+        },
+        name: 'QuickViewProduct'
+    }
+];
+
+const router = new VueRouter({
+    routes: routes
+});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router: router
 });
+
+
+
+
+
 
 // Navbar
 $('#navbar-burger-icon').click(function(){
