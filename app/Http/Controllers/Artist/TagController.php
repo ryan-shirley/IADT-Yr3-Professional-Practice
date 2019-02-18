@@ -132,11 +132,17 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $t = Tag::find($id);
-        $t->delete();
 
+        if($t->products->count() == 0){
+            $t->delete();
+            $request->session()->flash('alert-success', $t->name . ' has been deleted');
+        }
+        else {
+            $request->session()->flash('alert-danger', $t->name . ' has products and cannot be deleted');
+        }
         return redirect()->route('tags.index');
     }
 }

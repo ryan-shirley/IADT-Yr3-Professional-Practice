@@ -137,11 +137,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $c = Category::find($id);
-        $c->delete();
 
+        if($c->products->count() == 0){
+            $c->delete();
+            $request->session()->flash('alert-success', $c->name . ' has been deleted');
+        }
+        else {
+            $request->session()->flash('alert-danger', $c->name . ' has products and cannot be deleted');
+        }
         return redirect()->route('categories.index');
     }
 }
