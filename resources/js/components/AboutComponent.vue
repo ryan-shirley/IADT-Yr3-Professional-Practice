@@ -46,7 +46,7 @@
 
                     <section v-if="products.length != 0" class="product-list">
                         <div class="row">
-                            <div v-for="product in products" class="col-lg-3 col-sm-6 product">
+                            <div v-for="product in products" :key="product.id" class="col-lg-3 col-sm-6 product">
                                 <router-link :to="{ name:'QuickViewProduct', params: { id:product.id }}"><img :src="'/storage/' + product.image.url" :title=" product.name " :alt=" product.name " class="card-img-top mb-3" /></router-link>
                                 <h3><router-link :to="{ name:'QuickViewProduct', params: { id:product.id }}">{{ product.name }}</router-link></h3>
                                 <p class="price">

@@ -153,8 +153,8 @@ class ProductController extends Controller
             'name' => 'required|max:100',
             'description' => 'required|max:300',
             'price' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'featured_img' => 'required|max:300',
+            // 'sale_price' => 'required|numeric',
+            // 'featured_img' => 'required|max:300',
         ]);
 
         $tags = $request->input('tag_id');
@@ -163,9 +163,8 @@ class ProductController extends Controller
         $p->name = $request->input('name');
         $p->description = $request->input('description');
         $p->price = $request->input('price');
-        $p->sale_price = $request->input('sale_price');
-        $p->featured_img = $request->input('featured_img');
-
+        // $p->sale_price = $request->input('sale_price');
+        // $p->featured_img = $request->input('featured_img');
         $p->save();
 
         $p->tags()->sync($tags);

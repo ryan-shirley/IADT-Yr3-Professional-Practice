@@ -36,7 +36,7 @@ class Product extends Model
      */
     public function image()
     {
-        return $this->hasOne('App\Image', 'id');
+        return $this->hasOne('App\Image', 'id', 'featured_img');
     }
 
     public function orders()

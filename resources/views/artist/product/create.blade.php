@@ -44,7 +44,7 @@
             <div class="col-md">
               <div class="form-group">
                   <label for="description">Description</label>
-                  <input type="text" class="form-control" name="description" placeholder="Enter description" value="{{ old( 'description') }}">
+                  <textarea type="text" class="form-control" name="description">{{ old( 'description') }}</textarea>
                   <div class="text-danger">{{ $errors->first('description') }}</div>
               </div>
               <div class="form-group">

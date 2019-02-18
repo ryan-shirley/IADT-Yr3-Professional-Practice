@@ -7,7 +7,7 @@
             <img class="img-fluid" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" alt="{{ App\Image::find($product->featured_img)->title }}" title="{{ App\Image::find($product->featured_img)->title }}" />
 
             @foreach ($product->images as $image)
-                <img class="img-fluid" src="{{ asset('storage/' . $image->url ) }}" alt="{{ $image->title }}" title="$image->title }}" />
+                <img class="img-fluid" src="{{ asset('storage/' . $image->url ) }}" alt="{{ $image->title }}" title="{{ $image->title }}" />
             @endforeach
         </div>
         <div class="col-lg-6">

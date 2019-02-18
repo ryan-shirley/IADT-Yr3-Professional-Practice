@@ -89,7 +89,7 @@
 
             @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                 @if(Session::has('alert-' . $msg))
-                <div class="toast ml-auto" role="alert" data-delay="3000">
+                <div class="toast ml-auto" role="alert" data-delay="4000">
                     <div class="toast-header">
                         <strong class="mr-auto text-{{ $msg }}">{{ $msg }}</strong>
                         <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

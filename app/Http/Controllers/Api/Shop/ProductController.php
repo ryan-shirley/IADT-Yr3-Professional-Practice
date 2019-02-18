@@ -14,9 +14,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with('image')->get();
+        $products = Product::all();
+        $products->load('image');
 
-        return response()->json($products, 200);
+        return $products;
     }
 
     /**
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function find($id)
     {
-        $product = Product::with('image')->get()->find($id);
+        $product = Product::find($id);
+        $product->load('image');
 
         return response()->json($product, 200);
     }

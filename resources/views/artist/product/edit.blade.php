@@ -38,16 +38,16 @@
                     @endforeach
                     <div class="text-danger">{{ $errors->first('category_id') }}</div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="featured_img">Featured Image</label><br/>
                     <input type="file" name="featured_img" />
                     <div class="text-danger">{{ ($errors->has('featured_img')) ? $errors->first('featured_img') : "" }}</div>
-                </div>
+                </div> -->
               </div>
               <div class="col-md">
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" name="description" placeholder="Enter description" value="{{ old( 'description', $p->description) }}">
+                    <textarea type="text" class="form-control" name="description">{{ old( 'description', $p->description) }}</textarea>
                     <div class="text-danger">{{ $errors->first('description') }}</div>
                 </div>
                 <div class="form-group">
