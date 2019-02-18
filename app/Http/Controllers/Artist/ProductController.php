@@ -180,7 +180,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $p = Product::findOrFail($id);
         $image = Image::findOrFail($p->featured_img);
@@ -190,7 +190,7 @@ class ProductController extends Controller
             Storage::disk('public')->delete($image->url);
             $image->delete();
         // }
-
+        
         return redirect()->route('products.index');
     }
 }
