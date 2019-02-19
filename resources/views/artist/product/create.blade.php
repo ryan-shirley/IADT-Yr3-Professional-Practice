@@ -24,6 +24,11 @@
                   <div class="text-danger">{{ $errors->first('price') }}</div>
               </div>
               <div class="form-group">
+                  <label for="stock">Stock</label>
+                  <input type="text" class="form-control" name="stock" placeholder="Enter Stock" value="{{ old( 'stock') }}">
+                  <div class="text-danger">{{ $errors->first('stock') }}</div>
+              </div>
+              <div class="form-group">
                   <label for="category_id">Category</label>
                   @foreach ($categories as $c)
                       <div class="form-check">
@@ -63,11 +68,6 @@
                   </div>
                   @endforeach
                   <div class="text-danger">{{ $errors->first('tag_id') }}</div>
-              </div>
-              <div class="form-group">
-                  <label for="stock">Stock</label>
-                  <input type="text" class="form-control" name="stock" placeholder="Enter Stock" value="{{ old( 'stock') }}">
-                  <div class="text-danger">{{ $errors->first('stock') }}</div>
               </div>
             </div>
         </div>

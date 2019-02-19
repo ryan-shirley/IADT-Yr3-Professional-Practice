@@ -11,6 +11,7 @@ use App\ShippingMethod;
 use App\Event;
 use App\Product;
 use App\Shipment;
+use App\Address;
 
 use Validator;
 
@@ -63,64 +64,82 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $rules = [
-         'quantity.*' => [
-             'nullable',
-             'integer',
-             'min:0',
-             function($attribute, $quantity, $fail) {
-                 $parts = explode('.', $attribute);
-                 $product_id = $parts[1];
-                 $product = Product::find($product_id);
-                 if ($product == null) {
-                     $error = "Product not found";
-                     return $fail($error);
-                 }
-                 else {
-                     if ($product->stock < $quantity) {
-                          $error = "Product stock level too low";
-                          return $fail($error);
-                     }
-                 }
-             }
-           ],
-         'quantity' => [
-             'required',
-             'min:1', // make sure the input array is not empty <= edited
-             'array',
-         ],
+            'quantity.*' => [
+                'nullable',
+                'integer',
+                'min:0',
+                function($attribute, $quantity, $fail) {
+                   $parts = explode('.', $attribute);
+                   $product_id = $parts[1];
+                   $product = Product::find($product_id);
+                   if ($product == null) {
+                       $error = "Product not found";
+                       return $fail($error);
+                   }
+                   else {
+                       if ($product->stock < $quantity) {
+                            $error = "Product stock level too low";
+                            return $fail($error);
+                       }
+                   }
+                }
+             ],
+            'quantity' => [
+                 'required',
+                 'min:1', // make sure the input array is not empty <= edited
+                 'array',
+            ],
+            'user_id' => 'required|exists:users,id',
+            'quantity' => 'required|array',
+            'quantity.*' => 'integer|min:0',
+            'fulfillment_date' => 'date',
+            'payment_status' => 'required',
+            'shipping_address' => 'required|max:100',
+            'billing_address' => 'required|max:100',
+            'shipping_method_id' => 'required|max:10'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
-        //dd($request->all());
+        $messages = [
+            'shipping_method_id.required' => 'Please select a shipping method.',
+        ];
 
-        // $validator = Validator::make($request->all(), [
-        //     'user_id' => 'required|exists:users,id',
-        //     'quantity' => 'required|array',
-        //     'quantity.*' => 'integer|min:0',
-        //     'fulfillment_date' => 'required|date',
-        //     'payment_status' => 'required',
-        //     'fulfillment_status' => 'required',
-        //     'shipping_address' => 'required|max:100',
-        //     'billing_address' => 'required|max:100',
-        //     'shipping_method_id' => 'required|max:10'
-        // ]);
+        $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
-            dd($validator->errors());
+            //dd($validator->errors());
             return back()->withErrors($validator)->withInput();
         }
 
+        // Check shipping address is the users address
+        $shipping_address_id = $request->input('shipping_address');
+        $shipping_address = Address::findOrFail($shipping_address_id);
+        // Check billing address is the users address
+        $billing_address_id = $request->input('billing_address');
+        $billing_address = Address::findOrFail($billing_address_id);
+
         $order = new Order();
         $order->user_id = $request->input('user_id');
-        $order->order_date = date("d") . '-' .date("m") . '-' . date("y");
-        $order->order_time = date("h:i");
+        $order->order_date = date("Y-m-d");
+        $order->order_time = date("h:i:s");
         $order->payment_status = $request->input('payment_status');
-        $order->shipping_address = $request->input('shipping_id');
-        $order->billing_address = $request->input('billing_id');
+        $order->shipping_address = $shipping_address->line1;
+        $order->billing_address = $billing_address->line1;
         $order->shipping_method_id = $request->input('shipping_method_id');
         $order->save();
+
+        $quantity = $request->input('quantity');
+        foreach($quantity as $id => $qty) {
+          $p = Product::select('price')->where('id', $id)->first();
+          if ($qty != 0) {
+              $order->products()->attach($id,
+                  [
+                    'quantity' => $qty,
+                    'price' => $p->price
+                  ]
+              );
+          }
+        }
 
         $event = new Event();
         $event->name = 'A new order was create on ' . date("d M Y") . ' at ' . date("h:i:a") . '.';
