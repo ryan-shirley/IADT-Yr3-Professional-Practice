@@ -73,7 +73,9 @@
                                             <td scope="col">&euro;{{ $product->price }}</td>
                                             <td scope="col">{{ $product->stock }}</td>
                                             <td scope="col">
-                                                <input type="text" name="quantity[{{ $product->id }}]" size="5">
+                                                <input class="quantity-remove" type="image" src="/images/remove_black.png" alt="Remove" width="24" height="24">
+                                                <input data-stock="{{ $product->stock }}" class="quantity" type="text" name="quantity[{{ $product->id }}]" size="5" value="0" readonly>
+                                                <input class="quantity-add" type="image" src="/images/add_black.png" alt="Add" width="24" height="24">
                                                 <div class="errors text-danger"> {{ $errors->first('quantity.' . $product->id) }} </div>
                                             </td>
                                           </tr>
@@ -136,4 +138,30 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.quantity-remove').click(function (e) {
+    e.preventDefault();
+    var quantity = $(this).closest("td").find('input.quantity').val();
+    if (quantity > 0) {
+      quantity--;
+      $(this).closest("td").find('input.quantity').val(quantity);
+    }
+    $(this).blur();
+  });
+  $('.quantity-add').click(function (e) {
+    e.preventDefault();
+    var quantity = $(this).closest("td").find('input.quantity').val();
+    var stock = $(this).closest("td").find('input.quantity').data('stock')
+    if (quantity < stock) {
+      quantity++;
+      $(this).closest("td").find('input.quantity').val(quantity);
+    }
+    $(this).blur();
+  });
+});
+</script>
 @endsection
