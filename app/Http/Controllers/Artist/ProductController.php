@@ -183,13 +183,14 @@ class ProductController extends Controller
     {
         $p = Product::findOrFail($id);
         $image = Image::findOrFail($p->featured_img);
+
         $p->delete();
 
-        // if ($image->product->count() == 0) {
+        //if ($image->product->count() == 0) {
             Storage::disk('public')->delete($image->url);
             $image->delete();
-        // }
-        
+        //}
+
         return redirect()->route('products.index');
     }
 }

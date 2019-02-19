@@ -10,6 +10,7 @@ use App\Role;
 use App\ShippingMethod;
 use App\Event;
 use App\Product;
+use App\Address;
 
 use Validator;
 
@@ -62,7 +63,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $rules = [
          'quantity.*' => [
              'nullable',
@@ -90,7 +90,7 @@ class OrderController extends Controller
              'array',
          ],
         ];
-
+        
         $validator = Validator::make($request->all(), $rules);
         //dd($request->all());
 
@@ -111,15 +111,34 @@ class OrderController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        // Check shipping address is the users address
+        $shipping_address_id = $request->input('shipping_address');
+        $shipping_address = Address::findOrFail($shipping_address_id);
+        // Check billing address is the users address
+        $billing_address_id = $request->input('billing_address');
+        $billing_address = Address::findOrFail($billing_address_id);
+
         $order = new Order();
         $order->user_id = $request->input('user_id');
-        $order->order_date = date("d") . '-' .date("m") . '-' . date("y");
-        $order->order_time = date("h:i");
+        $order->order_date = date("Y-m-d");
+        $order->order_time = date("h:i:s");
         $order->payment_status = $request->input('payment_status');
-        $order->shipping_address = $request->input('shipping_id');
-        $order->billing_address = $request->input('billing_id');
+        $order->shipping_address = $shipping_address->line1;
+        $order->billing_address = $billing_address->line1;
         $order->shipping_method_id = $request->input('shipping_method_id');
         $order->save();
+
+        $quantity = $request->input('quantity');
+        foreach($quantity as $id => $qty) {
+          $p = Product::select('price')->where('id', $id)->first();
+          $order->products()->attach($id,
+              [
+                'quantity' => $qty,
+                'price' => $p->price
+              ]
+          );
+        }
+
 
         $event = new Event();
         $event->name = 'A new order was create on ' . date("d M Y") . ' at ' . date("h:i:a") . '.';
