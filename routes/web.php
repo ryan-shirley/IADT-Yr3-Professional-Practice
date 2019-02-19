@@ -32,6 +32,7 @@ Route::resource('/artist/tags', 'Artist\TagController');
 Route::get('/artist/tags/viewProducts/{tag_id}', 'Artist\TagController@viewProducts')->name('tags.viewProducts');
 
 Route::resource('/artist/orders', 'Artist\OrderController');
+Route::POST('/artist/shipments/create/', 'Artist\OrderController@saveShipment')->name('orders.create.shipment');
 
 Route::get('/customer/orders', 'Customer\OrderController@index')->name('customer.orders.index');
 Route::get('/customer/orders/{order_id}', 'Customer\OrderController@show')->name('customer.orders.show');

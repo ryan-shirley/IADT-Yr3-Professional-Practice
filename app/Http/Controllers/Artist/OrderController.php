@@ -10,6 +10,7 @@ use App\Role;
 use App\ShippingMethod;
 use App\Event;
 use App\Product;
+use App\Shipment;
 
 use Validator;
 
@@ -146,7 +147,11 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        return view('artist.orders.edit')->with([
+            'order' => $order
+        ]);
     }
 
     /**
@@ -158,7 +163,54 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'payment_status' => 'required|in:paid,unpaid',
+            'fulfillment_status' => 'required|in:fulfilled,unfulfilled',
+            'fulfillment_date' => "nullable|date"
+        ]);
+
+        $payment_change = false;
+        $fulfilment_change = false;
+
+        // Get Order
+        $o = Order::find($id);
+
+        // See what fields have been changed
+        if($o->payment_status != $request->input('payment_status')) {
+            $payment_change = true;
+        }
+        if($o->fulfillment_status != $request->input('fulfillment_status')) {
+            $fulfilment_change = true;
+        }
+
+        // Update Order
+        $o->payment_status = $request->input('payment_status');
+        $o->fulfillment_status = $request->input('fulfillment_status');
+        $o->fulfillment_date = $request->input('fulfillment_date');
+        $o->save();
+
+        // Create events for the order timeline
+        $timestamp = date("h:i:a");
+
+        if ($payment_change == true && $fulfilment_change == true) {
+            $str = 'Payment and fulfillment';
+        }
+        elseif($payment_change == true) {
+            $str = 'Payment';
+        }
+        elseif ($fulfilment_change == true) {
+            $str = 'Fulfillment';
+        }
+
+        if($payment_change == true || $fulfilment_change == true) {
+            $event = new Event();
+            $event->name = $str .' status was updated on ' . date("d M Y") . ' at ' . $timestamp . '.';
+            $event->order_id = $o->id;
+            $event->save();
+        }
+
+        $request->session()->flash('alert-success', 'Order was sucessfully updated!');
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -170,5 +222,37 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function saveShipment(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+            'tracking_no' => 'required|max:300',
+            'link' => 'required|max:300',
+            'shipment_date' => 'required|date',
+        ]);
+
+        $shipment = new Shipment();
+        $shipment->order_id = $request->input('order_id');
+        $shipment->tracking_no = $request->input('tracking_no');
+        $shipment->link = $request->input('link');
+        $shipment->shipment_date = $request->input('shipment_date');
+        $shipment->save();
+
+        // Create events for the order timeline
+        $event = new Event();
+        $event->name = 'A new shipment was created on ' . date("d M Y") . ' at ' . date("h:i:a") . '.';
+        $event->order_id = $shipment->order_id;
+        $event->save();
+
+        $request->session()->flash('alert-success', 'Shipment #' . $shipment->id . ' was created successfully!');
+        return redirect()->route('orders.index');
     }
 }

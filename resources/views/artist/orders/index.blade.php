@@ -35,6 +35,7 @@
                         <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td> -->
                         <td>
                           <a href="{{ route('orders.show', $order) }}">View</a>
+                          <a href="{{ route('orders.edit', $order) }}" class="btn btn-dark">Edit</a>
                         </td>
                     </tr>
                     @endforeach

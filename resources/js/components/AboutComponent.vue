@@ -66,11 +66,13 @@
 export default {
     mounted() {
         var app = this;
-        axios.get('/api/products')
+        axios.get('/api/products/latest')
         .then(function (resp) {
             // handle success
             console.log(resp.data);
             app.products = resp.data;
+
+            console.log(app.products);
         })
         .catch(function (resp) {
             // handle error

@@ -190,7 +190,7 @@ $( "#submit_card" ).click(function() {
         // Create card visual
         $("#card_list").prepend(
             '<div id="card" class="form-check visa-card active">' +
-                '<input class="form-check-input" hidden type="radio" name="{{ $name }}" value="' + data.id + '" />' +
+                '<input class="form-check-input" id="' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' +
                 '<label class="form-check-label v-card" for="' + data.id + '">' +
                     '<ul>' +
                         '<li>****</li>' +

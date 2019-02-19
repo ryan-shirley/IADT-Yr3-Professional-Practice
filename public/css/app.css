@@ -11371,6 +11371,7 @@ a.text-dark:focus {
   -webkit-transform: translateX(390px);
           transform: translateX(390px);
   transition: all 0.5s;
+  background: #fff;
 }
 
 .toast.show {

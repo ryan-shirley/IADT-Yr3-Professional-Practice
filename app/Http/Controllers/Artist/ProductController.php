@@ -99,6 +99,7 @@ class ProductController extends Controller
 
         $p->categories()->attach($request->input('category_id'));
 
+        $request->session()->flash('alert-success', $p->name . ' was created successfully');
         return redirect()->route('products.index');
     }
 

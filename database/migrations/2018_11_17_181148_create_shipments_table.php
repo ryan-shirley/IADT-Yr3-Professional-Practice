@@ -15,11 +15,11 @@ class CreateShipmentsTable extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_product_id')->unsigned();
             $table->integer('tracking_no');
             $table->string('link');
-
-            $table->foreign('order_product_id')->references('id')->on('order_product');
+            $table->date('shipment_date');
+            $table->integer('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders');
 
             $table->timestamps();
         });

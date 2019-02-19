@@ -27,7 +27,10 @@
 
             <div class="col">
               <p class="h3">{{ $order->fulfillment_status }}</p>
-              <p class="">Your order is on the way! <br/> Tracking no. <a href=""><u>123213213213</u></a></p>
+              @foreach ($order->shipments as $shipment)
+                <p>Tracking no. <a href="{{ $shipment->link }}"><u>{{ $shipment->tracking_no }}</u></a>.</p>
+              @endforeach
+              
             </div>
 
           </div>

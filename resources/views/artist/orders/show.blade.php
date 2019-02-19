@@ -58,7 +58,7 @@
                 <td scope='col'>Price</td>
                 <td scope='col'>Description</td>
                 <td scope='col'>Quantity</td>
-                <td scope='col'>Total</td>
+				<td scope='col'>Total</td>
               </tr>
             </thead>
             <tbody>
@@ -68,11 +68,31 @@
                 <td scope="col">&euro;{{ $product->pivot->price }}</td>
                 <td scope="col">{{ $product->description }}</td>
                 <td scope="col">{{ $product->pivot->quantity }}</td>
-                <td scope="col">&euro;{{ number_format($product->pivot->price * $product->pivot->quantity, 2) }}</td>
+				<td scope="col">&euro;{{ number_format($product->pivot->price * $product->pivot->quantity, 2) }}</td>
               </tr>
               @endforeach
             </tbody>
           </table>
+		  <h2>Shipments</h2>
+		  <table class="table">
+            <thead>
+              <tr>
+                <td scope='col'>Tracking No.</td>
+                <td scope='col'>Date</td>
+              </tr>
+            </thead>
+            <tbody>
+			@foreach ($order->shipments as $shipment)
+				<tr>
+					<td>{{ $shipment->tracking_no }}</td>
+					<td>{{ $shipment->shipment_date }}</td>
+				</tr>
+			@endforeach
+            </tbody>
+          </table>
+		  
+		  
+
           <h2>Timeline</h2>
           <table class="table">
             <tbody>

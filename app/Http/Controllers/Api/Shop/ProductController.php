@@ -14,7 +14,18 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::all()->sortByDesc("id");
+        $products->load('image');
+
+        return $products;
+    }
+
+    /**
+     * Return Latest 4 Products
+     */
+    public function latest(Request $request)
+    {
+        $products = Product::orderBy('id', 'desc')->take(4)->get();
         $products->load('image');
 
         return $products;

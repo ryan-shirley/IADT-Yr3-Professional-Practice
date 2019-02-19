@@ -56,5 +56,12 @@ class Order extends Model
         return $total;
     }
 
+    /**
+     * Get the shipments for the order.
+     */
+    public function shipments()
+    {
+        return $this->hasMany('App\Shipment');
+    }
 
 }

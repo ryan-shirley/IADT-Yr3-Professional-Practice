@@ -17,13 +17,14 @@ class CreateOrderProductTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('order_id')->unsigned();
-            $table->double('price', 8,2)->unsigned();
-            $table->integer('quantity')->unsigned();
+            $table->integer('shipment_id')->unsigned()->nullable();
+            $table->double('price', 8,2);
+            $table->integer('quantity');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('order_id')->references('id')->on('orders');
-
+            $table->foreign('shipment_id')->references('id')->on('shipments');
 
         });
     }

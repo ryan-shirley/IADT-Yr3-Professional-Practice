@@ -1830,10 +1830,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
-    axios.get('/api/products').then(function (resp) {
+    axios.get('/api/products/latest').then(function (resp) {
       // handle success
       console.log(resp.data);
       app.products = resp.data;
+      console.log(app.products);
     }).catch(function (resp) {
       // handle error
       console.log(resp);
@@ -51152,7 +51153,7 @@ $("#submit_card").click(function () {
     var data = resp.data;
     $('#card_list').find(".active").removeClass('active'); // Create card visual
 
-    $("#card_list").prepend('<div id="card" class="form-check visa-card active">' + '<input class="form-check-input" hidden type="radio" name="{{ $name }}" value="' + data.id + '" />' + '<label class="form-check-label v-card" for="' + data.id + '">' + '<ul>' + '<li>****</li>' + '<li>****</li>' + '<li>****</li>' + '<li>' + data.number.substr(-4) + '</li>' + '</ul>' + '<div class="row details">' + '<div class="col-md-6">' + '<span class="title">Card Holder</span>' + data.name_on_card + '</div>' + '<div class="col-md-3">' + '<span class="title">Expires</span>' + data.expiry + '</div>' + '<div class="col-md-3">' + '<span class="title">Cvv</span>' + '123' + '</div>' + '</div>' + '</label>' + '</div>'); // // Hide Modal & Clear
+    $("#card_list").prepend('<div id="card" class="form-check visa-card active">' + '<input class="form-check-input" id="' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' + '<label class="form-check-label v-card" for="' + data.id + '">' + '<ul>' + '<li>****</li>' + '<li>****</li>' + '<li>****</li>' + '<li>' + data.number.substr(-4) + '</li>' + '</ul>' + '<div class="row details">' + '<div class="col-md-6">' + '<span class="title">Card Holder</span>' + data.name_on_card + '</div>' + '<div class="col-md-3">' + '<span class="title">Expires</span>' + data.expiry + '</div>' + '<div class="col-md-3">' + '<span class="title">Cvv</span>' + '123' + '</div>' + '</div>' + '</label>' + '</div>'); // // Hide Modal & Clear
 
     $('#newCardModal').modal('hide');
     $('#card_number').val('');

@@ -9,6 +9,7 @@
 .toast {
     transform:translateX(390px);
     transition: all .5s;
+    background: #fff;
 
     &.show {
         transform:translateX(0);
