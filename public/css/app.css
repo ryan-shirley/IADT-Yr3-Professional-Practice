@@ -10968,7 +10968,7 @@ a.text-dark:focus {
 }
 
 .fourth-story {
-  background-image: url(/images/tales-of-the-jazz-age.jpg);
+  background-image: url(/images/Flying_Lanterns.jpg);
   height: 660px;
 }
 
@@ -11140,6 +11140,12 @@ a.text-dark:focus {
   }
 }
 
+@media (max-width: 991.98px) {
+  .single-product .content .inner {
+    padding: 1rem;
+  }
+}
+
 .single-product h1 {
   font-weight: bold;
   margin-bottom: 2rem;
@@ -11155,6 +11161,12 @@ a.text-dark:focus {
 
 .single-product .description {
   padding: 0 4rem;
+}
+
+@media (max-width: 767.98px) {
+  .single-product .description {
+    padding: 0 1rem;
+  }
 }
 
 .single-product .meta {
@@ -11222,9 +11234,28 @@ a.text-dark:focus {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 767.98px) {
+  .shopping-cart .item {
+    display: block;
+  }
+}
+
 .shopping-cart .item img {
   width: 150px;
   height: auto;
+}
+
+@media (max-width: 767.98px) {
+  .shopping-cart .item img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .shopping-cart .item td {
+    border-top: none;
+    width: 100%;
+  }
 }
 
 .shopping-cart .item td:first-of-type {
@@ -11232,8 +11263,26 @@ a.text-dark:focus {
   padding-left: 0;
 }
 
+@media (max-width: 767.98px) {
+  .shopping-cart .item td:first-of-type {
+    width: 100%;
+    display: block;
+    padding: 0 0 0.5rem;
+  }
+}
+
 .shopping-cart .item td:last-of-type {
   padding-right: 0;
+}
+
+@media (max-width: 767.98px) {
+  .shopping-cart .item td:last-of-type .close {
+    background: #0000001c;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: block;
+  }
 }
 
 .shopping-cart .item .btn {

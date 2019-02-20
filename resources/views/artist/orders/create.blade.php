@@ -33,15 +33,15 @@
                                       <div class="row">
                                         <div class="col-sm-10">
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="payment_status" value="0"
-                                            {{ (old('payment_status') == 0) ? "checked" : "" }} >
+                                            <input class="form-check-input" type="radio" name="payment_status" value="unpaid"
+                                            {{ (old('payment_status') == 'unpaid') ? "checked" : "" }} >
                                             <label class="form-check-label">
                                                 Unpaid
                                             </label>
                                           </div>
                                           <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="payment_status" value="1"
-                                            {{ (old('payment_status') == 1) ? "checked" : "" }} >
+                                            <input class="form-check-input" type="radio" name="payment_status" value="paid"
+                                            {{ (old('payment_status') == 'paid') ? "checked" : "" }} >
                                             <label class="form-check-label">
                                                 Paid
                                             </label>
@@ -74,7 +74,7 @@
                                             <td scope="col">{{ $product->stock }}</td>
                                             <td scope="col">
                                                 <input class="quantity-remove" type="image" src="/images/remove_black.png" alt="Remove" width="24" height="24">
-                                                <input data-stock="{{ $product->stock }}" class="quantity" type="text" name="quantity[{{ $product->id }}]" size="5" value="0" readonly>
+                                                <input data-stock="{{ $product->stock }}" class="quantity" type="text" name="quantity[{{ $product->id }}]" size="5" value="{{ old('quantity.' . $product->id, 0) }}" readonly>
                                                 <input class="quantity-add" type="image" src="/images/add_black.png" alt="Add" width="24" height="24">
                                                 <div class="errors text-danger"> {{ $errors->first('quantity.' . $product->id) }} </div>
                                             </td>
@@ -86,11 +86,43 @@
                               </tr>
                               <tr>
                                   <td>Shipping Address</td>
-                                  <td id="shipping_addresses">No Customer Selected</td>
+                                  <td id="shipping_addresses">
+                                    @if (old('shipping_address') || old('billing_address'))
+                                        @foreach(\App\User::find(old('user_id'))->addresses as $address)
+                                          @if ($address->shipping == 1)
+                                            <div class="custom-control custom-radio address card-light">
+                                                <input id="shipping_address_{{ $address->id }}" type="radio" id="address-{{ $address->id }}'" class="custom-control-input" name="shipping_address" value="{{ $address->id }}" @if(old('shipping_address') == $address->id ) checked @endif>
+                                                <label class="custom-control-label" for="shipping_address_{{ $address->id }}">
+                                                {{ $address->line1 }}
+                                                </label>
+                                            </div>
+                                          @endif
+                                        @endforeach
+                                    @else
+                                      No Customer Selected
+                                    @endif
+                                    <span class="text-danger"><br/>{{ $errors->first('shipping_address') }}</span>
+                                  </td>
                               </tr>
                               <tr>
                                   <td>Billing Address</td>
-                                  <td id="billing_addresses">No Customer Selected</td>
+                                  <td id="billing_addresses">
+                                  @if (old('shipping_address') || old('billing_address'))
+                                        @foreach(\App\User::find(old('user_id'))->addresses as $address)
+                                          @if ($address->billing == 1)
+                                            <div class="custom-control custom-radio address card-light">
+                                                <input id="billing_address_{{ $address->id }}" type="radio" id="address-{{ $address->id }}'" class="custom-control-input" name="billing_address" value="{{ $address->id }}" @if(old('billing_address') == $address->id ) checked @endif>
+                                                <label class="custom-control-label" for="billing_address_{{ $address->id }}">
+                                                {{ $address->line1 }}
+                                                </label>
+                                            </div>
+                                          @endif
+                                        @endforeach
+                                    @else
+                                      No Customer Selected
+                                    @endif
+                                    <span class="text-danger"><br/>{{ $errors->first('billing_address') }}</span>
+                                  </td>
                               </tr>
                               <tr>
                                   <td>Shipping Method</td>

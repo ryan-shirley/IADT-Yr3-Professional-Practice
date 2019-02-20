@@ -72,6 +72,10 @@
                 margin-top: $spacer * 2;
                 padding: $spacer ($spacer * 2);
             }
+
+            @include media-breakpoint-down(md) {
+                padding: $spacer;
+            }
         }
     }
 
@@ -90,6 +94,10 @@
 
     .description {
         padding: 0 ($spacer * 4);
+
+        @include media-breakpoint-down(sm) {
+            padding: 0 $spacer;
+        }
     }
 
     .meta {

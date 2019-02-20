@@ -14,7 +14,7 @@
 <div class="container">
     <ul class="nav nav-pills justify-content-center shop-nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('shop.home') }}">All Product</a>
+            <a class="nav-link" href="{{ route('shop.home') }}">All Products</a>
         </li>
         @foreach ($categories as $cat)
         <li class="nav-item">

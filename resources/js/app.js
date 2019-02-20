@@ -240,6 +240,7 @@ $('#customerList').change(function() {
     // Remove addresses displayed
     $("#billing_addresses").html("");
     $("#shipping_addresses").html("");
+    $("#user_error").html("");
 
     if(app.val() != 0) {
         axios.get('/api/artist/order/addresses/' + app.val())

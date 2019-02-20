@@ -15,11 +15,9 @@
                 <tr>
                     <td scope="col"><h5>Order #</h5></td>
                     <td scope='col'><h5>Customer</h5></td>
-                    <td scope='col'><h5>Order Date</h5></td>
                     <td scope='col'><h5>Payment Status</h5></td>
                     <td scope='col'><h5>Fulfillment Status</h5></td>
-                    <!-- <td scope='col'>Shipping Address</td>
-                    <td scope='col'>Shipping Method</td> -->
+                    <td scope='col'><h5>Order Date</h5></td>
                     <td scope='col'><h5>Actions</h5></td>
                 </tr>
                 </thead>
@@ -28,14 +26,14 @@
                     <tr>
                         <td scope="row">{{ $order->id }}</td>
                         <td>{{ App\User::find($order->user_id)->name }}</td>
-                        <td>{{ $order->order_date }}</td>
                         <td>{{ $order->payment_status }}</td>
                         <td>{{ $order->fulfillment_status }}</td>
-                        <!-- <td>{{ $order->shipping_address }}</td>
-                        <td>{{ App\ShippingMethod::find($order->shipping_method_id)->name }}</td> -->
+                        <td>{{ $order->order_date }}</td>
                         <td>
-                          <a href="{{ route('orders.show', $order) }}">View</a>
-                          <a href="{{ route('orders.edit', $order) }}" class="btn btn-dark">Edit</a>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{{ route('orders.show', $order) }}" class="btn btn-secondary">View</a>
+                                <a href="{{ route('orders.edit', $order) }}" class="btn btn-dark">Edit</a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
