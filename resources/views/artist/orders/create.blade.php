@@ -68,13 +68,13 @@
                                         <tbody>
                                           @foreach ($products as $product)
                                           <tr>
-                                            <td scope="col"><img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" /></td>
-                                            <td scope="col">{{ $product->name }}</td>
-                                            <td scope="col">&euro;{{ $product->price }}</td>
-                                            <td scope="col">{{ $product->stock }}</td>
-                                            <td scope="col">
+                                            <td scope="col" class="align-middle"><img class="img-thumbnail" style="max-width:100px;" src="{{ asset('storage/' . App\Image::find($product->featured_img)->url ) }}" /></td>
+                                            <td scope="col" class="align-middle">{{ $product->name }}</td>
+                                            <td scope="col" class="align-middle">&euro;{{ $product->price }}</td>
+                                            <td scope="col" class="align-middle">{{ $product->stock }}</td>
+                                            <td scope="col" class="align-middle">
                                                 <input class="quantity-remove" type="image" src="/images/remove_black.png" alt="Remove" width="24" height="24">
-                                                <input data-stock="{{ $product->stock }}" class="quantity" type="text" name="quantity[{{ $product->id }}]" size="5" value="{{ old('quantity.' . $product->id, 0) }}" readonly>
+                                                <input data-stock="{{ $product->stock }}" class="quantity form-control-plaintext" type="text" readonly name="quantity[{{ $product->id }}]" size="5" value="{{ old('quantity.' . $product->id, 0) }}">
                                                 <input class="quantity-add" type="image" src="/images/add_black.png" alt="Add" width="24" height="24">
                                                 <div class="errors text-danger"> {{ $errors->first('quantity.' . $product->id) }} </div>
                                             </td>
@@ -87,7 +87,7 @@
                               <tr>
                                   <td>Shipping Address</td>
                                   <td id="shipping_addresses">
-                                    @if (old('shipping_address') || old('billing_address'))
+                                    @if (old('user_id'))
                                         @foreach(\App\User::find(old('user_id'))->addresses as $address)
                                           @if ($address->shipping == 1)
                                             <div class="custom-control custom-radio address card-light">
@@ -107,7 +107,7 @@
                               <tr>
                                   <td>Billing Address</td>
                                   <td id="billing_addresses">
-                                  @if (old('shipping_address') || old('billing_address'))
+                                  @if (old('user_id'))
                                         @foreach(\App\User::find(old('user_id'))->addresses as $address)
                                           @if ($address->billing == 1)
                                             <div class="custom-control custom-radio address card-light">

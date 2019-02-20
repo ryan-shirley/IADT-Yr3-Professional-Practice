@@ -57,3 +57,15 @@
         }
     }
 }
+
+// Create Order Read Only
+.form-control-plaintext {
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.quantity-remove, .quantity-add {
+    position: relative;
+    top: 7px;
+}
