@@ -44,7 +44,7 @@
                     <div class="inner">
                         <h2>TALES OF THE JAZZ AGE</h2>
                         <p>A signed illustration by Valentina Bianchi</p>
-                        <a href="{{ route('shop.product', 5) }}" class="btn btn-outline-light">View Product</a>
+                        <a href="{{ route('shop.product', 4) }}" class="btn btn-outline-light">View Product</a>
                     </div>
                 </div>
             </div>
