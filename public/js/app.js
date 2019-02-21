@@ -37016,14 +37016,16 @@ var render = function() {
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-5" }, [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src: "/storage/" + _vm.product.image.url,
-                      title: _vm.product.name,
-                      alt: _vm.product.name
-                    }
-                  })
+                  _vm.product.image.url
+                    ? _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: {
+                          src: "/storage/" + _vm.product.image.url,
+                          title: _vm.product.name,
+                          alt: _vm.product.name
+                        }
+                      })
+                    : _vm._e()
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-7" }, [

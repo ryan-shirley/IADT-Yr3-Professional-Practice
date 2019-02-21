@@ -5,7 +5,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-5">
-                            <img :src="'/storage/' + product.image.url" :title=" product.name " :alt=" product.name " class="card-img-top" />
+                            <img v-if="product.image.url" :src="'/storage/' + product.image.url" :title=" product.name " :alt=" product.name " class="card-img-top" />
                         </div>
                         <div class="col-md-7">
                             <div class="content mt-3 mr-4">
