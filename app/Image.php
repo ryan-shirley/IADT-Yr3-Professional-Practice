@@ -21,4 +21,8 @@ class Image extends Model
     {
         return $this->belongsTo('App\Product');
     }
+
+    public function filename() {
+        return substr($this->url, 33);
+    }
 }

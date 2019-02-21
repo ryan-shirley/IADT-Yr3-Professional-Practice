@@ -10,7 +10,7 @@
         <p class="h5"><a href="{{ route('products.index') }}" class="text-secondary">All Products</a> / {{ $product->name }}</p>
         <p class="h2">{{ $product->name }} (Product)</p>
 
-
+        <div class="">
         <table class="table">
           <tbody>
             <tr scope="row">
@@ -25,10 +25,10 @@
               <td scope="col">Price</td>
               <td scope="col">&euro;{{ $product->price }}</td>
             </tr>
-            <tr scope="row">
+            <!-- <tr scope="row">
               <td scope="col">Sale Price</td>
               <td scope="col">&euro;{{ $product->sale_price }}</td>
-            </tr>
+            </tr> -->
             <tr scope="row">
               <td scope="col">Category</td>
               <td scope="col">{{ $product->categories{0}->name }}</td>

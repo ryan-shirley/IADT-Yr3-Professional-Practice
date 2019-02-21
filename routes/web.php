@@ -19,7 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home');
+Route::get('/artist', 'Artist\HomeController@index')->name('artist.home');
 Route::get('/artist/home', 'Artist\HomeController@index')->name('artist.home');
+Route::get('/customer', 'Customer\HomeController@index')->name('customer.home');
 Route::get('/customer/home', 'Customer\HomeController@index')->name('customer.home');
 
 // Artist Routes

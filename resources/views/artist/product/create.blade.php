@@ -18,16 +18,11 @@
                   <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{ old( 'name') }}">
                   <div class="text-danger">{{ $errors->first('name') }}</div>
               </div>
-              <div class="form-group">
-                  <label for="price">Price</label>
-                  <input type="text" class="form-control" name="price" placeholder="Enter Price" value="{{ old( 'price') }}">
-                  <div class="text-danger">{{ $errors->first('price') }}</div>
-              </div>
-              <div class="form-group">
-                  <label for="stock">Stock</label>
-                  <input type="text" class="form-control" name="stock" placeholder="Enter Stock" value="{{ old( 'stock') }}">
-                  <div class="text-danger">{{ $errors->first('stock') }}</div>
-              </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" name="description">{{ old( 'description') }}</textarea>
+                    <div class="text-danger">{{ $errors->first('description') }}</div>
+                </div>
               <div class="form-group">
                   <label for="category_id">Category</label>
                   @foreach ($categories as $c)
@@ -48,15 +43,20 @@
             </div>
             <div class="col-md">
               <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea type="text" class="form-control" name="description">{{ old( 'description') }}</textarea>
-                  <div class="text-danger">{{ $errors->first('description') }}</div>
+                  <label for="price">Price</label>
+                  <input type="text" class="form-control" name="price" placeholder="Enter Price" value="{{ old( 'price') }}">
+                  <div class="text-danger">{{ $errors->first('price') }}</div>
               </div>
               <div class="form-group">
+                  <label for="stock">Stock</label>
+                  <input type="text" class="form-control" name="stock" placeholder="Enter Stock" value="{{ old( 'stock') }}">
+                  <div class="text-danger">{{ $errors->first('stock') }}</div>
+              </div>
+              <!-- <div class="form-group">
                   <label for="sale_price">Sale Price</label>
                   <input type="text" class="form-control" name="sale_price" placeholder="Enter Sale Price" value="{{ old( 'sale_price') }}">
                   <div class="text-danger">{{ $errors->first('sale_price') }}</div>
-              </div>
+              </div> -->
               <div class="form-group">
                   <label for="tag_id[]">Tags</label>
                   @foreach($tags as $t)

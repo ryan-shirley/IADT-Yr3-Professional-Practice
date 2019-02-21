@@ -60,13 +60,13 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'description' => 'required|max:300',
+            'description' => 'required|max:500',
             'category_id' => 'required|exists:categories,id',
             'tag_id' => 'required|exists:tags,id',
             'price' => 'required|numeric',
-            'sale_price' => 'nullable|numeric',
+            // 'sale_price' => 'nullable|numeric',
             'stock' => 'required|numeric',
-            'featured_img' => 'required|file|image|'
+            'featured_img' => 'required|file|image'
         ]);
 
         $featured_img = $request->file('featured_img');
@@ -86,9 +86,9 @@ class ProductController extends Controller
         $p->stock = $request->input('stock');
         $p->featured_img = $image->id;
 
-        if($request->input('sale_price')) {
-            $p->sale_price = $request->input('sale_price');
-        }
+        // if($request->input('sale_price')) {
+        //     $p->sale_price = $request->input('sale_price');
+        // }
 
         $p->save();
 
@@ -150,26 +150,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
-            'name' => 'required|max:100',
-            'description' => 'required|max:300',
+            'name' => 'required|string',
+            'description' => 'required|max:500',
+            'category_id' => 'required|exists:categories,id',
+            'tag_id' => 'required|exists:tags,id',
             'price' => 'required|numeric',
-            // 'sale_price' => 'required|numeric',
-            // 'featured_img' => 'required|max:300',
+            'stock' => 'required|numeric',
+            // 'sale_price' => 'nullable|numeric',
+            'featured_img' => 'nullable|file|image'
         ]);
 
-        $tags = $request->input('tag_id');
-
         $p = Product::find($id);
+
+        if($request->input('featured_img') != NULL) {
+            $featured_img = $request->file('featured_img');
+            $extension = $featured_img->getClientOriginalExtension();
+            $filename = date('Y-m-d-His') . '_' . $request->input('name') . '.' . $extension;
+            $path = $featured_img->storeAs('product_images', $filename, 'public');
+
+            $image = new Image();
+            $image->title = $request->input('name');
+            $image->url = $path;
+            $image->save();
+
+            $p->featured_img = $image->id;
+        }
+
         $p->name = $request->input('name');
         $p->description = $request->input('description');
         $p->price = $request->input('price');
-        // $p->sale_price = $request->input('sale_price');
-        // $p->featured_img = $request->input('featured_img');
+        $p->stock = $request->input('stock');
+
+        // if($request->input('sale_price')) {
+        //     $p->sale_price = $request->input('sale_price');
+        // }
+
         $p->save();
 
+        $category = $request->input('category_id');
+        $tags = $request->input('tag_id');
+
         $p->tags()->sync($tags);
-        $p->categories()->sync($request->input('category_id'));
+        $p->categories()->sync($category);
 
         return redirect()->route('products.index');
     }
@@ -185,12 +209,16 @@ class ProductController extends Controller
         $p = Product::findOrFail($id);
         $image = Image::findOrFail($p->featured_img);
 
-        $p->delete();
-
-        //if ($image->product->count() == 0) {
+        if($p->tags->count()==0){
+            $p->delete();
+            //if ($image->product->count() == 0) {
             Storage::disk('public')->delete($image->url);
             $image->delete();
-        //}
+            //}
+        }
+        else {
+            $request->session()->flash('alert-danger', $p->name . ' is in some orders and cannot be deleted');
+        }
 
         return redirect()->route('products.index');
     }
