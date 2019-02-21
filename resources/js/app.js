@@ -13,8 +13,6 @@ import VueRouter from 'vue-router';
 // Components
 import AboutComponent from './components/AboutComponent.vue';
 import ProductQuickView from './components/ProductQuickView.vue';
-import Empty from './components/Empty.vue';
-
 
 Vue.use(VueRouter);
 
@@ -23,8 +21,7 @@ const routes = [
     {
         path: '/',
         components: {
-            default: AboutComponent,
-            quickView: Empty
+            default: AboutComponent
         },
         name: 'about'
     },
