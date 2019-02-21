@@ -31,11 +31,15 @@
             </tr>
             <tr scope="row">
               <td scope="col">Category</td>
-              <td scope="col">{{ $product->categories{0} }}</td>
+              <td scope="col">{{ $product->categories{0}->name }}</td>
             </tr>
             <tr scope="row">
               <td scope="col">Tags</td>
-              <td scope="col">{{ $product->tags }}</td>
+              <td scope="col">
+              @foreach($product->tags as $tag)
+                  {{ $tag->name }},
+                @endforeach
+              </td>
             </tr>
             <tr scope="row">
               <td scope="col">Stock</td>
