@@ -84,7 +84,7 @@
 					</form>
 				</div>
 			</div>
-			<!--/.Shipments Card
+			<!--/.Shipments Card -->
         </div>
     </div>
 </div>
