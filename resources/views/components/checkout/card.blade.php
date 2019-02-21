@@ -1,6 +1,6 @@
 <div id="card" class="form-check visa-card">
-    <input class="form-check-input" hidden type="radio" name="{{ $name }}" value="{{ $card->id }}" @if(old($name) == $card->id) checked @endif />
-    <label class="form-check-label v-card" for="{{ $card->id }}">
+    <input id="card-{{ $card->id }}" class="form-check-input" hidden type="radio" name="{{ $name }}" value="{{ $card->id }}" @if(old($name) == $card->id) checked @endif />
+    <label class="form-check-label v-card" for="card-{{ $card->id }}">
         <ul>
             <li>****</li>
             <li>****</li>

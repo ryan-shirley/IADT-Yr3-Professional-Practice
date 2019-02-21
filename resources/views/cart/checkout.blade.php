@@ -291,7 +291,7 @@
                     </div>
                     <!--/.Shipping -->
 
-                    <button type="submit" class="btn btn-primary">Purchase</button>
+                    <button type="submit" class="btn btn-secondary">Purchase</button>
 
                 </form>
                 <!--/.Form Checkout -->

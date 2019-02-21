@@ -1823,10 +1823,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var app = this;
@@ -36880,7 +36876,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-lg-6 col-md-8 image-full profile" }),
         _vm._v(" "),
         _c("div", { staticClass: "col-lg-6 text-center content" }, [
-          _c("h1", { staticClass: "h4" }, [_vm._v("About")]),
+          _c("h1", { staticClass: "h2" }, [_vm._v("About")]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
@@ -36896,7 +36892,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "\n                As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.\n            "
+              "\n                As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about.\n            "
             )
           ]),
           _vm._v(" "),
@@ -36928,43 +36924,40 @@ var staticRenderFns = [
           "row no-gutters justify-content-md-center align-items-center"
       },
       [
-        _c("div", { staticClass: "col-lg-6 text-center content" }, [
-          _c("h1", { staticClass: "h4" }, [_vm._v("About")]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                A multidisciplinary award winning designer with a focus on brand identity, digital, packaging and illustration. My approach is to create "
-            ),
-            _c("strong", [_vm._v("simple, functional identities")]),
-            _vm._v(
-              " that reflect the true character of the clients I work for.\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("small", [
-            _vm._v("Credit: "),
-            _c(
-              "a",
-              {
-                attrs: {
-                  href: "http://johnrooneyillustration.com",
-                  target: "_blank"
-                }
-              },
-              [_vm._v("Colm O'Connor")]
-            )
-          ])
-        ]),
+        _c(
+          "div",
+          { staticClass: "col-lg-6 order-2 order-lg-1 text-center content" },
+          [
+            _c("h2", { staticClass: "h2" }, [_vm._v("My Story")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                She has worked with companies including Procreate, Simon & Schuster, Toltek Productions, and Playboy. She holds a BFA in Illustration with a minor in Animation, and graduated with Honors from California State University, Long Beach. \n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("small", [
+              _vm._v("Credit: "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "http://www.chelseablecha.com",
+                    target: "_blank"
+                  }
+                },
+                [_vm._v("Chelsea Blecha")]
+              )
+            ])
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-lg-6 col-md-8 image-full heritage" })
+        _c("div", {
+          staticClass:
+            "col-lg-6 col-md-8 order-1 order-lg-2 image-full heritage"
+        })
       ]
     )
   },
@@ -51115,7 +51108,7 @@ $("#submit_billing_address").click(function () {
   });
 }); // Payment Method Card
 
-$(".v-card").click(function () {
+$('#card_list').on('click', '.v-card', function () {
   console.log("Clicked card"); // Remove active card
 
   $('#card_list').find(".active").removeClass('active');
@@ -51153,7 +51146,7 @@ $("#submit_card").click(function () {
     var data = resp.data;
     $('#card_list').find(".active").removeClass('active'); // Create card visual
 
-    $("#card_list").prepend('<div id="card" class="form-check visa-card active">' + '<input class="form-check-input" id="' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' + '<label class="form-check-label v-card" for="' + data.id + '">' + '<ul>' + '<li>****</li>' + '<li>****</li>' + '<li>****</li>' + '<li>' + data.number.substr(-4) + '</li>' + '</ul>' + '<div class="row details">' + '<div class="col-md-6">' + '<span class="title">Card Holder</span>' + data.name_on_card + '</div>' + '<div class="col-md-3">' + '<span class="title">Expires</span>' + data.expiry + '</div>' + '<div class="col-md-3">' + '<span class="title">Cvv</span>' + '123' + '</div>' + '</div>' + '</label>' + '</div>'); // // Hide Modal & Clear
+    $("#card_list").prepend('<div id="card" class="form-check visa-card active">' + '<input class="form-check-input" id="card-' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' + '<label class="form-check-label v-card" for="card-' + data.id + '">' + '<ul>' + '<li>****</li>' + '<li>****</li>' + '<li>****</li>' + '<li>' + data.number.substr(-4) + '</li>' + '</ul>' + '<div class="row details">' + '<div class="col-md-6">' + '<span class="title">Card Holder</span>' + data.name_on_card + '</div>' + '<div class="col-md-3">' + '<span class="title">Expires</span>' + data.expiry + '</div>' + '<div class="col-md-3">' + '<span class="title">Cvv</span>' + '123' + '</div>' + '</div>' + '</label>' + '</div>'); // // Hide Modal & Clear
 
     $('#newCardModal').modal('hide');
     $('#card_number').val('');

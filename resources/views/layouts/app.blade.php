@@ -110,6 +110,10 @@
         </main>
     </div>
 
+    <footer>
+        <a href="{{ url('/') }}">valentina bianchi</a>
+    </footer>
+
 @yield('script')
 
 </body>

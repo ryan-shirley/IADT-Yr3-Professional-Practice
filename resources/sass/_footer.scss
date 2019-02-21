@@ -1,0 +1,19 @@
+footer {
+    border-top: 1px solid #f3f3f3;
+    padding: $spacer * 2;
+    margin-top: $spacer * 2;
+
+    a {
+        display: block;
+        font-family: $headings-font-family;
+        text-align: center;
+        margin: 0 auto;
+        color: $gray-900;
+        font-size: $font-size-lg * 1.3;
+
+        &:hover {
+            text-decoration: none;
+            color: $gray-900;
+        }
+    }
+}

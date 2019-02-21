@@ -139,7 +139,7 @@ $( "#submit_billing_address" ).click(function() {
 });
 
 // Payment Method Card
-$( ".v-card" ).click(function() {
+$( '#card_list' ).on( 'click', '.v-card', function () {
     console.log("Clicked card");
 
     // Remove active card
@@ -190,8 +190,8 @@ $( "#submit_card" ).click(function() {
         // Create card visual
         $("#card_list").prepend(
             '<div id="card" class="form-check visa-card active">' +
-                '<input class="form-check-input" id="' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' +
-                '<label class="form-check-label v-card" for="' + data.id + '">' +
+                '<input class="form-check-input" id="card-' + data.id + '" hidden type="radio" name="card_id" value="' + data.id + '" />' +
+                '<label class="form-check-label v-card" for="card-' + data.id + '">' +
                     '<ul>' +
                         '<li>****</li>' +
                         '<li>****</li>' +

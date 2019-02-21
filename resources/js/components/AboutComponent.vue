@@ -4,34 +4,30 @@
             <div class="col-lg-6 col-md-8 image-full profile">
             </div>
             <div class="col-lg-6 text-center content">
-                <h1 class="h4">About</h1>
+                <h1 class="h2">About</h1>
                 <hr />
                 <p>
                     A multidisciplinary award winning designer with a focus on brand identity, digital, packaging and illustration. My approach is to create <strong>simple, functional identities</strong> that reflect the true character of the clients I work for.
                 </p>
 
                 <p>
-                    As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.
+                    As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about.
                 </p>
 
                 <small>Credit: <a href="http://johnrooneyillustration.com" target="_blank">Colm O'Connor</a></small>
             </div>
         </div>
         <div class="row no-gutters justify-content-md-center align-items-center">
-            <div class="col-lg-6 text-center content">
-                <h1 class="h4">About</h1>
+            <div class="col-lg-6 order-2 order-lg-1 text-center content">
+                <h2 class="h2">My Story</h2>
                 <hr />
                 <p>
-                    A multidisciplinary award winning designer with a focus on brand identity, digital, packaging and illustration. My approach is to create <strong>simple, functional identities</strong> that reflect the true character of the clients I work for.
+                    She has worked with companies including Procreate, Simon & Schuster, Toltek Productions, and Playboy. She holds a BFA in Illustration with a minor in Animation, and graduated with Honors from California State University, Long Beach. 
                 </p>
 
-                <p>
-                    As well as visual communications, I have a background in architecture. It wasn’t until the financial crash of 2008 that I was forced to re-evaluate my options and pursue the career that I am truly passionate about. With a love for travel, culture, and a constant want to learn, I aim to bring all of these elements into my design, and push the boundaries to create something truly unique.
-                </p>
-
-                <small>Credit: <a href="http://johnrooneyillustration.com" target="_blank">Colm O'Connor</a></small>
+                <small>Credit: <a href="http://www.chelseablecha.com" target="_blank">Chelsea Blecha</a></small>
             </div>
-            <div class="col-lg-6 col-md-8 image-full heritage">
+            <div class="col-lg-6 col-md-8 order-1 order-lg-2 image-full heritage">
 
             </div>
         </div>

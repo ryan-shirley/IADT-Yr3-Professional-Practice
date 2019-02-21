@@ -166,6 +166,10 @@
 .about .content {
     padding: $spacer * 4;
 
+    @include media-breakpoint-down(sm) {
+        padding: ($spacer * 4) $spacer;
+    }
+
     hr {
         max-width: 100px;
     }

@@ -36,7 +36,7 @@
         <!--/.Shopping Cart Table -->
 
         <p class="price text-right">Total: {{ $cart->getTotalPrice() }} €</p>
-        <a href="{{ route('cart.checkout') }}" class="btn btn-secondary float-right">Checkout</a>
+        <p class="text-right"><a href="{{ route('cart.checkout') }}" class="btn btn-secondary ">Checkout</a></p>
 
     @endif
 </div>

@@ -11055,6 +11055,12 @@ a.text-dark:focus {
   padding: 4rem;
 }
 
+@media (max-width: 767.98px) {
+  .about .content {
+    padding: 4rem 1rem;
+  }
+}
+
 .about .content hr {
   max-width: 100px;
 }
@@ -11438,5 +11444,25 @@ a.text-dark:focus {
 .toast.show {
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+
+footer {
+  border-top: 1px solid #f3f3f3;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+footer a {
+  display: block;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  margin: 0 auto;
+  color: #212529;
+  font-size: 1.625rem;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: #212529;
 }
 
