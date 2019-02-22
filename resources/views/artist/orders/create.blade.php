@@ -26,6 +26,7 @@
                                     @endif</p>
                                   </td>
                               </tr>
+                              <!-- /.Tr Customer -->
                               <tr>
                                   <td>Payment Status</td>
                                   <td>
@@ -39,6 +40,7 @@
                                                 Unpaid
                                             </label>
                                           </div>
+                                          <!--/ .Form-check -->
                                           <div class="form-check">
                                             <input class="form-check-input" type="radio" name="payment_status" value="paid"
                                             {{ (old('payment_status') == 'paid') ? "checked" : "" }} >
@@ -46,12 +48,17 @@
                                                 Paid
                                             </label>
                                           </div>
+                                          <!-- /.Form-check -->
                                         </div>
+                                        <!-- /.Col -->
                                       </div>
+                                      <!--/ .Row -->
                                       <div class="errors text-danger"> {{ $errors->first('payment_status') }} </div>
                                     </fieldset>
+                                    <!--/ .Fieldset -->
                                   </td>
                               </tr>
+                              <!--/ .Tr Payment Status -->
                               <tr>
                                   <td>Products</td>
                                   <td>
@@ -81,9 +88,12 @@
                                           </tr>
                                           @endforeach
                                         </tbody>
+                                        <!--/.Tbody -->
                                       </table>
+                                      <!--/.Table -->
                                   </td>
                               </tr>
+                              <!--/.Tr -->
                               <tr>
                                   <td>Shipping Address</td>
                                   <td id="shipping_addresses">
@@ -96,6 +106,7 @@
                                                 {{ $address->line1 }}
                                                 </label>
                                             </div>
+                                            <!-- /.Custom-control -->
                                           @endif
                                         @endforeach
                                     @else
@@ -103,7 +114,9 @@
                                     @endif
                                     <span class="text-danger"><br/>{{ $errors->first('shipping_address') }}</span>
                                   </td>
+                                  <!-- /.Td -->
                               </tr>
+                              <!-- /.Tr -->
                               <tr>
                                   <td>Billing Address</td>
                                   <td id="billing_addresses">
@@ -116,6 +129,7 @@
                                                 {{ $address->line1 }}
                                                 </label>
                                             </div>
+                                            <!--/ .customer-control -->
                                           @endif
                                         @endforeach
                                     @else
@@ -123,7 +137,9 @@
                                     @endif
                                     <span class="text-danger"><br/>{{ $errors->first('billing_address') }}</span>
                                   </td>
+                                  <!--/ .Td -->
                               </tr>
+                              <!--/ .Tr -->
                               <tr>
                                   <td>Shipping Method</td>
                                   <td>
@@ -143,24 +159,18 @@
                                               <span class="text-danger">{{ $errors->first('shipping_method_id') }}</span>
                                           @endif
                                       </div>
-                                    <!-- <select class="form-control" name="shipping_method_id">
-                                      <option>Select a shipping method</option>
-                                      @foreach ($shippings as $s)
-                                      <option value="{{ $s->id }}" {{ (old('shipping_method_id') == $s->id) ? "selected" : "" }}>{{ $s->name }}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('shipping_method_id'))
-                                      <div class="errors text-danger"> {{ $errors->first('shipping_method_id') }} </div>
-                                    @endif -->
+                                      <!--/ .Form-group -->
                                   </td>
-                                  <!-- <td>{{ $errors->first('shipping_method_id') }}</td> -->
                               </tr>
+                              <!--/ .Tr -->
                               <tr>
                                 <td></td>
                                 <td>
                                   <button class="btn btn-primary" type="submit" value="Store">Next</button>
                                 </td>
+                                <!--/ .td -->
                               </tr>
+                              <!--/ .Tr -->
                           </tbody>
                       </table>
                   </form>

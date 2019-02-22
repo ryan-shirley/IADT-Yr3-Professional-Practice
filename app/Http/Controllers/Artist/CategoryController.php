@@ -19,11 +19,8 @@ class CategoryController extends Controller
         $this->middleware('auth');
         $this->middleware('role:artist');
     }
-
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     *  Return All Categories
      */
     public function index()
     {
@@ -33,30 +30,20 @@ class CategoryController extends Controller
             'categories' => $categories
         ]);
     }
+    /**
+     *  Return 1 Category
+     */
     public function viewProducts($id)
     {
         $category = Category::find($id);
-
-        // $products = Product::with('categories')->whereHas('categories', function($query) use ($id) {
-        //     $query->where('category_id', 'LIKE', "$id");
-        // })->get();
-
-        //$products = $category->products;
-
-        // $products = Product::whereHas('tags', function ($query){
-        //     $query->where('tag_id', 'like', $id);
-        // })->get();
 
         return view('artist.category.viewProducts')->with([
             //'products' => $products,
             'category' => $category
         ]);
-
     }
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     *  Return a view to create a category
      */
     public function create()
     {
@@ -64,10 +51,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *  Stores a data in the DB
      */
     public function store(Request $request)
     {
@@ -86,10 +70,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Not in use, uses viewProducts instead
      */
     public function show($id)
     {
@@ -97,10 +78,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Returns a view and a category
      */
     public function edit($id)
     {
@@ -109,11 +87,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Updates data values in the DB
      */
     public function update(Request $request, $id)
     {
@@ -132,10 +106,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Deletes a category, also checks if category has products then denied
      */
     public function destroy($id, Request $request)
     {

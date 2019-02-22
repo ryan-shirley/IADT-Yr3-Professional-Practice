@@ -11,11 +11,7 @@ use App\ShippingMethod;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,9 +19,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     *  Returns a view with the orders and products
      */
     public function index()
     {
@@ -37,7 +31,9 @@ class HomeController extends Controller
             'products' => $products
         ]);
     }
-
+    /**
+     *  Returns a view to settings
+     */
     public function settings()
     {
         return view('artist.settings');

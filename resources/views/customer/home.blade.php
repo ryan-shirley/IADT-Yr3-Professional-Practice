@@ -41,9 +41,15 @@
                 @endforeach
               </tbody>
           </table>
+          <!-- /.Table -->
       </div>
+      <!-- /.Card-body -->
   </div>
+  <!-- /.Card -->
 </div>
+<!-- /.Col -->
 </div>
+<!-- /.Row -->
 </div>
+<!-- /.Container -->
 @endsection
