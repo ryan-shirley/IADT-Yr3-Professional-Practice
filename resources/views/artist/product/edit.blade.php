@@ -73,12 +73,10 @@
                             <input class="form-check-input" name="tag_id[]" type="checkbox" value="{{ $t->id }}"
                             @if(old('tag_id', []) && in_array($t->id, old('tag_id', []))))
                               checked
-                            @elseif ($p->tags->contains($t) && !old('tag_id', []))
+                            @elseif ($p->tags->contains($t) && !old('tag_id', []) && !$errors->first('tag_id'))
                               checked
                             @endif
                             >
-
-
                             <label class="form-check-label" for="{{ $t->name }}">
                             {{ $t->name }}
                             </label>
