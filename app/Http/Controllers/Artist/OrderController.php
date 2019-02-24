@@ -110,7 +110,7 @@ class OrderController extends Controller
         // Check billing address is the users address
         $billing_address_id = $request->input('billing_address');
         $billing_address = Address::findOrFail($billing_address_id);
-
+        
         $order = new Order();
         $order->user_id = $request->input('user_id');
         $order->order_date = date("Y-m-d");
