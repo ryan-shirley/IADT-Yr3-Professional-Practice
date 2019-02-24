@@ -17,17 +17,15 @@ use Validator;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
      public function __construct()
      {
          $this->middleware('auth');
          $this->middleware('role:artist');
      }
-
+     /**
+      *  Returns all orders
+      */
      public function index()
      {
          $orders = Order::all();
@@ -37,11 +35,9 @@ class OrderController extends Controller
          ]);
      }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+     /**
+      *  Returns a view to create order with the users, shippings and products
+      */
     public function create()
     {
         $role = Role::where('name', 'customer')->first();
@@ -57,10 +53,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *  Stores an order in the DB
      */
     public function store(Request $request)
     {
@@ -117,7 +110,7 @@ class OrderController extends Controller
         // Check billing address is the users address
         $billing_address_id = $request->input('billing_address');
         $billing_address = Address::findOrFail($billing_address_id);
-
+        
         $order = new Order();
         $order->user_id = $request->input('user_id');
         $order->order_date = date("Y-m-d");
@@ -148,7 +141,9 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index');
     }
-
+    /**
+     *  Returns an order
+     */
     public function show($id)
     {
         $order = Order::findOrFail($id);
@@ -159,10 +154,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Returns a view to edit an order
      */
     public function edit($id)
     {
@@ -174,11 +166,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  Updates an order in the DB
      */
     public function update(Request $request, $id)
     {
@@ -233,10 +221,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *  We prevent order from being deleted, so empty
      */
     public function destroy($id)
     {
@@ -244,10 +229,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *  Creates shipment
      */
     public function saveShipment(Request $request)
     {

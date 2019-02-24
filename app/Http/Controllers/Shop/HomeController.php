@@ -9,11 +9,7 @@ use App\Category;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $products = Product::all()->sortByDesc("id");
@@ -25,12 +21,6 @@ class HomeController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $product = Product::findOrFail($id);
