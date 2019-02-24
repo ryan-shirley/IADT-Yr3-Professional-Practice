@@ -65,7 +65,7 @@
                                                 <textarea id="shipping_address_line1" class="form-control" type="text" name="shipping_address_line1"></textarea>
                                                 <input id="shipping_user_id" value="{{ $user->id }}" hidden />
 
-                                                <span class="error"></span>
+                                                <span id="shipping_create_error" class="badge badge-pill badge-danger"></span>
                                             </div>
                                             <!--/.Form Group -->
                                         </div>
@@ -91,9 +91,15 @@
                                             'value' => $address->id
                                         ])
                                         @endcomponent
+                                        @php
+                                            $has_shipping = true;
+                                        @endphp
                                     @endif
                                 @endforeach
 
+                                @if(empty($has_shipping)) 
+                                <span id="no_shipping">Please create a shipping address</span>
+                                @endif
 
                                 @if ($errors->has('shipping_id'))
                                     <span class="badge badge-pill badge-danger">{{ $errors->first('shipping_id') }}</span>
@@ -138,7 +144,7 @@
                                                 <textarea id="billing_address_line1" class="form-control" type="text" name="billing_address_line1"></textarea>
                                                 <input id="billing_user_id" value="{{ $user->id }}" hidden />
 
-                                                <span class="error"></span>
+                                                <span id="billing_create_error" class="badge badge-pill badge-danger"></span>
                                             </div>
                                             <!--/.Form Group -->
                                         </div>
@@ -164,9 +170,16 @@
                                             'value' => $address->id
                                         ])
                                         @endcomponent
+
+                                        @php
+                                            $has_billing = true;
+                                        @endphp
                                     @endif
                                 @endforeach
 
+                                @if(empty($has_billing)) 
+                                    <span id="no_billing">Please create a billing address</span>
+                                @endif
                             </div>
                             <!--/.Form Group -->
                         </div>

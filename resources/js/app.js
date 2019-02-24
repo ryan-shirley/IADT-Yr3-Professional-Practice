@@ -84,13 +84,18 @@ $( "#submit_shipping_address" ).click(function() {
         // Select Added Address
         $("#shipping_address_" + data.id).prop( "checked", true );
 
-        // Hide Modal & Clear
+        // Hide Modal, No Address & Clear
         $('#newShippingAddressModal').modal('hide');
         $('#shipping_address_line1').val('');
+        $('#no_shipping').remove();
+        $("#shipping_create_error").html('');
     })
-    .catch(function(data){
+    .catch(function(error){
         console.log("Error Adding Shipping Address");
-        console.log(data);
+        var err = error.response.data.error.line1;
+        
+        console.error(err);
+        $("#shipping_create_error").html(err);
    });
 });
 
@@ -124,13 +129,19 @@ $( "#submit_billing_address" ).click(function() {
             // Select Added Address
             $("#billing_address_" + data.id).prop( "checked", true );
 
-            // Hide Modal & Clear
+            // Hide Modal, No Address & Clear
             $('#newBillingAddressModal').modal('hide');
             $('#billing_address_line1').val('');
+            $('#no_billing').remove();
+            $("#billing_create_error").html('');
         },
-        error: function(data){
+        error: function(error){
             console.log("Error Adding Shipping Address");
-            console.log(data);
+
+            var err = error.responseJSON.error.line1;
+        
+            console.error(err);
+            $("#billing_create_error").html(err);
        },
     });
 });

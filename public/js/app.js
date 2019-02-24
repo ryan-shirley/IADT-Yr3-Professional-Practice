@@ -51042,13 +51042,17 @@ $("#submit_shipping_address").click(function () {
 
     $("#list_shipping_address").prepend('<div class="custom-control custom-radio address card-light">' + '<input id="shipping_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="shipping_id" value="' + data.id + '">' + '<label class="custom-control-label" for="shipping_address_' + data.id + '">' + data.line1 + '</label>' + '</div>'); // Select Added Address
 
-    $("#shipping_address_" + data.id).prop("checked", true); // Hide Modal & Clear
+    $("#shipping_address_" + data.id).prop("checked", true); // Hide Modal, No Address & Clear
 
     $('#newShippingAddressModal').modal('hide');
     $('#shipping_address_line1').val('');
-  }).catch(function (data) {
+    $('#no_shipping').remove();
+    $("#shipping_create_error").html('');
+  }).catch(function (error) {
     console.log("Error Adding Shipping Address");
-    console.log(data);
+    var err = error.response.data.error.line1;
+    console.error(err);
+    $("#shipping_create_error").html(err);
   });
 }); // Create Billing Address
 
@@ -51071,14 +51075,18 @@ $("#submit_billing_address").click(function () {
 
       $("#list_billing_address").prepend('<div class="custom-control custom-radio address card-light">' + '<input id="billing_address_' + data.id + '" type="radio" id="address-' + data.id + '" class="custom-control-input" name="billing_id" value="' + data.id + '">' + '<label class="custom-control-label" for="billing_address_' + data.id + '">' + data.line1 + '</label>' + '</div>'); // Select Added Address
 
-      $("#billing_address_" + data.id).prop("checked", true); // Hide Modal & Clear
+      $("#billing_address_" + data.id).prop("checked", true); // Hide Modal, No Address & Clear
 
       $('#newBillingAddressModal').modal('hide');
       $('#billing_address_line1').val('');
+      $('#no_billing').remove();
+      $("#billing_create_error").html('');
     },
-    error: function error(data) {
+    error: function error(_error) {
       console.log("Error Adding Shipping Address");
-      console.log(data);
+      var err = _error.responseJSON.error.line1;
+      console.error(err);
+      $("#billing_create_error").html(err);
     }
   });
 }); // Payment Method Card
