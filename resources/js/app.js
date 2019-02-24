@@ -164,8 +164,8 @@ $( "#shipping .custom-control-label").click(function() {
     var shipping_value = $(this).data( "price" );
     var sub_total = $("#cart_sub_total").html();
     var total = parseInt(sub_total) + parseInt(shipping_value);
-    $("#cart_total").html(total.toFixed(2) + " €");
-    shipping_value = shipping_value.toFixed(2);
+    $("#cart_total").html(parseFloat(total).toFixed(2) + " €");
+    shipping_value = parseFloat(shipping_value).toFixed(2);
 
     if(shipping_value == 0) {
         shipping_value = "FREE";
